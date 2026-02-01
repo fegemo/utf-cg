@@ -10,7 +10,7 @@ import gulpIf from 'gulp-if';
 
 import fs from 'fs';
 import path from 'path';
-import del from 'del';
+import { deleteAsync } from 'del';
 import ghpages from 'gh-pages';
 import merge from 'ordered-read-streams';
 import { build as viteBuild } from 'vite';
@@ -20,7 +20,7 @@ const browserSync = browserSyncModule.create();
 const isDist = process.argv.indexOf('dev') === -1;
 
 async function clean() {
-  return del(['dist']);
+  return deleteAsync(['dist']);
 }
 
 async function js() {
