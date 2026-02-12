@@ -7,15 +7,12 @@
 <!-- {"layout": "regular"} -->
 # Atividades Avaliativas
 
-- Listas de **exercício** (10 pontos)
-- **Prova**
-  - Lista de revisão (15 pontos)
-  - La provita (15 pontos)
+- Listas de **exercício** (22 pontos)
 - **Trabalhos**
-  - [TP0: Ambiente de Desenvolvimento][tp0] (1 ponto)
-  - [TP1: Ping Phong][tp1], grupos <span class="math">\leq</span> 2 (20 pontos)
-  - [TP2: Parque de Diversões][tp2], grupos <span class="math">\leq</span> 2 (20 pontos)
-  - TP3: Ray-tracer, duplas (20 pontos, em duas entregas)
+  - [TP0: Ambiente de Desenvolvimento][tp0] (3 pontos)
+  - TP1, grupos <span class="math">\leq</span> 2 (25 pontos)
+  - TP2, grupos <span class="math">\leq</span> 2 (25 pontos)
+  - TP3: Ray-tracer, duplas (25 pontos, em duas entregas)
     - Primeira parte - colisão: no laboratório
     - Segunda parte - iluminação: no laboratório
 
@@ -30,7 +27,7 @@
 # Aulas
 
 - [Introdução à Computação Gráfica](classes/intro/) <!-- {ul:.multi-column-list-2} -->
-- [OpenGL, Sistemas de Janelas e gatos 😸](classes/opengl/)
+<!-- - [OpenGL, Sistemas de Janelas e gatos 😸](classes/opengl/)
 - [OpenGL Hands-on - Parte 1](classes/opengl-handson/)
 - [OpenGL Hands-on - Parte 2](classes/opengl-handson2/)
 - [OpenGL Hands-on - Parte 3](classes/opengl-handson3/)
@@ -50,7 +47,7 @@
 - [Ray tracing 1](classes/raytracing)
 - [Ray tracing 2](classes/raytracing2)
 - [Animações](http://fegemo.github.io/cefet-games/classes/animation)
-- [Pipeline Programável](classes/programmable-pipeline)
+- [Pipeline Programável](classes/programmable-pipeline) -->
 
 ---
 <!-- {"layout": "stripe"} -->
@@ -62,7 +59,7 @@
 1. Conhecer as **técnicas de modelagem, representação e visualização** de
   objetos bi e tridimensionais.
 1. Conhecer técnicas de **geração de imagens fotorrealísticas**
-1. Conhecer e utilizar a biblioteca gráfica **OpenGL**
+1. Conhecer e utilizar a biblioteca gráfica **WebGL**
 
 ---
 <!-- {"layout": "centered-horizontal"} -->
@@ -153,7 +150,7 @@
 
 ---
 <!-- {"layout": "centered-horizontal"} -->
-# Bibliografia Complementar
+# Bibliografia Complementar 1
 
 <div class="book-cover-container">
   <img class="book-cover" src="images/book-lecture-notes.png">
@@ -163,3 +160,18 @@
 - Notas de aula do Prof. David Mount (bisavô)
 - Material complementar, usado no **TP3 - raytracer**
 - [Download](attachments/DavidMountsLectureNotes.pdf)
+
+
+---
+<!-- {"layout": "centered-horizontal"} -->
+# Bibliografia Complementar 2
+
+<div class="book-cover-container">
+  <img class="book-cover" src="images/webgl2fundamentals-cover.png">
+  <div class="book-left book-light"></div>
+</div>
+
+- [WebGL2 Fundamentals.org][webgl2fundamentals]
+- Sequência de tutoriais (ótimos) sobre WebGL2
+
+[webgl2fundamentals]: https://webgl2fundamentals.org/
