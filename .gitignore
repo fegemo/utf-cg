@@ -1,0 +1,8 @@
+node_modules
+bower_components
+dist
+bespoke-theme-*
+Thumbs.db
+.idea.vite
+dist
+.DS_Store
