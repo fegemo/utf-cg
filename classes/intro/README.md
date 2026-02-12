@@ -1,4 +1,4 @@
-<!-- {"layout": "title"} -->
+<!-- {"layout": "title", "titleVideo": "../../videos/cg-area-art.mp4"} -->
 # Introdução à Computação Gráfica
 ## Conceitos importantes
 
@@ -35,7 +35,7 @@ computadores e periféricos gráficos.
 # Quem usa Computação Gráfica?
 
 1. ## Jogos <!-- {ol:.card-list.cover} -->
-   ![](../../images/cg-area-games.jpg) <!-- {style="width: 300px"} -->
+   ![](../../images/cg-area-games.webp) <!-- {style="width: 300px"} -->
 1. ## Entretenimento
    ![](../../images/cg-area-entertainment.jpg)  <!-- {style="width: 300px"} -->
 1. ## CAD
@@ -56,7 +56,7 @@ computadores e periféricos gráficos.
 
 # Entretenimento
 
-<iframe src="https://player.vimeo.com/video/172374044" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/gUnxzVOs3rk?si=LY144TJhoAYcqnU5" width="640" height="360" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
 ---
 <!-- {"backdrop": "area-cad"} -->
@@ -110,7 +110,7 @@ computadores e periféricos gráficos.
 <!-- {"layout": "2-column-highlight-and-list"} -->
 ## Modelagem
 
-![](../../images/modeling.png)
+![](../../images/modeling.png) <!-- {.block} -->
 
 - A modelagem geométrica consiste de um **conjunto de métodos que visam
   descrever a forma e as características geométricas de um objeto**
@@ -121,7 +121,7 @@ computadores e periféricos gráficos.
 <!-- {"layout": "2-column-highlight-and-list"} -->
 ## Síntese (ou renderização)
 
-![](../../images/image-synthesis.png)
+![](../../images/image-synthesis.png)  <!-- {.block} -->
 
 - A síntese de imagem designa o **processo de geração de imagens
   digitais a partir da descrição dos elementos que compõem uma cena 3D**,
@@ -146,24 +146,26 @@ computadores e periféricos gráficos.
    ![](../../images/image-synthesis.png)
 
 ---
-<!-- {"layout": "centered"} -->
-## Professor, mas eu quero fazer desenhos em 3D!
+<!-- {"layout": "regular", "slideClass": "threed-apps", "embeddedStyles": ".threed-apps .card-list li img { max-width: 70%; &:hover{filter:saturate(3);}} .threed-apps .card-list li {background-image: linear-gradient(135deg, white,  #efefef); padding: 1rem 0.5rem; border: 2px solid #666; box-shadow: 4px 4px 1px #999; will-change: translate; transition: 200ms all ease; &:hover{translate: 0 -2px; box-shadow: 4px 8px 3px #999;}} .threed-apps .card-list { gap: 1rem; }"} -->
+## Mas professor, quero fazer desenhos em 3D!
 
 - Você pode fazer isso e ganhar pontinhos extras nos trabalhos
 - Contudo, o foco do curso está em conhecer e entender como funcionam as
   ferramentas utilizadas na criação de imagens e animações 3D
 - Algumas ferramentas para criar cenas 3D:
-  - [3ds Max](3ds-max) (~5 GB, licença de estudante gratuita)
-  - [Maya lt](maya-lt) (~5 GB, licença de estudante gratuita)
-  - [blender](blender) (~300 MB, gratuito)
-  - [ZBrush](z-brush) (comercial)
-  - [clara.io](claraio) (tem versão gratuita, programa limitado)
+  - <!-- {ul:.card-list.centered style="text-align: center; margin-top: 3rem;"} -->
+    [![Logo do software 3ds Max](../../images/logo-3ds-max.svg)][3ds-max]
+    Profissional<br>~5 GB
+  - [![Logo do software Maya](../../images/logo-maya.svg)][maya-lt]
+    Profissional<br>
+    ~5 GB
+  - [![Logo do software Blender](../../images/logo-blender.svg)][blender]
+    Gratuito e excelente<br>
+    350MB 🌟
 
 [blender]: http://www.blender.org/
-[claraio]: https://clara.io/
-[3ds-max]: http://www.autodesk.com/education/free-software/3ds-max
-[maya-lt]: http://www.autodesk.com/education/free-software/maya-lt
-[z-brush]: http://pixologic.com/
+[3ds-max]: https://www.autodesk.com/education/edu-software/overview#3DSMAX
+[maya-lt]: https://www.autodesk.com/education/edu-software/overview#MAYA
 
 ---
 <!-- {"layout": "section-header", "slideClass": "pixels-gradient"} -->
@@ -257,8 +259,11 @@ computadores e periféricos gráficos.
 <!-- {"layout": "centered-horizontal"} -->
 ## Arquitetura **simples** vs **moderna**
 
+
 ![Diagrama da arquitetura de sistema gráfico simples](../../images/raster-architecture.png)
-![Diagrama da arquitetura de sistema gráfico moderno](../../images/raster-architecture-modern.png) <!-- {.push-right} -->
+![Diagrama da arquitetura de sistema gráfico moderno](../../images/raster-architecture-modern.png)
+
+<!-- {p:style="display: flex; max-width: 100%;"} -->
 
 ---
 <!-- {"layout": "section-header", "slideClass": "rainbow-picture"} -->
@@ -283,8 +288,7 @@ computadores e periféricos gráficos.
 
 - As ondas eletromagnéticas raramente aparecem em apenas 1 frequência,
   mas sim como uma **combinação**. Exemplo:
-
-    ![](../../images/light-frequency-distribution.png)
+    ![](../../images/light-frequency-distribution.png) <!-- {style="display:block; margin-bottom: 1rem;"}-->
 - A luz é percebida como a **mistura (ou soma) das frequências** da onda
   eletromagnética
 - Para representar no computador, precisamos de uma **forma discreta** para
@@ -334,14 +338,14 @@ Imagens podem ser representadas em duas formas principais:
   - Matriz de **pixels** (_picture elements_)
   - Muito simples de gerar e exibir
   - Perdem qualidade se ampliadas
-  - Formatos comuns: [**gif, jpg, png, bmp**]
+  - Formatos comuns: [**gif, jpg, png, webp**]
 
 ---
 <!-- {"layout": "centered"} -->
 ## Comparação: **vetorial** <!-- {.alternate-color} --> _vs_ **raster**
 
-- ::: zoomable .inline display: inline-block
-  ![Exemplo de imagem vetorial](../../images/vector-image.svg) <!-- {style="width: 500px;" draggable="false"} -->
+- ::: zoomable
+  ![Exemplo de imagem vetorial](../../images/vector-image.svg) <!-- {style="width: 320px;" draggable="false"} -->
   :::
   Arquivo
     ~ 6,4 kB
@@ -350,9 +354,9 @@ Imagens podem ser representadas em duas formas principais:
     ~ ∞
 
   Formato
-    ~ .svg
-- ::: zoomable .inline display: inline-block
-  ![Imagem raster](../../images/raster-image.png) <!-- {style="width: 500px;" draggable="false"} -->
+    ~ .svg <!-- {dl:.dl-grid} -->
+- ::: zoomable
+  ![Imagem raster](../../images/raster-image.png) <!-- {style="width: 320px;" draggable="false"} -->
   :::
   Arquivo
     ~ 142 kB
@@ -361,9 +365,9 @@ Imagens podem ser representadas em duas formas principais:
     ~ 1200x1200
 
   Formato
-    ~ .png
+    ~ .png <!-- {dl:.dl-grid} -->
 
-<!-- {ul:.card-list} -->
+<!-- {ul:.card-list.centered style="gap: 1rem;"} -->
 
 
 ---
@@ -435,27 +439,152 @@ Imagens podem ser representadas em duas formas principais:
 <!-- {"layout": "regular"} -->
 # Sumário das opções
 
-1. Foco em **renderização** de imagens tridimensionais em tempo real
+1. Foco em **renderização** de imagens tridimensionais em tempo real <!-- {ol:.multi-column-list-2} -->
 1. Modelo de **representação de imagens**
    - Usamos monitores _raster_
    - Vamos gerar imagens _raster_
    - É possível usar imagens vetoriais, rasterizando-as
 1. Modelo de **cores**
-   - Discretizamos em RGB (opcionalmente com A)
+   - Discretizamos em RGB (+ canal A)
    - Representação com 8 bits por componente
 1. Modelo de **câmera**
    - Vamos usar o modelo do _view frustum_
-   - É possível usar outros modelos mais complexos
+   - É possível usar outros modelos
+
+---
+<!-- {"layout": "regular", "embeddedStyles": ".approaches img, .approaches video {max-width: 290px!important; margin:0!important; aspect-ratio: 1.6667!important; object-fit: cover!important;} .approaches li h2 {order:0; font-weight: bold; background-color: white; padding: 1rem 0!important; margin: 0!important;} .approaches ol li {display: list-item;}"} -->
+# Outras Abordagens para Síntese de Imagens
+
+- Há várias abordagens de síntese de imagens. Algumas:
+  - ## Iteram nos objetos
+    ![](../../images/point-cloud-rendering.png)
+    1. Rasterização
+    1. **Nuvens de pontos**
+    1. _Volume splatting_
+  - ## Iteram nos pixels
+    <video src="../../videos/volume-rendering-knee.mp4" loop muted autoplay></video>
+    1. _Ray tracing_
+    1. _Path tracing_
+    1. _Ray marching_ + SDF
+    1. **_Volume ray casting_**
+  - ## Precomputam iluminação
+    ![](../../images/photon-mapping.png)
+    1. Radiosidade
+    1. **_Photon mapping_**  <!-- {ul^0:.card-list.approaches} -->
+
+---
+<!-- {"layout": "regular"} -->
+# Sumário das opções
+
+1. Foco em **renderização** de imagens tridimensionais em tempo real <!-- {ol:.multi-column-list-2 style="opacity: 0.5"} -->
+1. Modelo de **representação de imagens**
+   - Usamos monitores _raster_
+   - Vamos gerar imagens _raster_
+   - É possível usar imagens vetoriais, rasterizando-as
+1. Modelo de **cores**
+   - Discretizamos em RGB (+ canal A)
+   - Representação com 8 bits por componente
+1. Modelo de **câmera**
+   - Vamos usar o modelo do _view frustum_
+   - É possível usar outros modelos
+
+- 5. Abordagem de síntese de imagens <!-- {ul:.multi-column-list-2 style="margin: 0; padding: 0; list-style-type: none"} -->
+     - 70% Foco em rasterização <!-- {li^1:.bullet} -->
+     - 25% Também veremos _ray tracing_
+     - 05% Outras abordagens
+  6. Para praticar
+     - WebGL como API Gráfica (v. 2) <!-- {li^1:.bullet} -->
+     - Multiplataforma
+     - Dispensa instalação
+
+---
+<!-- {"layout": "3-column-element-with-titles-expansible", "slideClass": "hw compact-code-more", "embeddedStyles": ".hw > * {width: calc(50% - 1rem);} .hw>:nth-child(4):hover {width: calc(50% - 1rem);}"} -->
+## Hello World em WebGL2
+
+```javascript
+// inicializa o WebGL2
+const canvas = document.querySelector('.example-canvas');
+const gl = canvas.getContext('webgl2');
+
+if (!gl) {
+  console.error('WebGL2 não está disponível');
+  throw new Error('WebGL2 não suportado');
+}
+
+// inicializa o shader de vértice e fragmento e em seguida os compila
+// são programas executados pela GPU sempre que algo precisa ser desenhado
+const vertexShaderCode = `#version 300 es
+        in vec2 position;
+        void main() {
+            gl_Position = vec4(position, 0.0, 1.0);
+        }
+    `;
+
+const fragmentShaderCode = `#version 300 es
+        precision highp float;
+        out vec4 outColor;
+        void main() {
+            outColor = vec4(0.0, 1.0, 0.0, 1.0); // verde
+        }
+    `;
+
+const createShader = (type, source) => {
+  const shader = gl.createShader(type);
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  return shader;
+};
+
+// finaliza a combinação (compila + link) dos shaders em um programa
+const program = gl.createProgram();
+gl.attachShader(program, createShader(gl.VERTEX_SHADER, vertexShaderCode));
+gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fragmentShaderCode));
+gl.linkProgram(program);
+gl.useProgram(program);
+
+// define os vértices de um triângulo
+const vertices = new Float32Array([
+  0.0,  0.5,   // topo
+  -0.5, -0.5,  // esquerda
+  0.5, -0.5    // direita
+]);
+
+// cria um VAO para as configurações do triângulo e um Buffer com vértices
+// gl.bufferData(...): move os dados dos vértices: RAM -> VRAM (GPU)
+const vao = gl.createVertexArray();
+gl.bindVertexArray(vao);
+const vbo = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+// configura o atributo 'position' ("in vec2 position" do shader) para 
+// receber os dados do buffer quando o programa (shaders) for executado
+const positionAttributeLocation = gl.getAttribLocation(program, 'position');
+gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(positionAttributeLocation);
+// --- fim do código de configuração ---
+
+
+// --- início do código de renderização ---
+// renderiza: desenha o VAO que estava ativado: o do triângulo
+gl.clearColor(1.0, 1.0, 1.0, 1.0); // fundo branco
+gl.clear(gl.COLOR_BUFFER_BIT);
+gl.drawArrays(gl.TRIANGLES, 0, 3);
+```
+
+## 
+
+![Captura de tela mostrando um navegador com uma página web escrito "Hello World" e um triângulo verde desenhado](../../images/hello-world.png) <!-- {style="width: 80%; margin-top: 0.8rem;"} -->
+<!-- {p:style="margin-top: 0;"} -->
+
 
 ---
 <!-- {"layout": "centered"} -->
 # Referências
 
 - [Programa de modelagem 3D blender][blender]
-- [Aplicativo Web de modelagem 3D clara.io][claraio]
 - [Programa de modelagem 3D Autodesk 3ds Max][3ds-max]
 - [Programa de modelagem 3D Autodesk Maya][maya-lt]
-- [Programa de modelagem 3D ZBrush][z-brush]
 - [Desmontando um monitor de LCD (Enginner Guy)][lcd-teardown]
 - [Explicação da ilusão de ótica][optics-illusion]
 

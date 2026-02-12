@@ -93,6 +93,35 @@ a[href^="codeblocks:"]
     vertical-align middle
     margin-right 5px
 
+
+// BEGIN OF move to theme
+// override theme styles (move to theme?)
+#presentation
+  background-image radial-gradient(circle 700px at -10% 110%, #845ec2e6 0%, #c4f3fb00 90%), 
+    radial-gradient(circle 500px at 100% 0%, #ad83b1e6 0%, #c4f3fb00 90%),
+    linear-gradient(to right bottom, #a9caff 0%, #b8cbff 16.667%, #d3cbff 33.333%, #fae1ff 50%, #ffe7f9 66.667%, #f9cbeb 83.333%, #ffbaec 100%)
+  color black
+
+.bespoke-simple-overview
+  .bespoke-slide
+    outline-color #a39dff
+    &.bespoke-active
+      outline-color #4f4a9c
+
+.layout-stripe.bespoke-slide .stripe
+  filter hue-rotate(141deg)
+
+
+// fixes ugly shadow overflow (move to theme?)
+.layout-2-column-highlight-and-list.bespoke-active>:nth-child(2)
+  transform rotateY(30deg) scale(.9) // it's scale(1) on the theme
+
+.layout-title.bespoke-slide h2
+  box-sizing border-box // no idea why it's content-box on the theme...
+
+// END OF move to theme
+
+
 @import utilities
 @import book
 @import tutorial
