@@ -159,6 +159,27 @@ img[alt$="max"]
     transform scale(1.1) rotateZ(1turn)
 
 
+.bespoke-slide.layout-title:has(.title-video) h1::before
+  // fixes the backdrop going upwards when the title video is present,
+  // as the introduction of the .title-video required having the h1 to
+  // position: relative and overflow: hidden, and the backdrop had bottom: 35%
+  // maybe this should be changed in the theme (move to theme)
+  bottom 0
+
+h1:has(.title-video)
+  position relative
+  overflow hidden
+
+.title-video
+  position absolute
+  left 0
+  right 0
+  top 0
+  bottom 0
+  width 100%
+  z-index -1
+
+
 .dl-6
   & > dt
     width 6em

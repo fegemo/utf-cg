@@ -153,6 +153,28 @@ const config = {
         })
         .catch(console.error);
     });
+  },
+
+  titleVideo: (slide, videoSource) => {
+    // procurar pelo primeiro h1 dentro do slide para ser o container do vídeo
+    const titleEl = slide.querySelector('h1');
+    if (titleEl) {
+      // titleEl.style.position = 'relative';
+
+      const videoEl = document.createElement('video');
+      videoEl.src = videoSource;
+      videoEl.autoplay = true;
+      videoEl.muted = true;
+      videoEl.loop = true;
+      videoEl.playsinline = true;
+      videoEl.classList.add('title-video');
+
+      titleEl.appendChild(videoEl);
+    } else {
+      console.warn(`Não foi possível encontrar um elemento <h1> 
+        dentro do slide a seguir para inserir 
+        o vídeo título com src=${videoSource}:`, slide.outerHTML);
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 // default stylish images
-.layout-title h1
-  &::before
+.layout-title
+  h1::before
     background-image url(../images/sky-stellar.jpg)
 
 .layout-section-header::after
@@ -13,17 +13,28 @@
 // stylish images by class
 .syllabus
   .layout-title
+    box-shadow 0 0 20px #0004
     background-color white
     h1::before
       background-image url(../images/forest-mountain.jpg)
 
 .intro
-  .layout-title h1::before
-    background-image url(../images/cg-area-art.jpg)
+  .layout-title
+    background-color #fff2
+    box-shadow 0 0 20px #0004
+    h1
+      box-shadow 6px 5px 9px #0007
+    h1::before
+      background-image url(../images/cg-area-art.jpg)
+    .title-video
+      top auto
+      bottom 0
 
   .conceitos-basicos.layout-section-header::after
-    background-image url(../images/cg-area-games.jpg)
+    background-image url(../images/cg-area-games.webp)
     animation movingbg-x 60s linear 0s infinite alternate-reverse
+    background-position-y 0% !important
+    background-size 260%
 
   .pixels-gradient.layout-section-header::after
     background-image url(../images/pixels-gradient.jpg)
