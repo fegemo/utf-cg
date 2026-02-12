@@ -223,6 +223,11 @@ function devServer() {
 }
 
 function deploy(done) {
+  // as of git 2.35.2, git introced a breaking change that causes gh-pages 
+  // to fail when trying to get the remote URL, so we might need to
+  // let disable that git feature:
+  // 
+  // git config --global --add safe.directory '*'
   ghpages.publish(path.join(process.cwd(), 'dist'), done);
 }
 
