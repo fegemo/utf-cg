@@ -7,7 +7,6 @@ import math from 'bespoke-math';
 import touch from 'bespoke-touch';
 import scale from 'bespoke-scale';
 import state from 'bespoke-state';
-import qrcode from 'bespoke-qrcode';
 import bullets from 'bespoke-bullets';
 import sandy from 'bespoke-theme-sandy';
 import progress from 'bespoke-progress';
@@ -44,7 +43,6 @@ bespoke.from('article', [
   state(),
   backdrop(),
   //search()
-  qrcode(),
   tutorial(document.querySelector('.tutorial')),
   deck => {
     // waits 200ms to avoid FoUC
