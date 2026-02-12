@@ -127,7 +127,7 @@ function copierTaskGenerator(taskName, source, destination) {
   const name = Symbol(taskName);
   const obj = {
     [name]: () =>
-      src(source)
+      src(source, {encoding: false})
         .pipe(changed(destination))
         .pipe(dest(destination))
   };
