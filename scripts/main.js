@@ -11,6 +11,7 @@ import bullets from 'bespoke-bullets';
 import sandy from 'bespoke-theme-sandy';
 import progress from 'bespoke-progress';
 import backdrop from 'bespoke-backdrop';
+import search from 'bespoke-search';
 import markdown from 'bespoke-markdownit/lazy-hljs';
 import overview from 'bespoke-simple-overview';
 
@@ -42,7 +43,17 @@ bespoke.from('article', [
   vis(),
   state(),
   backdrop(),
-  //search()
+  search({
+    insertStyles: false, text: {
+      instructions: 'Instruções',
+      searchHere: 'Digite aqui...',
+      openSearch: 'Abrir pesquisa',
+      closeSearch: 'Fechar pesquisa',
+      search: 'Pesquisar',
+      nextResult: 'Próximo resultado',
+      previousResult: 'Resultado anterior'
+    }
+  }),
   tutorial(document.querySelector('.tutorial')),
   deck => {
     // waits 200ms to avoid FoUC
