@@ -16,7 +16,7 @@
     - Primeira parte - colisão: no laboratório
     - Segunda parte - iluminação: no laboratório
 
-[tp0]: https://github.com/fegemo/cefet-cg/tree/master/assignments/tp0/README.md
+[tp0]: https://github.com/fegemo/utf-cg/tree/master/assignments/tp0/README.md
 [tp1]: https://github.com/fegemo/cefet-cg/tree/master/assignments/tp1-ping-phong/README.md
 [tp2]: https://github.com/fegemo/cefet-cg/tree/master/assignments/tp2-amusement/README.md
 [tp3]: https://github.com/fegemo/cefet-cg/blob/master/assignments/tp3/README.md#trabalho-prático-3---ray-tracer
