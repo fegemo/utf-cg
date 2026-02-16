@@ -33,9 +33,10 @@ começar a criar seus programinhas web com WebGL. Esse ambiente é composto por:
 [nota-1]: #nota-1
 
 
-Em seguida, você vai (2) criar uma página Web simples, descrevendo a sua pessoa.
-Não precisa inventar moda: a ideia é ter um primeiro contato com a plataforma
-Web como alvo do desenvolvimento, e a programação dirigita por eventos.
+Em seguida, você vai **(2) criar uma página Web simples**, descrevendo a 
+sua pessoa. Não precisa inventar moda: a ideia é ter um primeiro 
+contato com a plataforma Web como alvo do desenvolvimento, 
+e a programação dirigita por eventos.
 
 Sua página deve conter:
 1. Código HTML referente a um "esqueleto básico" de página HTML5
@@ -73,7 +74,7 @@ Sua página deve conter:
    - Etc... por que não implementar todas essas e muito mais?
 
 
-Por fim, você deve (3) tornar a pasta um repositório Git (pô, devia ter feito
+Por fim, você deve **(3) tornar a pasta um repositório Git** (pô, devia ter feito
 isso antes do item 2 hein... estamos de 👀), faça um ou mais _commits_ e, então,
 publique em algum hotelzinho de repositórios, como o Github. Vais gerar uma
 URL no formato: `github.com/adamastor/utf-cg-tp0` (se o seu nome de 
