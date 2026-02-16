@@ -27,6 +27,7 @@
 # Aulas
 
 - [Introdução à Computação Gráfica](classes/intro/) <!-- {ul:.multi-column-list-2} -->
+- [Introdução à Web][https://fegemo.github.io/cefet-web/classes/web-intro/]
 <!-- - [OpenGL, Sistemas de Janelas e gatos 😸](classes/opengl/)
 - [OpenGL Hands-on - Parte 1](classes/opengl-handson/)
 - [OpenGL Hands-on - Parte 2](classes/opengl-handson2/)
