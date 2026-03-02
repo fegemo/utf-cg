@@ -2,6 +2,12 @@
   font-size: 0.5em;
 }
 
+.timeline .webgpu .vis-item {
+  background-color: #ffc0e9;
+  border-color: #5d0049;
+  color: #8b0367;
+}
+
 .timeline .vulkan .vis-item {
   background-color: #d3c0ff;
   border-color: #35005d;
@@ -24,4 +30,18 @@
   background-color: #e8d25c;
   border-color: #fdd835;
   color: #403b00;
+}
+
+.timeline  {
+  & .vis-panel.vis-center,
+  & .vis-foreground .vis-group,
+  & .vis-panel.vis-left,
+  & .vis-time-axis .vis-grid.vis-minor,
+  & .vis-labelset .vis-label {
+    border-color: #0000000f;
+  }
+
+  & .vis-timeline {
+    border-color: transparent;
+  }
 }
