@@ -23,32 +23,32 @@
 [tp3-collision]: https://github.com/fegemo/cefet-cg/blob/master/assignments/tp3/collision/README.md#trabalho-prático-3---ray-tracer
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "slideHash": "slides"} -->
 # Aulas
 
-- [Introdução à Computação Gráfica](classes/intro/) <!-- {ul:.multi-column-list-2} -->
-- [Introdução à Web](https://fegemo.github.io/cefet-web/classes/web-intro/)
-<!-- - [OpenGL, Sistemas de Janelas e gatos 😸](classes/opengl/)
-- [OpenGL Hands-on - Parte 1](classes/opengl-handson/)
-- [OpenGL Hands-on - Parte 2](classes/opengl-handson2/)
-- [OpenGL Hands-on - Parte 3](classes/opengl-handson3/)
-- [Cê](classes/c)
-  - [_Feedback_ do TP1 - turma anterior](classes/breakout-feedback)
-- [Geometria](classes/geometry)
-- [Transformações Geométricas](classes/transforms)
-- [Orientação e Mudança de Coordenadas](classes/baseorientation)
-- [O Pipeline Gráfico](classes/pipeline)
-- [Projeção](classes/projection)
-- [Modelagem Hierárquica](classes/hierarchical)
-- [Especificação de vértices e dragões 🐉](classes/vertex-spec)
-- [Iluminação e Sombreamento](classes/lighting)
-- [Modelagem de Objetos](classes/modeling)
-- [Texturas](classes/textures)
-- [Efeitos Visuais](classes/visual-effects)
-- [Ray tracing 1](classes/raytracing)
-- [Ray tracing 2](classes/raytracing2)
-- [Animações](http://fegemo.github.io/cefet-games/classes/animation)
-- [Pipeline Programável](classes/programmable-pipeline) -->
+1. [Introdução à Computação Gráfica](classes/intro/) <!-- {fora-ate-que-fique-grande:.multi-column-list-2} -->
+1. [Introdução à Web](https://fegemo.github.io/cefet-web/classes/web-intro/)
+1. [Sistemas de Janelas, WebGL e gatos 😸](classes/webgl/)
+<!-- 1. [OpenGL Hands-on - Parte 1](classes/opengl-handson/)
+1. [OpenGL Hands-on - Parte 2](classes/opengl-handson2/)
+1. [OpenGL Hands-on - Parte 3](classes/opengl-handson3/)
+1. [Cê](classes/c)
+1. [_Feedback_ do TP1 - turma anterior](classes/breakout-feedback)
+1. [Geometria](classes/geometry)
+1. [Transformações Geométricas](classes/transforms)
+1. [Orientação e Mudança de Coordenadas](classes/baseorientation)
+1. [O Pipeline Gráfico](classes/pipeline)
+1. [Projeção](classes/projection)
+1. [Modelagem Hierárquica](classes/hierarchical)
+1. [Especificação de vértices e dragões 🐉](classes/vertex-spec)
+1. [Iluminação e Sombreamento](classes/lighting)
+1. [Modelagem de Objetos](classes/modeling)
+1. [Texturas](classes/textures)
+1. [Efeitos Visuais](classes/visual-effects)
+1. [Ray tracing 1](classes/raytracing)
+1. [Ray tracing 2](classes/raytracing2)
+1. [Animações](http://fegemo.github.io/cefet-games/classes/animation)
+1. [Pipeline Programável](classes/programmable-pipeline) -->
 
 ---
 <!-- {"layout": "stripe"} -->

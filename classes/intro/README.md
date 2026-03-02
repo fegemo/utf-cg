@@ -436,7 +436,7 @@ Imagens podem ser representadas em duas formas principais:
 - Apenas o que está dentro do _frustum_ é retratado
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "state": "transition-put-next-below"} -->
 # Sumário das opções
 
 1. Foco em **renderização** de imagens tridimensionais em tempo real <!-- {ol:.multi-column-list-2} -->
@@ -452,7 +452,7 @@ Imagens podem ser representadas em duas formas principais:
    - É possível usar outros modelos
 
 ---
-<!-- {"layout": "regular", "embeddedStyles": ".approaches img, .approaches video {max-width: 290px!important; margin:0!important; aspect-ratio: 1.6667!important; object-fit: cover!important;} .approaches li h2 {order:0; font-weight: bold; background-color: white; padding: 1rem 0!important; margin: 0!important;} .approaches ol li {display: list-item;}"} -->
+<!-- {"layout": "regular", "embeddedStyles": ".approaches img, .approaches video {max-width: 290px!important; margin:0!important; aspect-ratio: 1.6667!important; object-fit: cover!important;} .approaches li h2 {order:0; font-weight: bold; background-color: white; padding: 1rem 0!important; margin: 0!important;} .approaches ol li {display: list-item;}", "state": "transition-put-previous-above transition-put-next-above"} -->
 # Outras Abordagens para Síntese de Imagens
 
 - Há várias abordagens de síntese de imagens. Algumas:
@@ -473,7 +473,7 @@ Imagens podem ser representadas em duas formas principais:
     1. **_Photon mapping_**  <!-- {ul^0:.card-list.approaches} -->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "state": "transition-put-previous-below"} -->
 # Sumário das opções
 
 1. Foco em **renderização** de imagens tridimensionais em tempo real <!-- {ol:.multi-column-list-2 style="opacity: 0.5"} -->
@@ -540,7 +540,6 @@ const program = gl.createProgram();
 gl.attachShader(program, createShader(gl.VERTEX_SHADER, vertexShaderCode));
 gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fragmentShaderCode));
 gl.linkProgram(program);
-gl.useProgram(program);
 
 // define os vértices de um triângulo
 const vertices = new Float32Array([
@@ -562,12 +561,15 @@ gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 const positionAttributeLocation = gl.getAttribLocation(program, 'position');
 gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 gl.enableVertexAttribArray(positionAttributeLocation);
+
+// inicia algumas variáveis de estado
+gl.clearColor(1.0, 1.0, 1.0, 1.0); // fundo branco
+gl.useProgram(program);
 // --- fim do código de configuração ---
 
 
 // --- início do código de renderização ---
 // renderiza: desenha o VAO que estava ativado: o do triângulo
-gl.clearColor(1.0, 1.0, 1.0, 1.0); // fundo branco
 gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.TRIANGLES, 0, 3);
 ```

@@ -119,6 +119,29 @@ a[href^="codeblocks:"]
 .layout-title.bespoke-slide h2
   box-sizing border-box // no idea why it's content-box on the theme...
 
+@media screen
+  .transition-put-next-below
+    .bespoke-after
+      transform translate3d(0, 100%, 0) rotateX(0deg)
+
+  .transition-put-next-above
+    .bespoke-after
+      transform translate3d(0, -100%, 0) rotateX(0deg)
+
+  .transition-put-previous-above
+    .bespoke-before
+      transform translate3d(0, -100%, 0) rotateX(0deg)
+  
+  .transition-put-previous-below
+    .bespoke-before
+      transform translate3d(0, 100%, 0) rotateX(0deg)
+
+.two-column-code pre
+  max-height unset !important
+  width auto !important
+  column-count 2
+  column-gap 2em
+  column-rule 3px double rgba(0, 0, 0, .07)
 // END OF move to theme
 
 
