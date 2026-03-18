@@ -657,7 +657,7 @@ function configuraTudo() {
 ## Definindo Objetos com **VBOs** e **VAOs** <small>(1/3)</small> <!-- {strong:.alternate-color} -->
 
 - ![](../../images/vertex-attribute-example.svg) <!-- {.push-right style="width: 250px"} --> <!-- {ul:.full-width} -->
-  ::: div .note.info.push-right.clear-both width: 250px; margin-top: 1rem;
+  ::: div .note.info.push-right.clear-both font-size: 0.7em; width: 250px; margin-top: 1rem;
   **VAOs** <!-- {strong:.alternate-color} --> chegaram no WebGL2 👍 e são uma ótima prática para reduzir o número de chamadas. <!-- {p:.no-margin.smaller-text-70} -->
   :::
   Algumas aplicações descrevem objetos usando vários **VBOs**
@@ -997,9 +997,9 @@ Que tipos de objetos podemos desenhar?
   gl.drawArrays(gl.POINTS, 0, 13)
   ```
 - Exemplos
-  1. Pontos (`GL_POINTS`) <!-- {ol:.multi-column-list-3.no-bullet} -->
-  1. Linhas (`GL_LINES`)
-  1. Triângulos (`GL_TRIANGLES`)
+  1. Pontos (`gl.POINTS`) <!-- {ol:.multi-column-list-3.no-bullet} -->
+  1. Linhas (`gl.LINES`)
+  1. Triângulos (`gl.TRIANGLES`)
 
 ---
 ![](../../images/primitives-part1.svg)
@@ -1010,10 +1010,10 @@ Que tipos de objetos podemos desenhar?
 ---
 ![](../../images/primitives-lines.svg) <!-- {style="height: 180px"} -->
 
-`GL_POINTS`
+`gl.POINTS`
   ~ Desenha um ponto para cada vértice <span class="math">n</span>.
 
-`GL_LINES`
+`gl.LINES`
   ~ Desenha uma série de segmentos de linha desconectados. São
     desenhados entre <span class="math">v_0</span> e
     <span class="math">v_1</span>, <span class="math">v_2</span> e
@@ -1022,7 +1022,7 @@ Que tipos de objetos podemos desenhar?
     daí em diante. Se <span class="math">n</span> é ípmar, o último
     vértice não faz parte de um segmento.
 
-`GL_LINE_STRIP`
+`gl.LINE_STRIP`
   ~ Desenha um segmento de <span class="math">v_0</span> a
     <span class="math">v_1</span>, então de
     <span class="math">v_1</span> a <span class="math">v_2</span> e daí por
@@ -1030,14 +1030,14 @@ Que tipos de objetos podemos desenhar?
     para <span class="math">v_{n-1}</span>. Então, um total de
     <span class="math">n-1</span> segmentos são desenhados.
 
-`GL_LINE_LOOP`
-  ~ Mesmo que `GL_LINE_STRIP`, exceto que um segmento final é desenhado
+`gl.LINE_LOOP`
+  ~ Mesmo que `gl.LINE_STRIP`, exceto que um segmento final é desenhado
     de <span class="math">v_{n-1}</span> até <span class="math">v_0</span>,
     completando o circuito.
 
 
 ---
-`GL_TRIANGLES`
+`gl.TRIANGLES`
   ~ Desenha uma série de triângulos usando os vértices
   <span class="math">v_0</span>, <span class="math">v_1</span>,
   <span class="math">v_2</span>, depois <span class="math">v_3</span>,
@@ -1045,7 +1045,7 @@ Que tipos de objetos podemos desenhar?
   diante. Se <span class="math">n</span> não é um múltiplo de 3, o
   último ou os 2 últimos vértices são ignorados.
 
-`GL_TRIANGLE_STRIP`
+`gl.TRIANGLE_STRIP`
   ~ Desenha uma série de triângulos usando os vértices
   <span class="math">v_0, v_1, v_2</span>, depois
   <span class="math">v_2, v_1, v_3</span>
@@ -1053,7 +1053,7 @@ Que tipos de objetos podemos desenhar?
   e daí por diante. A ordem é para assegurar que os triângulos estão
   todos desenhados com a mesma orientação.
 
-`GL_TRIANGLE_FAN`
+`gl.TRIANGLE_FAN`
   ~ Mesmo que `GL_TRIANGLE_STRIP`, exceto que os vértices são
   <span class="math">v_0, v_1, v_2</span>, depois
   <span class="math">v_0, v_2, v_3</span>, depois
@@ -1066,12 +1066,13 @@ Que tipos de objetos podemos desenhar?
 <!-- {"layout": "regular"} -->
 ## Experimentos com as primitivas
 
-1. Desenhar pontos (`GL_POINTS`) em vez de quadrados. Para que os
-  pontos fiquem visíveis, **aumentar seu tamanho usando `glPointSize()`**.
-1. Usar outras primitivas: `GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP`
+1. Desenhar pontos (`gl.POINTS`) em vez de quadrados. Para que os
+  pontos fiquem visíveis, **aumentar seu tamanho usando `gl.pointSize()`**.
+1. Usar outras primitivas: `gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP`
 
 
 ---
+<!-- {"layout": "centered"} -->
 # Lista de exercícios 1
 
 Link via **SIGAA** ou **Moodle**
