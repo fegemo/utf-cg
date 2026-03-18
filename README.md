@@ -23,7 +23,7 @@
 [tp3-collision]: https://github.com/fegemo/cefet-cg/blob/master/assignments/tp3/collision/README.md#trabalho-prático-3---ray-tracer
 
 ---
-<!-- {"layout": "regular", "slideHash": "slides"} -->
+<!-- {"layout": "regular", "hash": "slides"} -->
 # Aulas
 
 1. [Introdução à Computação Gráfica](classes/intro/) <!-- {fora-ate-que-fique-grande:.multi-column-list-2} -->
