@@ -55,7 +55,7 @@ const config = {
     });
   },
 
-  slideHash: (slide, value) => slide.setAttribute('data-bespoke-hash', value),
+  hash: (slide, value) => slide.setAttribute('data-bespoke-hash', value),
 
   layout: (slide, value) => slide.classList.add('layout-' + value),
 
@@ -431,6 +431,35 @@ const extensions = [
             styleString = (m[4] || '').trim();
           }
           return `<div class="vis ${className}" style="${styleString}" data-vis="${type}" data-vis-url="${url}">\n`;
+        } else {
+          // closing tag
+          return '</div>\n';
+        }
+      }
+    }
+  ],
+  [
+    markdownItContainer,
+    'sample',
+    {
+      validate: (params) => params.trim().match(/^sample.*$/),
+      render: (tokens, idx, options, env, self) => {
+        // formato:
+        // ::: sample pasta-dentro-de-samples .classe-extra background-color: white; color: black;
+        // ![](../../images/cover-image.png)
+        // :::
+        const m = tokens[idx].info.trim().match(/^sample\s+([^\s]*)\s*([^\s]*)\s*(.*)?$/);
+        let folder = '';
+        let className = '', styleString = '';
+
+        if (tokens[idx].nesting === 1) {
+          // opening tag
+          if (!!m && Array.isArray(m)) {
+            folder = (m[1] || '').trim();
+            className = (m[2] || '').trim().replace(/\./g, ' ');
+            styleString = (m[3] || '').trim();
+          }
+          return `<div class="sample ${className}" data-sample="${folder}" style="${styleString}">\n`;
         } else {
           // closing tag
           return '</div>\n';

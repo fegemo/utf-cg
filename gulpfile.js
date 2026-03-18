@@ -37,6 +37,7 @@ async function js() {
         fileName: () => 'build.js'
       },
       rollupOptions: {
+        external: [/^..\/samples\/.*/], 
         output: {
           entryFileNames: 'build.js',
           sourcemapFile: 'build.js.map'

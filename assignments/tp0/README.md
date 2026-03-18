@@ -34,9 +34,10 @@ começar a criar seus programinhas web com WebGL. Esse ambiente é composto por:
 
 
 Em seguida, você vai **(2) criar uma página Web simples**, descrevendo a 
-sua pessoa. Não precisa inventar moda: a ideia é ter um primeiro 
-contato com a plataforma Web como alvo do desenvolvimento, 
-e a programação dirigita por eventos.
+sua pessoa. Coloque tudo em uma pasta com nome `utf-cg-tp0`.
+Não precisa inventar moda: a ideia é ter um primeiro contato com a 
+plataforma Web como alvo do desenvolvimento, e a programação 
+dirigita por eventos.
 
 Sua página deve conter:
 1. Código HTML referente a um "esqueleto básico" de página HTML5

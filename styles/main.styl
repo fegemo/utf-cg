@@ -136,6 +136,14 @@ a[href^="codeblocks:"]
     .bespoke-before
       transform translate3d(0, 100%, 0) rotateX(0deg)
 
+  .transition-put-next-further
+    .bespoke-after
+      transform translate3d(0, 0, -600px)
+
+  .transition-put-previous-closer
+    .bespoke-before
+      transform translate3d(0, 0, 600px)
+
 .two-column-code pre
   max-height unset !important
   width auto !important
@@ -144,6 +152,18 @@ a[href^="codeblocks:"]
   column-rule 3px double rgba(0, 0, 0, .07)
 // END OF move to theme
 
+a[href*="github.io/utf-cg-exemplos"],
+a[href*="github.com/fegemo/utf-cg-exemplos"]
+  &::before
+    content ' '
+    display inline-block
+    width 0.75em
+    aspect-ratio 1
+    background-color currentColor 
+    mask-image url(../../images/icon-github.svg)
+    mask-size cover
+    vertical-align baseline
+    margin-right 0.25em
 
 @import utilities
 @import book

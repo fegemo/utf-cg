@@ -13,7 +13,7 @@
 1. **[Trabalho Prático 1](#tp1)**
 
 ---
-<!-- {"layout": "section-header", "slideClass": "display-list", "slideHash": "display-lists"} -->
+<!-- {"layout": "section-header", "slideClass": "display-list", "hash": "display-lists"} -->
 # Display Lists
 
 - Revendo o exercício
@@ -133,7 +133,7 @@ int main(int c, char** v) {
 ```
 
 ---
-<!-- { "layout": "section-header", "slideClass": "orientacao-de-poligonos", "slideHash": "orientacao-de-poligonos" } -->
+<!-- { "layout": "section-header", "slideClass": "orientacao-de-poligonos", "hash": "orientacao-de-poligonos" } -->
 # Orientação de Polígonos
 ## Lado da frente e de trás
 
@@ -187,7 +187,7 @@ void desenhaMinhaCena() {
   - É possível inverter: `glFrontFace(GL_CW)` (mas não há muito motivo)
 
 ---
-<!-- { "layout": "section-header", "slideClass": "posicionamento", "slideHash": "posicionamento-de-objetos" } -->
+<!-- { "layout": "section-header", "slideClass": "posicionamento", "hash": "posicionamento-de-objetos" } -->
 # Posicionamento de objetos
 
 - O jeito ruim
@@ -233,7 +233,7 @@ void desenhaMinhaCena() {
   ```
 
 ---
-<!-- { "layout": "section-header", "slideClass": "usando-texturas", "slideHash": "usando-texturas" } -->
+<!-- { "layout": "section-header", "slideClass": "usando-texturas", "hash": "usando-texturas" } -->
 # Usando Texturas
 
 ---
@@ -345,7 +345,7 @@ void inicializa() {
 ```
 
 ---
-<!-- { "layout": "centered", "slideHash": "tp1" } -->
+<!-- { "layout": "centered", "hash": "tp1" } -->
 # Trabalho Prático 1 \o/
 
 _A wild TP1 appears..._

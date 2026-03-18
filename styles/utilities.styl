@@ -235,3 +235,24 @@ dl.dl-grid
 
 .faded
   opacity 0.3
+
+
+// the theme-sandy has .note.info and .note.warning... here are a few more
+.note
+  h1, h2, h3, h4, h5, h6, p, li
+    font-size 1em
+  &.exercise
+    position relative
+    border-color #bb580e
+    background linear-gradient(to right bottom, #ffd8ba, #fea969)
+    strong
+      color #bb580e
+    &::before
+      content "✏️"
+      width 1em
+      height 1em
+      line-height 1em
+      float none
+      position absolute
+      left -0.5em
+      top -0.5em

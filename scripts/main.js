@@ -14,6 +14,7 @@ import backdrop from 'bespoke-backdrop';
 import search from 'bespoke-search';
 import markdown from 'bespoke-markdownit/lazy-hljs';
 import overview from 'bespoke-simple-overview';
+import samples from './bespoke-sample-loader.js';
 
 // utilities
 import tutorial from './tutorial.js';
@@ -55,6 +56,7 @@ bespoke.from('article', [
     }
   }),
   tutorial(document.querySelector('.tutorial')),
+  samples('.sample'),
   deck => {
     // waits 200ms to avoid FoUC
     setTimeout(() => deck.parent.closest('#presentation-container').style.visibility = 'visible', 200);

@@ -2,8 +2,6 @@
 # Introdução ao&nbsp;~~OpenGL~~&nbsp;WebGL <!-- {s:style="opacity: 0.7; font-style: italic;"} -->
 ## e os Sistemas de Janelas
 
-
-
 ---
 <!-- {"layout": "centered" -->
 # Roteiro
@@ -17,9 +15,9 @@
 <!-- {"layout": "section-header", "slideClass": "hello-world"} -->
 # _Hello World_
 
-1. Qual o menor programa em OpenGL?
-1. O que é OpenGL?
-1. OpenGL é igual desde que surgiu?
+1. Qual o menor programa em WebGL?
+1. O que é WebGL?
+1. WebGL vs OpenGL
 
 ---
 <!-- {"layout": "3-column-element-with-titles-expansible", "slideClass": "hw compact-code-more", "embeddedStyles": ".hw > * {width: calc(50% - 1rem); margin-bottom: auto !important; height: auto!important;} .hw>:nth-child(2) { width: fit-content!important; } .hw>:nth-child(3) { transition: translate 200ms; } .hw>:nth-child(3):hover,.show-active-slide-and-previous .hw>:nth-child(3) { translate: -50% 0; width: fit-content;} .show-active-slide-and-previous .hw.bespoke-inactive { pointer-events: all; }"} -->
@@ -106,12 +104,13 @@ gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 const positionAttributeLocation = gl.getAttribLocation(program, 'position');
 gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 gl.enableVertexAttribArray(positionAttributeLocation);
+
+gl.clearColor(1.0, 1.0, 1.0, 1.0); // fundo branco
 // --- fim do código de configuração ---
 
 
 // --- início do código de renderização ---
 // renderiza: desenha o VAO que estava ativado: o do triângulo
-gl.clearColor(1.0, 1.0, 1.0, 1.0); // fundo branco
 gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.TRIANGLES, 0, 3);
 ```
@@ -513,7 +512,7 @@ requestAnimationFrame(loopPrincipal)
 function configuraTudo() {
   // 1. inicia contexto WebGL2
   const canvas = document.querySelector('canvas')
-  const gl = canvas.getContext('2d')
+  const gl = canvas.getContext('webgl2')
 
   // 2. registra callbacks p/ eventos de interesse
   canvas.addEventListener('mousemove', mouseMexeu)

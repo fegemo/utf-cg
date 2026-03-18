@@ -46,20 +46,24 @@
     <script src="OrbitControls.js"></script>
   </head>
   <body>
-    <button id="reload" onclick="window.location.reload();">Carregar</button>
+    <!-- <button id="reload" onclick="window.location.reload();">Carregar</button> -->
     <script>
       // We always need a scene.
       const scene = new THREE.Scene();
 
       // ====================================================================
-      TW.clearColor = '#f7f9fb';
+      // TW.clearColor = '#f7f9fb';
       const colorcube = TW.createColorCube();
-      scene.add(colorcube);
+      scene.add(colorcube); 
 
       // ================================================================
 
 
-      const renderer = new THREE.WebGLRenderer();
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setClearColor(0x000000, 0); 
+      // scene.background = null;
+      // renderer.autoClear = false;
+
 
       TW.debug = true;
       TW.mainInit(renderer, scene);
@@ -71,6 +75,7 @@
         minz: 0,
         maxz: 1
       });
+      renderer.setClearColor(0x000000, 0); 
       TW.viewFromAboveFrontSide();
 
       // const isShared = false;
