@@ -12,7 +12,7 @@
    _ray tracing_
 
 ---
-<!-- { "layout": "section-header", "slideClass": "modelos-de-iluminacao", "slideHash": "modelos-de-iluminacao" } -->
+<!-- { "layout": "section-header", "slideClass": "modelos-de-iluminacao", "hash": "modelos-de-iluminacao" } -->
 # Modelos de iluminação
 
 - Modelos locais (vimos Phong)
@@ -78,7 +78,7 @@
 [photon-mapping]: https://link.springer.com/chapter/10.1007/978-3-7091-7484-5_3
 
 ---
-<!-- { "layout": "section-header", "slideClass": "ray-tracing", "slideHash": "ray-tracing" } -->
+<!-- { "layout": "section-header", "slideClass": "ray-tracing", "hash": "ray-tracing" } -->
 # _Ray tracing_
 
 - Tipos:

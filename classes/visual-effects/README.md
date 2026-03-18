@@ -48,7 +48,7 @@
 <iframe src="https://stemkoski.github.io/Three.js/Skybox.html" width="100%" height="100%" frameborder="0"></iframe>
 
 ---
-<!-- { "layout": "section-header", "slideClass": "billboarding", "slideHash": "sprites-e-billboarding" } -->
+<!-- { "layout": "section-header", "slideClass": "billboarding", "hash": "sprites-e-billboarding" } -->
 # _Sprites_ e _Billboarding_
 
 - Sprites 2D em 3D
@@ -124,7 +124,7 @@ Há pelo menos 3 tipos de _billboards_: _screen-aligned_, _world-oriented_ e axi
 
 
 ---
-<!-- { "layout": "section-header", "slideClass": "sombras-em-tempo-real", "slideHash": "sombras-em-tempo-real" } -->
+<!-- { "layout": "section-header", "slideClass": "sombras-em-tempo-real", "hash": "sombras-em-tempo-real" } -->
 # Sombras em Tempo Real
 
 - O uso de sombras em uma cena aumenta o realismo e   fornece dicas visuais para a profundidade e
@@ -237,7 +237,7 @@ Há pelo menos 3 tipos de _billboards_: _screen-aligned_, _world-oriented_ e axi
 ![](../../images/shadow-map4.png) <!-- {p:.centered} -->
 
 ---
-<!-- { "layout": "section-header", "slideClass": "sistema-de-particulas", "slideHash": "sistema-de-particulas" } -->
+<!-- { "layout": "section-header", "slideClass": "sistema-de-particulas", "hash": "sistema-de-particulas" } -->
 # Sistema de partículas
 
 - Um **sistema de partículas** é um conjunto de objetos pequenos colocados
@@ -308,7 +308,7 @@ Há pelo menos 3 tipos de _billboards_: _screen-aligned_, _world-oriented_ e axi
 -->
 
 ---
-<!-- { "layout": "section-header", "slideClass": "environment-mapping", "slideHash": "environment-mapping" } -->
+<!-- { "layout": "section-header", "slideClass": "environment-mapping", "hash": "environment-mapping" } -->
 # Environment Mapping
 
 - Simulando reflexões em tempo real
@@ -337,7 +337,7 @@ Há pelo menos 3 tipos de _billboards_: _screen-aligned_, _world-oriented_ e axi
 <iframe src="https://codepen.io/bartuc/full/eEbmvJ" width="100%" height="400px" frameborder="0" style="flex: 2" class="bullet"></iframe>
 
 ---
-<!-- { "layout": "section-header", "slideClass": "efeitos-de-camera", "slideHash": "efeitos-de-camera" } -->
+<!-- { "layout": "section-header", "slideClass": "efeitos-de-camera", "hash": "efeitos-de-camera" } -->
 # Efeitos de câmera
 
 - Simulando câmeras fotográficas/de filmagem

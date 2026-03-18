@@ -84,7 +84,7 @@
   - Coeficientes: o quão polido, o quão áspero etc.
 
 ---
-<!-- {"layout": "section-header", "slideClass": "modelos-de-iluminacao", "slideHash": "modelos-de-iluminacao"} -->
+<!-- {"layout": "section-header", "slideClass": "modelos-de-iluminacao", "hash": "modelos-de-iluminacao"} -->
 # Modelos de Iluminação
 
 ---
@@ -269,7 +269,7 @@ Em um modelo local (CG de tempo real), **objetos não projetam sombras**! <!-- {
 - Exemplo: [luz-e-material-marte](codeblocks:luz-e-material/CodeBlocks/luz-e-material-marte.cbp)
 
 ---
-<!-- {"layout": "section-header", "slideClass": "iluminacao-em-opengl", "slideHash": "iluminacao-em-opengl"} -->
+<!-- {"layout": "section-header", "slideClass": "iluminacao-em-opengl", "hash": "iluminacao-em-opengl"} -->
 # Iluminação em OpenGL
 ## com **pipeline fixo** (OpenGL 1, 2)
 
@@ -527,7 +527,7 @@ Ao usar sólidos GLU/GLUT, as bibliotecas já estão chamando `glNormal()` inter
     de um objeto, possamos **determinar a cor para cada fragmento**
 
 ---
-<!-- {"layout": "section-header", "slideClass": "sombreamento", "slideHash": "sombreamento"} -->
+<!-- {"layout": "section-header", "slideClass": "sombreamento", "hash": "sombreamento"} -->
 # Sombreamento
 
 - Formas de colorir a parte interna dos objetos:
@@ -655,7 +655,7 @@ Não confundir com o **modelo de <u>iluminação</u> de _Phong_** <!-- {p:.note.
 Exemplo: [flat-gouraud-phong](codeblocks:flat-gouraud-phong/CodeBlocks/flat-gouraud-phong.cbp) (usa pipeline programável) <!-- {p:.no-margin} -->
 
 ---
-<!-- { "layout": "section-header", "slideClass": "fog", "slideHash": "fog" } -->
+<!-- { "layout": "section-header", "slideClass": "fog", "hash": "fog" } -->
 # _Fog_
 
 - Colocando neblina na cena
