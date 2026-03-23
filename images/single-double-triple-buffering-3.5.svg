@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="100%"
+   height="100%"
+   viewBox="-200 0 640 640"
+   id="svg101"
+   sodipodi:docname="single-double-triple-buffering-3.5.svg"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview101"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.9171875"
+     inkscape:cx="417.58092"
+     inkscape:cy="168.44974"
+     inkscape:window-width="1470"
+     inkscape:window-height="795"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="single_buffering" />
+  <title
+     id="title1">Comparação entre buffering único, duplo e triplo</title>
+  <desc
+     id="desc1">Comparação entre buffering único, duplo e triplo, com vSync, by CMG Lee.</desc>
+  <defs
+     id="defs43">
+    <linearGradient
+       id="grad"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="0%">
+      <stop
+         offset="0%"
+         stop-color="#ffffff"
+         stop-opacity="0"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#ffffff"
+         stop-opacity="1"
+         id="stop2" />
+    </linearGradient>
+    <clipPath
+       id="clip">
+      <rect
+         x="-200"
+         y="0"
+         width="638"
+         height="640"
+         id="rect2" />
+    </clipPath>
+    <text
+       id="vram"
+       x="-40"
+       y="20"
+       stroke="none"><tspan
+         id="tspan2">Memória</tspan><tspan
+         x="-40"
+         y="35"
+         id="tspan3">de vídeo</tspan></text>
+    <text
+       id="buffer"
+       x="-40"
+       y="25"
+       stroke="none">Buffer</text>
+    <text
+       id="buffer1"
+       x="-40"
+       y="25"
+       stroke="none">Buffer 1</text>
+    <text
+       id="buffer2"
+       x="-40"
+       y="25"
+       stroke="none">Buffer 2</text>
+    <g
+       id="vsync">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="640"
+         stroke="none"
+         fill="#cccccc"
+         id="rect3" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text5"><tspan
+           id="tspan4">retrace</tspan><tspan
+           x="10"
+           y="35"
+           id="tspan5">vertical</tspan></text>
+      <!-- <text transform="rotate(-90)" x="-24" y="14" stroke="none">vsync</text> -->
+    </g>
+    <g
+       id="clear"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#000000"
+         id="rect5" />
+      <text
+         transform="rotate(-90)"
+         x="-21"
+         y="15"
+         stroke="none"
+         fill="#ffffff"
+         id="text6">apaga</text>
+    </g>
+    <g
+       id="a_copy_normal"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#ffcc00"
+         id="rect6" />
+      <rect
+         x="20"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ffff99"
+         id="rect7" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text8"><tspan
+           id="tspan7">copia</tspan><tspan
+           x="10"
+           y="40"
+           id="tspan8">A</tspan></text>
+    </g>
+    <g
+       id="b_copy_normal"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#9999ff"
+         id="rect8" />
+      <rect
+         x="20"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccccff"
+         id="rect9" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text10"><tspan
+           id="tspan9">copia</tspan><tspan
+           x="10"
+           y="40"
+           id="tspan10">B</tspan></text>
+    </g>
+    <g
+       id="c_copy_normal"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#99ffff"
+         id="rect10" />
+      <rect
+         x="20"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccffff"
+         id="rect11" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text12"><tspan
+           id="tspan11">copia</tspan><tspan
+           x="10"
+           y="40"
+           id="tspan12">C</tspan></text>
+    </g>
+    <g
+       id="d_copy_normal"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#99ff99"
+         id="rect12" />
+      <rect
+         x="20"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccffcc"
+         id="rect13" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text14"><tspan
+           id="tspan13">copia</tspan><tspan
+           x="10"
+           y="40"
+           id="tspan14">D</tspan></text>
+    </g>
+    <g
+       id="e_copy_normal"
+       font-size="12px">
+      <rect
+         x="0"
+         y="0"
+         width="20"
+         height="45"
+         fill="#ff9999"
+         id="rect14" />
+      <rect
+         x="20"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ffcccc"
+         id="rect15" />
+      <text
+         x="10"
+         y="20"
+         stroke="none"
+         id="text16"><tspan
+           id="tspan15">copia</tspan><tspan
+           x="10"
+           y="40"
+           id="tspan16">E</tspan></text>
+    </g>
+    <g
+       id="abcde_copy_normal"
+       font-size="12px">
+      <use
+         xlink:href="#a_copy_normal"
+         transform="translate(0,0)"
+         id="use16" />
+      <use
+         xlink:href="#b_copy_normal"
+         transform="translate(100,0)"
+         id="use17" />
+      <use
+         xlink:href="#c_copy_normal"
+         transform="translate(200,0)"
+         id="use18" />
+      <use
+         xlink:href="#d_copy_normal"
+         transform="translate(300,0)"
+         id="use19" />
+      <use
+         xlink:href="#e_copy_normal"
+         transform="translate(400,0)"
+         id="use20" />
+    </g>
+    <g
+       id="a_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use21" />
+      <rect
+         x="40"
+         y="0"
+         width="50"
+         height="45"
+         fill="#ffcc00"
+         id="rect21" />
+      <rect
+         x="90"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ffff99"
+         id="rect22" />
+      <text
+         x="65"
+         y="20"
+         stroke="none"
+         id="text23"><tspan
+           id="tspan22">desenha</tspan><tspan
+           x="65"
+           y="40"
+           id="tspan23">A</tspan></text>
+    </g>
+    <g
+       id="b_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use23" />
+      <rect
+         x="40"
+         y="0"
+         width="50"
+         height="45"
+         fill="#9999ff"
+         id="rect23" />
+      <rect
+         x="90"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccccff"
+         id="rect24" />
+      <text
+         x="65"
+         y="20"
+         stroke="none"
+         id="text25"><tspan
+           id="tspan24">desenha</tspan><tspan
+           x="65"
+           y="40"
+           id="tspan25">B</tspan></text>
+    </g>
+    <g
+       id="c_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use25" />
+      <rect
+         x="40"
+         y="0"
+         width="50"
+         height="45"
+         fill="#99ffff"
+         id="rect25" />
+      <rect
+         x="90"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccffff"
+         id="rect26" />
+      <text
+         x="65"
+         y="20"
+         stroke="none"
+         id="text27"><tspan
+           id="tspan26">desenha</tspan><tspan
+           x="65"
+           y="40"
+           id="tspan27">C</tspan></text>
+    </g>
+    <g
+       id="d_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use27" />
+      <rect
+         x="40"
+         y="0"
+         width="50"
+         height="45"
+         fill="#99ff99"
+         id="rect27" />
+      <rect
+         x="90"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccffcc"
+         id="rect28" />
+      <text
+         x="65"
+         y="20"
+         stroke="none"
+         id="text29"><tspan
+           id="tspan28">desenha</tspan><tspan
+           x="65"
+           y="40"
+           id="tspan29">D</tspan></text>
+    </g>
+    <g
+       id="e_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use29" />
+      <rect
+         x="40"
+         y="0"
+         width="50"
+         height="45"
+         fill="#ff9999"
+         id="rect29" />
+      <rect
+         x="90"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ffcccc"
+         id="rect30" />
+      <text
+         x="65"
+         y="20"
+         stroke="none"
+         id="text31"><tspan
+           id="tspan30">desenha</tspan><tspan
+           x="65"
+           y="40"
+           id="tspan31">E</tspan></text>
+    </g>
+    <g
+       id="abcde_draw_normal"
+       font-size="12px">
+      <use
+         xlink:href="#a_draw_normal"
+         transform="translate(0,0)"
+         id="use31" />
+      <use
+         xlink:href="#b_draw_normal"
+         transform="translate(100,0)"
+         id="use32" />
+      <use
+         xlink:href="#c_draw_normal"
+         transform="translate(200,0)"
+         id="use33" />
+      <use
+         xlink:href="#d_draw_normal"
+         transform="translate(300,0)"
+         id="use34" />
+      <use
+         xlink:href="#e_draw_normal"
+         transform="translate(400,0)"
+         id="use35" />
+    </g>
+    <g
+       id="b_draw_abnormal"
+       font-size="12px">
+      <use
+         xlink:href="#clear"
+         transform="translate(20,0)"
+         id="use36" />
+      <rect
+         x="40"
+         y="0"
+         width="80"
+         height="45"
+         fill="#9999ff"
+         id="rect36" />
+      <rect
+         x="120"
+         y="0"
+         width="999"
+         height="45"
+         fill="#ccccff"
+         id="rect37" />
+      <text
+         x="80"
+         y="15"
+         stroke="none"
+         id="text38"><tspan
+           id="tspan37">desenha</tspan><tspan
+           x="80"
+           y="40"
+           id="tspan38">B</tspan></text>
+    </g>
+    <g
+       id="arrow1"
+       transform="translate(10,22)"
+       stroke-width="2"
+       stroke="#ff0000"
+       fill="#ff0000">
+      <circle
+         cx="0"
+         cy="0"
+         r="2"
+         id="circle38" />
+      <path
+         d="M 0 0 v 35 m -5 -5 l 5 5 l 5 -5"
+         fill="none"
+         id="path38" />
+    </g>
+    <g
+       id="arrow2"
+       transform="translate(10,22)"
+       stroke-width="2"
+       stroke="#ff0000"
+       fill="#ff0000">
+      <circle
+         cx="0"
+         cy="0"
+         r="2"
+         id="circle39" />
+      <path
+         d="M 0 0 v 85 m -5 -5 l 5 5 l 5 -5"
+         fill="none"
+         id="path39" />
+    </g>
+    <g
+       id="arrows">
+      <use
+         xlink:href="#arrow2"
+         transform="translate(100,0)"
+         id="use39" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(200,50)"
+         id="use40" />
+      <use
+         xlink:href="#arrow2"
+         transform="translate(300,0)"
+         id="use41" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(400,50)"
+         id="use42" />
+      <use
+         xlink:href="#arrow2"
+         transform="translate(500,0)"
+         id="use43" />
+    </g>
+  </defs>
+  <g
+     font-size="16"
+     font-family="sans-serif"
+     letter-spacing="-1"
+     text-anchor="middle"
+     stroke="#000000"
+     fill="#000000"
+     clip-path="url(#clip)"
+     id="g101">
+    <g
+       id="grid">
+      <use
+         xlink:href="#vsync"
+         transform="translate(0,0)"
+         id="use44" />
+      <use
+         xlink:href="#vsync"
+         transform="translate(100,0)"
+         id="use45" />
+      <use
+         xlink:href="#vsync"
+         transform="translate(200,0)"
+         id="use46" />
+      <use
+         xlink:href="#vsync"
+         transform="translate(300,0)"
+         id="use47" />
+      <text
+         x="400"
+         y="20"
+         stroke="none"
+         id="text47">Tempo</text>
+      <path
+         d="M 380 30 h 45 m -5 -5 l 5 5 l -5 5"
+         fill="none"
+         id="path47" />
+    </g>
+    <g
+       id="single_buffering"
+       transform="translate(0,50)">
+      <text
+         x="-200"
+         y="20"
+         font-weight="bold"
+         text-anchor="start"
+         stroke="none"
+         id="text48"><tspan
+           id="tspan47">1. Single-</tspan><tspan
+           x="-180"
+           y="40"
+           id="tspan48">buffering</tspan></text>
+      <path
+         d="M -70 0 h -10 v 45 h 10"
+         fill="none"
+         id="path48" />
+      <use
+         xlink:href="#vram"
+         transform="translate(0,0)"
+         id="use48" />
+      <use
+         xlink:href="#abcde_draw_normal"
+         transform="translate(-20,0)"
+         id="use49"
+         style="opacity:0.3" />
+    </g>
+    <g
+       id="double_buffering_normal"
+       transform="translate(0,110)">
+      <text
+         x="-200"
+         y="20"
+         font-weight="bold"
+         text-anchor="start"
+         stroke="none"
+         id="text50"><tspan
+           id="tspan49">2. Double-</tspan><tspan
+           x="-180"
+           y="40"
+           id="tspan50">buffering</tspan></text>
+      <path
+         d="M -70 0 h -10 v 95 h 10"
+         fill="none"
+         id="path50" />
+      <use
+         xlink:href="#buffer"
+         transform="translate(0,0)"
+         id="use50" />
+      <use
+         xlink:href="#vram"
+         transform="translate(0,50)"
+         id="use51" />
+      <use
+         xlink:href="#abcde_draw_normal"
+         id="use52" />
+      <use
+         xlink:href="#abcde_copy_normal"
+         transform="translate(100,50)"
+         id="use53" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(100,0)"
+         id="use54" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(200,0)"
+         id="use55" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(300,0)"
+         id="use56" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(400,0)"
+         id="use57" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(500,0)"
+         id="use58" />
+    </g>
+    <g
+       id="triple_buffering_normal"
+       transform="translate(0,220)" />
+    <g
+       id="double_buffering_abnormal"
+       transform="translate(0,380)">
+      <text
+         x="-200"
+         y="20"
+         font-weight="bold"
+         text-anchor="start"
+         stroke="none"
+         id="text72"><tspan
+           id="tspan69">4. Double-</tspan><tspan
+           x="-180"
+           y="40"
+           id="tspan70">buffering</tspan><tspan
+           x="-180"
+           y="60"
+           id="tspan71">com quadro</tspan><tspan
+           x="-180"
+           y="80"
+           id="tspan72">B atrasado</tspan></text>
+      <path
+         d="M -70 0 h -10 v 95 h 10"
+         fill="none"
+         id="path72" />
+      <use
+         xlink:href="#buffer"
+         transform="translate(0,0)"
+         id="use72" />
+      <use
+         xlink:href="#vram"
+         transform="translate(0,50)"
+         id="use73" />
+      <use
+         xlink:href="#a_draw_normal"
+         transform="translate(0,0)"
+         id="use74" />
+      <use
+         xlink:href="#b_draw_abnormal"
+         transform="translate(100,0)"
+         id="use75" />
+      <use
+         xlink:href="#c_draw_normal"
+         transform="translate(300,0)"
+         id="use76" />
+      <use
+         xlink:href="#d_draw_normal"
+         transform="translate(400,0)"
+         id="use77" />
+      <use
+         xlink:href="#e_draw_normal"
+         transform="translate(500,0)"
+         id="use78" />
+      <use
+         xlink:href="#a_copy_normal"
+         transform="translate(100,50)"
+         id="use79" />
+      <use
+         xlink:href="#b_copy_normal"
+         transform="translate(300,50)"
+         id="use80" />
+      <use
+         xlink:href="#c_copy_normal"
+         transform="translate(400,50)"
+         id="use81" />
+      <use
+         xlink:href="#d_copy_normal"
+         transform="translate(500,50)"
+         id="use82" />
+      <use
+         xlink:href="#e_copy_normal"
+         transform="translate(600,50)"
+         id="use83" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(100,0)"
+         id="use84" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(300,0)"
+         id="use85" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(400,0)"
+         id="use86" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(500,0)"
+         id="use87" />
+      <use
+         xlink:href="#arrow1"
+         transform="translate(600,0)"
+         id="use88" />
+    </g>
+    <path
+       style="fill:#aa0000;stroke:none;stroke-width:1.94155"
+       id="path1"
+       d="m 199.43671,424.13562 c -0.6085,1.01255 -1.44275,1.47413 -2.22468,2.00272 -1.05225,0.47209 -1.95617,1.3913 -2.83703,2.4127 -1.07983,1.75677 -2.19482,3.4537 -3.31695,5.1373 -1.17095,1.74625 -1.98288,3.93805 -2.58988,6.31243 -0.62494,2.87151 -0.90814,5.88215 -1.00731,8.91544 -0.0719,2.97682 0.0515,5.95587 0.42012,8.87184 0.50537,3.00986 1.05508,5.98523 1.82151,8.84468 0.72863,2.39658 1.65776,4.60359 2.56329,6.82376 0.68658,2.05847 1.67781,3.71809 2.71972,5.28984 3.57206,4.35455 7.49109,8.0377 11.51806,11.10467 1.37781,0.80728 2.85346,1.20305 4.30292,1.5194 1.60334,0.23081 3.2175,0.35639 4.81704,0.0398 2.15137,-0.5036 4.17956,-1.74957 6.15573,-3.18605 1.1563,-0.81452 2.20057,-1.93019 3.25151,-3.04701 1.09478,-1.16342 2.17923,-2.2708 3.22419,-3.55531 1.73895,-2.22487 3.08354,-5.08483 4.25759,-8.1194 0.54683,-1.87193 1.03405,-3.86092 1.23819,-5.92517 0.1279,-1.29343 0.11106,-2.24552 0.12647,-3.54947 -0.0599,-4.22663 -0.6144,-7.8403 -1.50912,-11.77613 -1.06553,-4.61658 -2.81932,-8.65635 -4.62648,-12.55347 -1.48498,-3.07769 -3.07187,-6.03059 -4.93205,-8.51255 -1.22192,-1.63036 -1.50084,-1.83331 -2.79736,-3.1742 -3.49719,-3.10167 -7.08274,-7.76335 -11.13864,-9.4008 -1.14772,-0.46337 -2.32166,-0.63552 -3.49458,-0.81132 -1.21907,-0.13344 -2.45468,-0.25478 -3.67118,0.0246 -0.77371,0.1777 -1.05472,0.38109 -1.81215,0.77 -1.00211,0.46418 -2.00328,0.9288 -3.01102,1.35873 0,0 7.18437,8.1115 7.18437,8.1115 v 0 c 0.99662,-0.4839 1.99415,-0.96639 3.00967,-1.33423 1.73674,-0.59864 3.4925,-0.73109 5.26161,-0.43423 1.12584,0.19688 2.22634,0.43516 3.31796,0.95659 2.80764,1.34112 7.61889,6.25491 -3.47823,-4.2066 0.4868,0.44941 0.98702,0.8615 1.46038,1.34823 2.50379,2.5745 4.56153,6.04805 6.37794,9.84617 1.77164,3.7511 3.49449,7.67018 4.59813,12.088 0.34062,1.43397 0.61271,2.47723 0.86956,3.95511 0.4102,2.36018 0.52432,4.81505 0.6538,7.24926 0.0225,3.23526 -0.30401,5.82853 -1.19792,8.73071 -1.05865,2.94002 -2.26656,5.7325 -3.95239,7.79875 -1.97618,2.46587 -4.12174,4.59026 -6.37444,6.30019 -1.95428,1.31289 -3.98447,2.34909 -6.09491,2.68851 -1.60227,0.0781 -3.2101,-0.0438 -4.7981,-0.41805 -1.40446,-0.3859 -2.83035,-0.77838 -4.12024,-1.82026 -3.07444,-2.40511 -0.64734,-0.54426 6.14329,6.00277 0.22982,0.22157 -0.4711,-0.40989 -0.70058,-0.63241 -0.63179,-0.61265 -1.21348,-1.3506 -1.84633,-1.96026 -1.07513,-1.41201 -2.13555,-2.95059 -2.84441,-4.91469 -0.85308,-2.28649 -1.90062,-4.36609 -2.69568,-6.71685 -0.83914,-2.72677 -1.3861,-5.61213 -1.86462,-8.55957 -0.48563,-2.77029 -0.56178,-5.67055 -0.57654,-8.5426 0.0539,-2.86327 0.33943,-5.68506 0.94178,-8.38354 0.57618,-2.1967 1.29854,-4.19546 2.41376,-5.78185 1.06681,-1.68442 2.13966,-3.36193 3.30004,-4.87425 0.87353,-0.90878 1.80381,-1.56718 2.77893,-2.12733 0.86809,-0.59109 1.69072,-1.31797 2.46852,-2.18876 z" />
+  </g>
+  <metadata
+     id="metadata105">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Comparação entre buffering único, duplo e triplo</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
