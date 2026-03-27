@@ -30,9 +30,10 @@
 1. [Introdução à Web](https://fegemo.github.io/cefet-web/classes/web-intro/)
 1. [Sistemas de Janelas, WebGL e gatos 😸](classes/webgl/)
 1. [WebGL Hands-on - Parte 1](classes/webgl-handson/)
+1. [WebGL Hands-on - Parte 2](classes/webgl-handson2/)
+1. [WebGL Hands-on - Parte 3](classes/webgl-handson3/)
+1. [WebGL Hands-on - Parte 4](classes/webgl-handson4/)
 <!-- 
-1. [OpenGL Hands-on - Parte 2](classes/opengl-handson2/)
-1. [OpenGL Hands-on - Parte 3](classes/opengl-handson3/)
 1. [Cê](classes/c)
 1. [_Feedback_ do TP1 - turma anterior](classes/breakout-feedback)
 1. [Geometria](classes/geometry)
