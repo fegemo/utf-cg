@@ -6,15 +6,12 @@
 <!-- {"layout": "centered"} -->
 # Roteiro
 
-1. Primeiro programa
-1. Sistemas de coordenadas
-1. _Clipping_ (recorte)
-1. Cores
-1. Primitivas geométricas
-1. Lista de exercícios 1
-
+1. [Primeiro programa](#primeiro-programa)
+1. [Sistemas de coordenadas](#sistemas-de-coordenadas)
+1. [Desenhando vários objetos](#desenhando-varios-objetos)
+1. [Diagrama de estados WebGL](#diagrama-de-estados-webgl)
 ---
-<!-- {"layout": "centered-horizontal", "state": "transition-put-next-further"} -->
+<!-- {"layout": "centered-horizontal", "state": "transition-put-next-further", "hash": "primeiro-programa"} -->
 # Primeiro programa
 
 ![Tela mostrando o primeiro programa webgl que mostra apenas um triângulo verde desenhado em uma tela branca](../../images/hello-world.png) <!-- {.bordered.small-width style="border-radius: 8px; width: 336px;"} --> <!-- {p:.full-width.center-aligned} -->
@@ -151,7 +148,7 @@ Exemplo: [hello-world-organizado][exemplo-hello-world-organizado] <!-- {target="
   - Qual sistema de coordenadas estamos usando? <!-- {li:.bullet} -->
 
 ---
-<!-- {"layout": "section-header", "slideClass": "coordinate-system"} -->
+<!-- {"layout": "section-header", "slideClass": "coordinate-system", "hash": "sistemas-de-coordenadas"} -->
 # Sistemas de Coordenadas
 
 - Coordenadas Normalizadas de Dispositivo
@@ -559,8 +556,8 @@ Passo 2
 ...agora vamos ver como **desenhar várias coisas** na tela. <!-- {p:.no-margin.bullet} -->
 
 ---
-<!-- {"layout": "section-header", "slideClass": "desenhando-varias-coisas"} -->
-# Desenhando várias coisas
+<!-- {"layout": "section-header", "slideClass": "desenhando-varios-objetos", "hash": "desenhando-varios-objetos"} -->
+# Desenhando vários objetos
 
 - Relembrando VBOs
 - Relembrando VAOs
@@ -826,250 +823,11 @@ Exemplo: [hello-diferentes-objetos][hello-diferentes-objetos]
 
 [hello-diferentes-objetos]: https://fegemo.github.io/utf-cg-exemplos-webgl/hello-diferentes-objetos/
 
----
-<!-- {"layout": "centered"} -->
-## Experimento com a coordenada <span class="math">z</span>
-
-::: div .note.exercise font-size: 0.7em; margin-block: 2rem;
-**Exercício**: alterar as coordenadas <span class="math">z</span> 
-de alguns vértices para valores entre [-1, 1].
-
-Passos:
-1. alterar o _vertex shader_ (`vec2`-->`vec3`)
-1. alterar o VBO posicao para fornecer 2-->3 valores
-1. alterar o `gl.vertexAttribPointer` para ensinar o _shader_ a buscar o atributo
-1. finalmente, alterar uma coordenada <span class="math">z</span>
-
-Observações: <!-- {.bullet} -->
-- Nada acontece visualmente <!-- {ul:.bulleted} -->
-- Os vértices continuam dentro da caixa de visualização<br>que definimos via
-  projeção ortográfica
-:::
-
-...mas o que acontece quando algum<br>**vértice fica FORA** do volume
-de visualização? <!-- {p:.bullet} -->
 
 ---
-<!-- {"layout": "section-header", "slideClass": "clipping"} -->
-# _Clipping_ (recorte)
+<!-- {"layout": "regular", "fullPageElement": "#state-diagram", "hash": "diagrama-de-estados-webgl"} -->
 
-- Objetos fora do volume: **descartados**
-- Objetos no meio do caminho: **recortados** <!-- {.alternate-color} -->
-- Objetos dentro do volume: **incluídos**
-
----
-<!-- {"layout": "regular", "slideClass": "compact-code"} -->
-# _Clipping_ (Recorte)
-
-- ::: div .note.exercise.push-right.bullet.compact-code-more font-size: 0.7em; width: 420px
-  **Experimento**: Alterar os vértices do quadrado:
-  ```javascript
-  const vertices = new Float32Array([
-    120, 120,
-    180, 120,
-    180, 180,
-    120, 180
-  ])
-  ```
-  :::
-  Vértices desenhados fora da caixa de visualização são descartados
-- **Resultado**: o quadrado não aparece porque foi descartado --- todos seus
-  vértices estavam fora da caixa de visualização que definimos no `ortho` <!-- {li:.bullet} -->
-
-::: div .note.exercise.bullet width: 80%; margin-inline: auto; font-size: 0.7em;
-**Mais exercícios** a partir de [hello-ortho][hello-ortho]:
-1. Quadrado --> triângulo (remover último vértice)
-1. Alterar o valor de <span class="math">z</span> do `v0` para um valor
-   fora da caixa de visualização (_e.g._, -2.5, -5)
-
-[hello-ortho]: https://fegemo.github.io/utf-cg-exemplos-webgl/hello-ortho/
-
----
-<!-- {"layout": "regular"} -->
-## O que aconteceu?
-
-![](../../images/clipped-triangle.png) <!-- {.block.centered style="width: 400px"} -->
-<!-- {p:.no-margin.full-width} -->
-
-- Um algoritmo de _clipping_ descartou o vértice que ficou de fora, mas criou
-  outros dois na interseção com o volume <!-- {ul:.no-margin} -->
-  - Algoritmos de _**line** clipping_: <!-- {ul^0:.multi-column-list-2} -->
-    1. Cohen-Sutherland, 1967
-    1. Lian-Barsky, 1984
-  - Algoritmos de _**polygon** clipping_:
-    1. Sutherland-Hodgman, 1974
-    1. Weiler-Atherton, 1977
-
----
-<!-- {"layout": "section-header", "slideClass": "colors"} -->
-# Cores
-
-- Como especificar cores
-- Variável de estado: cor
-- Interpolação de cores
-
----
-<!-- {"layout": "2-column-content", "slideClass": "compact-code-more"} -->
-## Cores
-
-1. _Fragment shader_ até agora: <!-- {ol:.no-bullet.no-margin} -->
-   ```glsl
-   #version 300 es
-   precision mediump float;
-
-   out vec4 corFragmento;
-
-   void main() {
-                    // sempre a mesma cor 😦
-     corFragmento = vec4(0.0, 0.0, 0.0, 1.0);
-   }
-   ```
-1. ::: div .note.exercise font-size: 0.7em; margin-top: 1rem;
-   **Exercício**: altere alguma componente para ∉ [0,1].
-   :::
-
-- Até agora, estamos _hard-coding_ a cor do fragmento no _fragment shader_:
-  - RGBA (vermelho, verde, azul, alfa)
-- Os valores de cada componente são presos (**_clamped_**) entre `0` e `1`:
-  - **Se** menores que `0` **então** `0`
-  - **Se** maiores que `1.0` **então** `1.0`
-  - **Se** entre `0.0` e `1.0` **então** usa o valor
-
----
-<!-- {"layout": "2-column-content", "hash": "valores-rgb-de-algumas-cores"} -->
-## Valores RGB de algumas cores
-
-<iframe src="../../samples/rgb-cube/index.html" width="100%" height="350" frameborder="0"></iframe>
-
-- <span class="color-portrait black"> </span> Preto: 0.0, 0.0, 0.0 <!-- {ul:.no-bullet} -->
-- <span class="color-portrait red"> </span> Vermelho: 1.0, 0.0, 0.0
-- <span class="color-portrait green"> </span> Verde: 0.0, 1.0, 0.0
-- <span class="color-portrait blue"> </span> Azul: 0.0, 0.0, 1.0
-- <span class="color-portrait yellow"> </span> Amarelo: 1.0, 1.0, 0.0
-- <span class="color-portrait magenta"> </span> Magenta: 1.0, 0.0, 1.0
-- <span class="color-portrait ciano"> </span> Ciano: 0.0, 1.0, 1.0
-- <span class="color-portrait gray"> </span> Cinza: 0.6, 0.6, 0.6
-- <span class="color-portrait white"> </span> Branco: 1.0, 1.0, 1.0
-
----
-<!-- {"layout": "centered-horizontal"} -->
-## Experimentos com cores
-
-::: div .note.exercise font-size: 0.7em;
-**Exercícios** a partir de [hello-diferentes-objetos][hello-diferentes-objetos]:
-
-1. Alterar a cor do quadrado
-   - _Easy_, direto no _fragment shader_
-1. Desenhar um quadrado de cada cor
-   - Criar uma `uniform` e definir seu valor antes de desenhar cada objeto
-1. Desenhar um quadrado de forma que cada vértice possua uma cor diferente
-   - Resetar o código do exemplo (tirar a `uniform` de cor)
-   - Criar novo VBO para cor do vértice e configurar o atributo no _shader_:
-     - _vertex shader_: nova variável `in`, nova `out`
-     - _fragment shader_: nova variável `in` (mesmo nome da `out` do _vertex_)
-
-- <!-- {ul:.card-list style="justify-content: space-around; gap: 1rem; width: 300px; margin-inline: auto;"} -->
-  ![](../../images/exercicio-cores-1.webp) <!-- {.rounded} -->
-- ![](../../images/exercicio-cores-2.webp) <!-- {.rounded} -->
-- ![](../../images/exercicio-cores-3.webp) <!-- {.rounded} -->
-:::
-
-[hello-diferentes-objetos]: https://fegemo.github.io/utf-cg-exemplos-webgl/hello-diferentes-objetos/
-*[VBO]: Vertex Buffer Object
-
----
-<!-- {"layout": "section-header", "slideClass": "primitives"} -->
-# Primitivas Geométricas
-
-Que tipos de objetos podemos desenhar?
-
-![](../../images/primitives-part1.svg) <!-- {style="width: 450px;"} -->
-
----
-<!-- {"layout": "regular"} -->
-## Primitivas Geométricas
-
-- Objetos geométricos que o WebGL entende
-- São os "tijolos" para construirmos objetos mais complexos
-- Usamos como um **argumento para <u>`gl.drawArrays`</u>**. Por exemplo:
-  ```javascript
-  // ativa algum VAO e... desenha:
-  gl.drawArrays(gl.POINTS, 0, 13)
-  ```
-- Exemplos
-  1. Pontos (`gl.POINTS`) <!-- {ol:.multi-column-list-3.no-bullet} -->
-  1. Linhas (`gl.LINES`)
-  1. Triângulos (`gl.TRIANGLES`)
-
----
-![](../../images/primitives-part1.svg)
-
----
-![](../../images/primitives-part2.svg)
-
----
-![](../../images/primitives-lines.svg) <!-- {style="height: 180px"} -->
-
-`gl.POINTS`
-  ~ Desenha um ponto para cada vértice <span class="math">n</span>.
-
-`gl.LINES`
-  ~ Desenha uma série de segmentos de linha desconectados. São
-    desenhados entre <span class="math">v_0</span> e
-    <span class="math">v_1</span>, <span class="math">v_2</span> e
-    <span class="math">v_3</span>, <span class="math">v_3</span> e
-    <span class="math">v_4</span> e
-    daí em diante. Se <span class="math">n</span> é ípmar, o último
-    vértice não faz parte de um segmento.
-
-`gl.LINE_STRIP`
-  ~ Desenha um segmento de <span class="math">v_0</span> a
-    <span class="math">v_1</span>, então de
-    <span class="math">v_1</span> a <span class="math">v_2</span> e daí por
-    diante, desenhando o segmento <span class="math">v_{n-2}</span>
-    para <span class="math">v_{n-1}</span>. Então, um total de
-    <span class="math">n-1</span> segmentos são desenhados.
-
-`gl.LINE_LOOP`
-  ~ Mesmo que `gl.LINE_STRIP`, exceto que um segmento final é desenhado
-    de <span class="math">v_{n-1}</span> até <span class="math">v_0</span>,
-    completando o circuito.
-
-
----
-`gl.TRIANGLES`
-  ~ Desenha uma série de triângulos usando os vértices
-  <span class="math">v_0</span>, <span class="math">v_1</span>,
-  <span class="math">v_2</span>, depois <span class="math">v_3</span>,
-  <span class="math">v_4</span>, <span class="math">v_5</span>, e daí por
-  diante. Se <span class="math">n</span> não é um múltiplo de 3, o
-  último ou os 2 últimos vértices são ignorados.
-
-`gl.TRIANGLE_STRIP`
-  ~ Desenha uma série de triângulos usando os vértices
-  <span class="math">v_0, v_1, v_2</span>, depois
-  <span class="math">v_2, v_1, v_3</span>
-  (repare na ordem), então <span class="math">v_2, v_3, v_4</span>,
-  e daí por diante. A ordem é para assegurar que os triângulos estão
-  todos desenhados com a mesma orientação.
-
-`gl.TRIANGLE_FAN`
-  ~ Mesmo que `GL_TRIANGLE_STRIP`, exceto que os vértices são
-  <span class="math">v_0, v_1, v_2</span>, depois
-  <span class="math">v_0, v_2, v_3</span>, depois
-  <span class="math">v_0, v_3, v_4</span> e daí por diante.
-
-![](../../images/primitives-triangles.svg) <!-- {style="height: 150px"} -->
-
-
----
-<!-- {"layout": "regular"} -->
-## Experimentos com as primitivas
-
-1. Desenhar pontos (`gl.POINTS`) em vez de quadrados. Para que os
-  pontos fiquem visíveis, **aumentar seu tamanho usando `gl.pointSize()`**.
-1. Usar outras primitivas: `gl.LINES, gl.LINE_STRIP, gl.LINE_LOOP`
-
+<iframe src="https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html?exampleId=triangle#no-help" id="state-diagram" seamless></iframe>
 
 ---
 <!-- {"layout": "centered"} -->

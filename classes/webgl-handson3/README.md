@@ -6,351 +6,331 @@
 <!-- {"layout": "centered"} -->
 # Roteiro
 
-1. [Orientação dos polígonos](#orientacao-de-poligonos)
-1. [Posicionamento de objetos](#posicionamento-de-objetos)
-1. [Usando texturas](#usando-texturas)
-1. **[Trabalho Prático 1](#tp1)**
-
+1. [Organizando o código][#organizando-o-codigo]
+1. [Animação][#animacao]
+1. [Redesenhando a tela][#redesenhando-a-tela]
 
 ---
-<!-- { "layout": "section-header", "slideClass": "orientacao-de-poligonos", "hash": "orientacao-de-poligonos" } -->
-# Orientação de Polígonos
-## Lado da frente e de trás
+<!-- {"layout": "section-header", "slideClass": "organizando-o-codigo", "hash": "organizando-o-codigo"} -->
+# Organizando o Código
 
----
-<!-- { "layout": "regular" } -->
-# Orientação
-
-- Como estamos em 3D, **todo polígono possui um lado da frente e um lado de trás**
-  - Quando falamos de objetos 3D, aí há coletivamente o lado de fora e o de dentro
-- Em Computação Gráfica, é importante saber qual é o lado do polígono que
-  estamos vendo por:
-  - **Desempenho**: muitas vezes desenhamos só se estivermos vendo a frente
-  - **Flexibilidade**: desenhar frente de um jeito, costas de outro
-- O lado que estamos vendo é determinado pela **orientação do polígono**
-- Em WebGL, definimos a orientação de forma implícita,
-  **de acordo com a primitiva**...
-
----
-<!-- { "layout": "regular" } -->
-# Orientação no WebGL
-
-- A frente do polígono em WebGL é dado 
-  **<u>pela ordem</u> em que declaramos seus vértices**
-  1. <!-- {ol:.full-width.no-bullet.no-padding style="padding-block: 2rem;"} -->
-     <!-- {li:style="display: flex; justify-content: center; gap: 2rem;"} -->
-     ![](../../images/primitives-part1.svg) <!-- {style="width: 40%;"} -->
-     ![](../../images/primitives-part2.svg) <!-- {style="width: 27%;"} -->
-- Se definido 🔄 (CCW), vemos o lado da frente
-- Se definido 🔃 (CW), vemos o lado de trás
-
-*[CCW]: Counterclockwise*
-*[CW]: Clockwise*
-
----
-<!-- {"layout": "2-column-content", "playMediaOnActivation": {"selector": "#color-animation" }, "slideClass": "compact-code-more"} -->
-# Exemplo de Orientação
-
-
-- <!-- {ul:.no-bullet.no-margin.no-padding.center-aligned} -->
-  <video width="300" preload="auto" controls loop src="../../videos/orientacao-de-poligonos.mp4" id="color-animation" class="bordered subtly-round"></video>
-  - [Orientação de Polígonos][exemplo-orientacao-poligonos] <!-- {ul^0:.no-padding} -->
-    
-1. É possível ativar o **descarte de faces de trás**
-   <!-- {ol:.no-margin.no-padding.no-bullet} -->
-   - Isso é um recurso de otimização <!-- {li:.bullet} -->
-     ```javascript
-     gl.enable(gl.CULL_FACE)
-     gl.cullFace(gl.BACK)  // valor padrão
-     gl.frontFace(gl.CCW)  // valor padrão
-     ```
-1. ::: div .note.warning font-size: 0.7em; margin-top: 1rem;
-   **Note**: esse exemplo artificalmente desenhou um quadrado com apenas linhas 
-   "nas costas" do outro. <!-- {p:.no-margin style="font-size: 1em;"} -->
-   :::
-1. ::: div .note.exercise font-size: 0.7em; margin-top: 1rem;
-   **Exercício**: altere a primitiva usada para desenhar. Depois, altere a ordem
-   em que os vértices estão definidos. <!-- {p:style="font-size: 1em;"} -->
-   
-   O que aconteceu? <span class="bullet">Repare que a **ordem dos vértices define a orientação**.</span>
-   <!-- {p:.no-margin} -->
-   :::
-
-[exemplo-orientacao-poligonos]: https://fegemo.github.io/utf-cg-exemplos-webgl/orientacao-poligonos/
-
----
-<!-- { "layout": "section-header", "slideClass": "posicionamento", "hash": "posicionamento-de-objetos" } -->
-# Posicionamento de objetos
-
-- O jeito ruim
-- O jeito bão <sup>(c)</sup>
+- Usando vários arquivos JavaScript
+- Código _shader_ em arquivos `.glsl`
+- Utilitários
 
 ---
 <!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Posicionando Objetos - O Jeito Ruim <!-- {.bullet} -->
+# Usando vários arquivos JS
 
-- ![](../../images/snake-polygon.png) <!-- {.push-right.bullet style="max-height: 300px;"} -->
-  A forma como temos posicionado objetos não é legal:
-  ```javascript
-  const esq = nave.x
-  const dir = nave.x + nave.largura
-  const bai = nave.y
-  const cim = nave.y + nave.altura
-  
-  const vertices = new Float32Array([
-    esq, bai, 0,  // ↙️
-    dir, bai, 0,  // ↘️
-    dir, cim, 0,  // ↗️
-    esq, cim, 0   // ↖️
-  ])
-  ```
-  - Problema: e se houver muito mais do que 4 vértices? *➡️*
-  - Questão: não seria bem mais fácil definir as coordenadas se 
-    **pudéssemos assumir que estamos <u>sempre na origem</u>?**
+- Programas maiores se beneficiam de modularização do código
+- Em **JavaScript**, a abordagem moderna se chama **ES Modules**
+  1. <!-- {ol:.no-bullet.layout-split-3.no-margin style="gap: 1rem"} -->
+     `index.html`
+     ```html
+     <!DOCTYPE html>
+     <html>
+     <head>
+       ...
+       <script
+          type="module" 
+          src="main.js">
+       </script>
+     </head>
+     ...
+     ```
+  1. `main.js`
+     ```javascript
+     import { PI, utilidade } from './util.js'
+     
+     console.log('Meu PI tem valor', PI)
+     
+     utilidade()
+     ```
+  1. `util.js`
+     ```javascript
+     export const PI = 3.14159
+
+     export function utilidade() {
+       // faz alguma coisa
+     }
+     ```
 
 ---
-<!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
-# Posicionando Objetos - Do Jeito Bão <sup>(c)</sup> <small>(1/2)</small>
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Código _shader_ em `.glsl`
 
-- Damos as coordenadas assumindo que estamos na origem, mas
-  transladamos o objeto para onde queremos que ele realmente seja
-  desenhado: <!-- {ul:.two-column-code} -->
+- <!-- {ul:.layout-split-2 style="gap: 1rem;"} -->
+  Há 3 lugares para escrever código GLSL:
+  1. 👎 Dentro de string no código JavaScript <!-- {li:.bullet} -->
+  1. No HTML `<script type="x-shader/x-vertex">aqui</script>` <!-- {li:.bullet} -->
+     - Melhor, mas ainda assim não ideal
+     - Ainda mistura responsabilidades
+       ```javascript
+       const vsCode = document.querySelector('[type$="x-vertex"]').innerText
+       ```
+  1. 👍 Em arquivos `.glsl` <!-- {li:.bullet} -->
+     - Ideal, melhor reaproveitamento, _highlighting_ etc.
+     - Cuidado: é assíncrono, precisa baixar o arquivo
+       ```javascript
+       const vsCode = await fetch('vs.glsl').then(r => r.text())
+       ```
+- <!-- {li:.no-bullet.bullet} -->
+  ::: div .info.note width: 250px; font-size: 0.7em;
+  **Código assíncrono**
+
+  Algumas operações como 
+  (a) baixar um _shader_ ou (b) baixar uma imagem
+  são assíncronas.
+
+  - Código recebe uma `Promise` <!-- {li:style="list-style-type: bullet"} -->
+  - `await` aguarda o resultado  <!-- {li:style="list-style-type: bullet"} -->
+  - `promise.then(...)` registra função para lidar com resultado <!-- {li:style="list-style-type: bullet"} -->
+
+  Aula sobre [promessas][slide-promessas] e [async/await][slide-async-await].
+  :::
+
+[slide-promessas]: https://fegemo.github.io/cefet-web/classes/js7/#promessas
+[slide-async-await]: https://fegemo.github.io/cefet-web/classes/js7/#async-await
+
+---
+<!-- {"layout": "regular"} -->
+# Utilitários
+
+...o que colocar aqui??
+...cedo demais para twgl...
+...talvez as questões sobre carregamento de shader com verificação de erros...
+
+---
+<!-- {"layout": "section-header", "slideClass": "animation", "hash": "animacao"} -->
+# Criando uma pequena animação
+
+- Usando freeglut, precisamos do evento _timer_ ou _idle_
+  (`glutTimerFunc` ou `glutIdleFund`)
+- A _callback_ deve alterar o estado da aplicação
+- A função de desenho simplesmente desenha **o estado atual**
+
+> **Animação** é alterar o valor de algo **ao longo do tempo**
+
+---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+## setTimeout(funcao, tempo) [🌐](https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval)
+
+- Podemos registrar uma _callback_ para **ser invocada daqui `x` ms**.
+- Podemos usá-la p/ alterar parâmetros (cor, posição etc.) da cena <!-- {li:.bullet} -->
   ```javascript
-  import { translate } from './utils/math.js'
-
-  // inicialização:
-  const tamanhoNave = 20
-  const metadeNave = tamanhoNave / 2
-  let posicaoNave = [20, 30, 0]
-
-  // assumir (0,0,0) no centro do objeto
-  const vertices = new Float32Array([
-    -metadeNave, -metadeNave, 0,  // ↙️
-     metadeNave, -metadeNave, 0,  // ↘️
-     metadeNave,  metadeNave, 0,  // ↗️
-    -metadeNave,  metadeNave, 0   // ↖️
-  ])
-
-
-  // desenho:
-  gl.uniformMatrix4fv(
-    modelLoc, false, modelMatrixNave)
-  gl.drawArrays(gl.TRIANGLE_FAN, 0, 4)
-
-  // atualização:
-  function keyPressed(e) {
-    if (e.key === 'ArrowDown') {
-      posicaoNave.y += 0.2
-    }
-    modelMatrixNave = translate(
-      posicaoNave.x,
-      posicaoNave.y,
-      posicaoNave.z
-    )
+  function atualizaCena() {
+    // altera algo na cena
   }
+
+  function desenhaCena(gl) {
+    // desenha no estado atual
+  }
+
+  function loopPrincipal() {
+    atualizaCena()
+    desenhaCena(gl)
+    setTimeout(loopPrincipal, 33)
+  }
+  // registra a cada 33ms
+  setTimeout(loopPrincipal, 33); // por quê 33? 1000/33 = 30fps
+  ```
+  - Funciona, mas... dá pra fazer melhor <!-- {li:.bullet} -->
+
+---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+## requestAnimationFrame(funcao) [🌐](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame)
+
+- Similar à `setTimeout(funcao, tempo)`, mas a função é agendada para o próximo
+  redesenho da tela... Da documentação:
+  > [...] tells the browser **you wish to perform an animation.** <!-- {p:style="font-size: 1em"} --> 
+  > It requests the browser to call a user-supplied callback 
+  > function **before the next repaint**. <!-- {blockquote:style="margin-bottom: 1rem; max-width: 90%; margin-left: auto;"} -->
+- <!-- {li:.two-column-code.no-bullet} -->
+  ```javascript
+  let antes = 0
+  function loop(agora) {
+    const qtoPassou = agora - antes
+    antes = agora
+    atualizaCena(qtoPassou)
+    desenhaCena(gl)
+
+    requestAnimationFrame(loop)
+  }
+  requestAnimationFrame(loop)
+  // se quiser evitar a variável global 'antes':
+  function loop(agora) {
+    const qtoPassou = agora - (loop.antes ?? 0)
+    loop.antes = agora
+    atualizaCena(qtoPassou)
+    desenhaCena(gl)
+
+    requestAnimationFrame(loop)
+  }
+  requestAnimationFrame(loop)
   ```
 
 ---
-<!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
-# Posicionando Objetos - Do Jeito Bão <sup>(c)</sup> <small>(2/2)</small>
+<!-- {"layout": "3-column-content", "playMediaOnActivation": {"selector": "#color-animation" }, "slideClass": "compact-code-more"} -->
+## Animando uma cor
 
-...e no _vertex shader_, multiplicamos a coordenada pela matriz "model",
-antes de projetar:
-1. `vertex-shader.glsl`
-   ```glsl
-   #version 300 es
+- <video width="100%" preload="auto" controls loop src="../../videos/animacao-cor.mp4" id="color-animation" class="bordered subtly-round"></video>
+  [Animação de cor](codeblocks:animacao-cor/CodeBlocks/animacao-cor.cbp) <!-- {ul:.no-bullet.no-margin.no-padding.center-aligned} -->
 
-   in vec3 position;
-   uniform mat4 projection;
-   uniform mat4 model;
-
-   void main() {
-     // ℹ️ multiplica coords. pela matriz de modelo e projeção
-     gl_Position = projection * model * vec4(position, 1.0);
-   }
-   ```
-1. `utils/math.js`
+1. <!-- {ol:.no-margin.no-padding.no-bullet} -->
    ```javascript
-   export function translate(tx, ty, tz) {
-     return new Float32Array([
-        1,  0,  0,  0,
-        0,  1,  0,  0,
-        0,  0,  1,  0,
-       tx, ty, tz,  1
+   const cena = {
+     vao: null,
+     corLoc: null,
+     cor: new Float32Array([
+       0.5, 0.5, 0.5
+     ])
+   }
+   const tom = 0.5
+   const incremento = 1.0
+   ```
+1. <!-- {li:.bullet style="margin-top: 1rem;"} -->
+   ```javascript
+   function atualizaCena(dt) {
+     // atualiza cor usando tempo
+     tom += incremento * dt
+     if (tom > 1.0 || tom < 0) {
+       incremento *= -1
+     }
+     cena.cor = new Float32Array([
+       // rgb mesmo valor 
+       // --> tom de cinza
+       tom, tom, tom
      ])
    }
    ```
-   <!-- {ol:.no-bullet.no-margin.no-padding.layout-split-2 style="gap: 1rem;"} -->
-- Na aula sobre [transformações](../transforms/) veremos
-  a geometria por trás disso
 
----
-<!-- { "layout": "section-header", "slideClass": "usando-texturas", "hash": "usando-texturas" } -->
-# Usando Texturas
-
----
-<!-- { "layout": "regular" } -->
-# Texturas
-
-- <!-- {ul:.full-width} -->
-  ::: figure .push-right.polaroid max-width: 250px; text-align: center;
-  ![](../../images/exemplo-textura-simples.webp) <!-- {.bordered style="border-radius: 8px; max-width: 250px;"} -->
-  [Textura Simples][exemplo-textura-simples]
-  :::
-  Teremos uma [aula sobre texturas](../textures) mais a frente
-- Contudo, vamos começar a aprender para já ir usando:
-  - No _shader_: 
-    1. **+atributo** de **coordenada de textura**
-    1. **+_varying_** de coordenada de textura
-    1. _fragment shader_ **amostra a textura** para "pintar"
-  - Programa JS:
-    1. **carregar arquivo** da textura <!-- {ol:start="4"} -->
-       - **criar e configurar** textura WebGL
-    1. **configurar atributo** de coordenadas de textura
-    1. **configurar _blending_** para transparências
-
-[exemplo-textura-simples]: https://fegemo.github.io/utf-cg-exemplos-webgl/textura-simples/
-
----
-<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Textura no _Shader_
-
-1. <!-- {ol:.layout-split-2.no-bullet style="gap: 1rem;"} -->
-   `vertex.glsl`
-   ```glsl
-   #version 300 es
-
-   in vec3 a_position;
-   // ℹ️ novo atributo: coordenada de textura
-   in vec2 a_texcoord;
-   // ℹ️ nova varying: coord. text. interpolada
-   out vec2 v_texcoord;
-
-   void main() {
-     gl_Position = vec4(a_position, 1.0);
-
-     // ℹ️ repassa as coordenadas de textura 
-     // para o fragment shader. Será interpolada
-     // para cada fragmento (pixel) do polígono
-     v_texcoord = a_texcoord;
-   }
-   ```
-1. `fragment.glsl`
-   ```glsl
-   #version 300 es
-
-   precision mediump float;
-
-   // ℹ️ nova varying: coordenada de textura
-   in vec2 v_texcoord;
-   // ℹ️ nova uniform: a textura
-   uniform sampler2D u_texture;
-
-   out vec4 outColor;
-
-   void main() {
-     // ℹ️ agora pegamos a cor da textura
-     outColor = texture(u_texture, v_texcoord);
-   }
-   ```
-
----
-<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Textura: coordenadas de textura <small>(1/2)</small>
-  
-- Precisamos associar uma coordenada <span class="math">(s, t)\in[0,1]</span>
-  para cada vértice
-  - Chamamos de "mapear a textura" no polígono
-    
-![](../../images/coordenadas-de-textura.svg) <!-- {style="max-width: 400px;"} -->
-
-<!-- {p:.center-aligned.full-width} -->
-
----
-<!-- {"layout": "regular", "slideClass": "compact-code vbo-coordenada-textura", "state": "show-active-slide-and-previous", "embeddedStyles": ".vbo-coordenada-textura > * { margin-left: 15%; }"} -->
-
-- E configurar o novo **VBO de coordenadas de textura**:
+- <!-- {ul:.no-margin.no-padding.no-bullet.bullet} -->
   ```javascript
-  // ℹ️ coordenadas de textura de cada vértice
-  // a ordem deve ser a mesma dos vértices
-  const texcoords = new Float32Array([
-      0.0, 0.0, // do v0 ↙️
-      1.0, 0.0, // do v1 ↘️
-      1.0, 1.0, // do v2 ↗️
-      0.0, 1.0  // do v3 ↖️
-  ])
+  function desenhaCena(gl) {
+    // redesenha, no estado atual
+    gl.clear(gl.COLOR_BUFFER_BIT)
 
-  // ℹ️ configura o atributo 'texcoord' 
-  // ("in vec2 texcoord" do shader)
-  const texcoordLoc = // ...
-  // ...5 passos para configurar um VBO
+    // desenha o quadrado
+    gl.bindVertexArray(cena.vao)
+    gl.uniform3fv(cena.corLoc, 
+      cena.cor) // ℹ️ atualiza
+    gl.drawArrays(gl.TRIANGLE_FAN,
+      0, 4)
+  }
   ```
+- <!-- {li:.bullet} -->
+  ::: div .note.info font-size: 0.7em; margin-top: 1rem;
+  Veja o exemplo [animando-cor][exemplo-animando-cor], que interpola 2 cores quaisquer
+  :::
+
+[exemplo-animando-cor]: https://fegemo.github.io/utf-cg-exemplos-webgl/animando-cor/
+
 
 ---
-<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Textura: carregando e configurando
+<!-- {"layout": "regular", "embeddedStyles": ".raf-vs-setinterval { table { font-size: 0.64em; margin: 0 auto; td, th { padding: 0.15em 0.25em; line-height: 1.5; } thead>tr { background: transparent; border-width: 0; } td,tr { border-width: 0; background: transparent; } td:first-child { font-weight: bold; text-align: right;} th { border-width: 0; background: transparent; } } table, tr, td { border-width: 0; } }"} -->
+## setTimeout(func, ms) ou requestAnimationFrame(func)? <!-- {h2:style="font-size: 32px"} -->
 
-1. <!-- {ol:.layout-split-2.bulleted.no-bullet.no-margin.no-padding style="gap: 1rem;"} -->
-   ```javascript
-   // (1) carrega a imagem
-   const image = new Image()
-   image.src = 'pusheen-noodles.png'
 
-   // (2) cria e configura a textura
-   // (2.1) cria e ativa
-   const texture = gl.createTexture()
-   gl.bindTexture(gl.TEXTURE_2D, texture)
+::: div .note.info.raf-vs-setinterval margin-inline: auto;
+|                          |`requestAnimationFrame`|`setTimeout`     |
+|--------------------------|-----------------------|-----------------|
+| Limita FPS?              | taxa do monitor       | 👍 ilimitado    |
+| Quando GPU "engasga":    | FPS=Hz/2, /4, /8¹     | 👍 queda linear |
+| Compatível com vSync:    | 👍 Sim                | Não             |
+| Problemas de _tearing_:  | 👍 Não, se 2+ buffers | Sim             |
+| Economiza processamento: | 👍 Sim                | Não             |
+| Compatível com VRR:      | 👍 Sim                | Não             |
+:::
 
-   // (2.2) sobe os dados da imagem
-   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image)
+¹Queda brusca de FPS: `requestAnimationFrame` com 2 buffers sofre, mas com 3 resolve <!-- {p:style="font-size: 0.7em; margin-bottom: 1rem; margin-inline: auto;"} -->
 
-   // (2.3) configura filtros de redução/ampliação
-   gl.generateMipmap(gl.TEXTURE_2D)
-   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR)
-   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
-   ```
-1. ::: div .note.warning font-size: 0.7em;
-   **Atenção**: carregar a imagem é um processo assíncrono. Pode (vai) acontecer
-   do WebGL renderizar e a imagem ainda não está pronta. Mas não deve dar erro.
+- Apesar de `setTimeout` ter pontos positivos, `requestAnimationFrame`
+  é indicado
+- Vamos entender a interação GPU / Monitor
+  - O que é vSync?
+  - O que é VRR (gSync, FreeSync)?
 
-   **Como lidar bem**? (a) pré-carregar imagens ou (b) aguardar para renderizar
-   a primeira vez (`async/await`). 
-   
-   Exemplo 
-   [textura-simples][exemplo-textura-simples] **aguarda para renderizar**.
-   :::
-
-[exemplo-textura-simples]: https://fegemo.github.io/utf-cg-exemplos-webgl/textura-simples
+*[VRR]: Variable Refresh Rate
 
 ---
-<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Textura: configurando transparência
+<!-- {"layout": "section-header", "slideClass": "redrawing", "hash": "redesenhando-a-tela"} -->
+# **Re**-desenhando a Tela
 
-```javascript
-// ℹ️ habilita o blending para lidar com transparências da textura (canal alpha)
-gl.enable(gl.BLEND)
-gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
-```
-...sem isso, pixels transparentes não se misturam corretamente com o que atrás.
+- GPU vs Monitor
+- Alterando o estado do programa
+- Avisando o sistema de janelas
 
 ---
-<!-- { "layout": "centered", "hash": "tp1" } -->
-# Trabalho Prático 1 \o/
+<!-- {"layout": "regular"} -->
+# GPU vs Monitor
 
-_A wild TP1 appears..._
+- <!-- {ul:.layout-split-2 style="gap: 3rem;"} -->
+  A taxa de atualização do monitor é fixa (eg, 60Hz)
+  ![](../../images/hz-vs-fps.png) <!-- {.full-width} -->
+  - GPU pode levar mais ou menos tempo para desenhar cada quadro <!-- {li:.bullet} -->
+  - **VBLANK**: momento perfeito para GPU enviar nova imagem <!-- {li:.bullet} -->
+    - Também chamado **_retrace_ vertical**
+- <!-- {li:.bullet} -->
+  Se GPU submete novo quadro enquanto monitor atualiza...
+  ![](../../images/screen-tearing.webp) <!-- {.centered style="width: 340px"} -->
+  - Pode ocorrer **_screen tearing_** 
+  - Mas como evitar? <!-- {li:.bullet} -->
 
 ---
-<!-- {"layout": "2-column-content"} -->
-# TP1: **Galaxian**
+<!-- {"layout": "regular"} -->
+## Usando **2 _frame buffers_**
+
+- Quando estamos criando uma animação - **atualizando a tela várias
+  vezes por segundo**, podemos ter um problema de
+  **"imagens" estateladas** (_flickering_) <!-- {ul:.bulleted} -->
+- Acontece quando escrevemos no `COLOR_BUFFER` ao mesmo tempo que
+  ele "viaja" ao monitor
+- ![](../../images/front-back-buffer.svg) <!-- {.push-right.half-width} -->
+  Para evitar, usamos um _**double buffer**_:
+  1. _front-buffer_: sendo mostrado agora
+  1. _back-buffer_: sendo "pintado" agora
+- Após terminar o desenho no _back buffer_, invertemos quem é _front_ com o _back_
+- Em WebGL, o navegador nos dá **_double buffer_** de graça 👍
+
+---
+<!-- {"layout": "regular"} -->
+- <!-- {ul:.layout-split-2.no-margin.no-padding.no-bullet style="gap: 1rem;"} -->
+  ::: figure ..picture-steps.clean.opacity-only width: 550px;
+  ![](../../images/single-double-triple-buffering-0.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-1.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-2.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-3.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-3.5.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-4.svg) <!-- {.bullet.figure-step} -->
+  ![](../../images/single-double-triple-buffering-5.svg) <!-- {.bullet.figure-step} -->
+  :::
+- # _Single_ vs _Double_ vs _Triple Buffering_ <!-- {h1:style="font-size: 27px"} -->
+  - Monitor atualiza a taxa constante
+    ::: div .note.info font-size: 0.7em; max-width: 80%; margin-inline: auto;
+    **vSync**: GPU aguarda o momento certo para trocar os buffers <!-- {p:.no-margin} --> 
+    ::: 
+  - **1 buffer**: _screen tearing_ frequente
+  - **2 buffers+vsync**: resolve _tearing_
+    - ⚠️ GPU fica a toa  <!-- {li:style="list-style-type: circle;"} -->
+    - ⚠️ cai a FPS/2 se não desenha quadro a tempo <!-- {li:style="list-style-type: circle;"} -->
+  - **3 buffers+vsync**: resolve _tearing_ e a queda brusca de FPS
+    - ⚠️ FPS&gt;Hz: quadros podem precisar aguardar <!-- {li:.bullet style="list-style-type: circle;"} -->
+    - ⚠️ FPS&lt;Hz: alguns quadros repetem, outro não <!-- {li:.bullet style="list-style-type: circle;"} -->
+
+---
+<!-- {"layout": "centered", "fullPageElement": "#vrr-video"} -->
+<iframe id="vrr-video" width="560" height="315" src="https://www.youtube.com/embed/CQdo67SjIHk?si=dAyPzDNB4wfjynXj&amp;start=104" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-> Um dos primeiros jogos que surgiu se chamava Galaxian.
-> Nele, o jogador pilota uma nave que fica na parte de baixo
-> da tela e, com ela, se defende de um ataque alienígena.
+---
+<!-- {"layout": "centered-horizontal"} -->
+## Outra animação: **segue o mouse**
+
+![](../../images/animacao-segue-mouse.png) <!-- {.medium-width.centered.bordered.subtly-round} -->
+
+Exemplo: [animacao-segue-mouse](codeblocks:animacao-segue-mouse/CodeBlocks/animacao-segue-mouse.cbp)
 
 
-![](../../images/galaxian-original.png) <!-- {.push-right style="width: 210px; margin-left: 1em"} -->
-- Enunciado no Moodle
 
 ---
 # Referências
