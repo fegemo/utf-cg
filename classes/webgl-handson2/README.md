@@ -321,20 +321,21 @@ Que tipos de objetos podemos desenhar?
 <!-- { "layout": "section-header", "slideClass": "posicionamento", "hash": "posicionamento-de-objetos" } -->
 # Posicionamento de objetos
 
-- O jeito ruim
-- O jeito bão <sup>(c)</sup>
+1. O jeito ruim
+1. O jeito de hoje
+1. O jeito melhor (mais flexível)
 
 ---
 <!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
-# Posicionando Objetos - O Jeito Ruim <!-- {.bullet} -->
+# Posicionando Objetos: 1) Jeito Ruim <!-- {.bullet} -->
 
 - ![](../../images/snake-polygon.png) <!-- {.push-right.bullet style="max-height: 300px;"} -->
   A forma como temos posicionado objetos não é legal:
   ```javascript
-  const esq = nave.x
-  const dir = nave.x + nave.largura
-  const bai = nave.y
-  const cim = nave.y + nave.altura
+  const esq = quad.x
+  const dir = quad.x + quad.largura
+  const bai = quad.y
+  const cim = quad.y + quad.altura
   
   const vertices = new Float32Array([
     esq, bai, 0,  // ↙️
@@ -349,51 +350,44 @@ Que tipos de objetos podemos desenhar?
 
 ---
 <!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
-# Posicionando Objetos - Do Jeito Bão <sup>(c)</sup> <small>(1/2)</small>
+# Posicionando Objetos: 2) Jeito de Hoje <small>(1/2)</small>
 
 - Damos as coordenadas assumindo que estamos na origem, mas
-  transladamos o objeto para onde queremos que ele realmente seja
-  desenhado: <!-- {ul:.two-column-code} -->
+  **deslocamos o objeto** para onde queremos que ele realmente seja
+  desenhado: <!-- {ul:.bullet.two-column-code} -->
   ```javascript
-  import { translate } from './utils/math.js'
-
   // inicialização:
-  const tamanhoNave = 20
-  const metadeNave = tamanhoNave / 2
-  let posicaoNave = [20, 30, 0]
+  const tamanhoQuad = 20
+  const metadeQuad = tamanhoQuad / 2
+  let posicaoQuad = [20, 30, 0]
 
   // assumir (0,0,0) no centro do objeto
   const vertices = new Float32Array([
-    -metadeNave, -metadeNave, 0,  // ↙️
-     metadeNave, -metadeNave, 0,  // ↘️
-     metadeNave,  metadeNave, 0,  // ↗️
-    -metadeNave,  metadeNave, 0   // ↖️
+    -metadeQuad, -metadeQuad, 0,  // ↙️
+     metadeQuad, -metadeQuad, 0,  // ↘️
+     metadeQuad,  metadeQuad, 0,  // ↗️
+    -metadeQuad,  metadeQuad, 0   // ↖️
   ])
 
 
   // desenho:
-  gl.uniformMatrix4fv(
-    modelLoc, false, modelMatrixNave)
+  gl.uniform3fv(deslocamentoLoc, posicaoQuad)
   gl.drawArrays(gl.TRIANGLE_FAN, 0, 4)
 
   // atualização:
   function keyPressed(e) {
     if (e.key === 'ArrowDown') {
-      posicaoNave.y += 0.2
+      posicaoQuad.y += 0.2
     }
-    modelMatrixNave = translate(
-      posicaoNave.x,
-      posicaoNave.y,
-      posicaoNave.z
-    )
   }
   ```
+  - E o _vertex shader_ aplica o deslocamento... <!-- {li:.bullet} -->
 
 ---
 <!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
-# Posicionando Objetos - Do Jeito Bão <sup>(c)</sup> <small>(2/2)</small>
+# Posicionando Objetos: 2) Do Jeito de Hoje <small>(2/2)</small>
 
-...e no _vertex shader_, multiplicamos a coordenada pela matriz "model",
+No _vertex shader_, somamos `deslocamento` às coordenadas do vértice atual,
 antes de projetar:
 1. `vertex-shader.glsl`
    ```glsl
@@ -401,7 +395,71 @@ antes de projetar:
 
    in vec3 position;
    uniform mat4 projection;
-   uniform mat4 model;
+   uniform vec3 offset; // ⬅️ nova uniform: deslocamento
+
+   void main() {
+     // ℹ️ soma offset + coords. antes de multiplicar pela projeção
+     gl_Position = projection * vec4(position + offset, 1.0);
+   }
+   ```
+   <!-- {ol:.no-bullet.no-margin.no-padding.layout-split-2 style="gap: 1rem;"} -->
+- Apesar de suficiente para o que precisamos até agora, existe um jeito mais
+  flexível... <!-- {li:.bullet} -->
+  - Se usarmos uma **"matriz de transformação de modelo"** (próximo slide) <!-- {li:.bullet} -->
+
+---
+<!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
+# Posicionando Objetos: 3) Do Jeito Melhor <small>(1/2)</small>
+
+- Objeto representado com origem em seu centro (igual anterior): <!-- {ul:.two-column-code} -->
+  ```javascript
+  import { translate } from './utils/math.js'
+  // ⬆️ vamos usar uma matriz de translação
+  // inicialização:
+  const tamanhoQuad = 20
+  const metadeQuad = tamanhoQuad / 2
+  let posicaoQuad = [20, 30, 0]
+
+  // assumir (0,0,0) no centro do objeto
+  const vertices = new Float32Array([
+    -metadeQuad, -metadeQuad, 0,  // ↙️
+     metadeQuad, -metadeQuad, 0,  // ↘️
+     metadeQuad,  metadeQuad, 0,  // ↗️
+    -metadeQuad,  metadeQuad, 0   // ↖️
+  ])
+
+
+  // desenho:
+  gl.uniformMatrix4fv(
+    modelLoc, false, modelMatrixQuad)
+  gl.drawArrays(gl.TRIANGLE_FAN, 0, 4)
+
+  // atualização:
+  function keyPressed(e) {
+    if (e.key === 'ArrowDown') {
+      posicaoQuad.y += 0.2
+    }
+    modelMatrixQuad = translate(
+      posicaoQuad.x, // ⬆️ no próx. slide
+      posicaoQuad.y,
+      posicaoQuad.z
+    )
+  }
+  ```
+
+---
+<!-- { "layout": "regular", "slideClass": "compact-code-more" } -->
+# Posicionando Objetos: 3) Do Jeito Melhor <small>(2/2)</small>
+
+...e no _vertex shader_, **multiplicamos a coordenada pela matriz "model"**,
+antes de projetar:
+1. `vertex-shader.glsl`
+   ```glsl
+   #version 300 es
+
+   in vec3 position;
+   uniform mat4 projection;
+   uniform mat4 model; // ⬅️ agora é uma matriz
 
    void main() {
      // ℹ️ multiplica coords. pela matriz de modelo e projeção

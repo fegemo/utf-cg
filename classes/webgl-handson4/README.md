@@ -6,7 +6,7 @@
 <!-- {"layout": "centered"} -->
 # Roteiro
 
-1. [Orientação dos polígonos](#orientacao-dos-poligonos)
+1. [Orientação de polígonos](#orientacao-de-poligonos)
 1. [Usando texturas](#usando-texturas)
 1. [Escrevendo texto](#escrevendo-texto)
 1. **[Trabalho Prático 1](#tp1)**
@@ -53,7 +53,7 @@
 
 - <!-- {ul:.no-bullet.no-margin.no-padding.center-aligned} -->
   <video width="300" preload="auto" controls loop src="../../videos/orientacao-de-poligonos.mp4" id="color-animation" class="bordered subtly-round"></video>
-  - [Orientação de Polígonos][exemplo-orientacao-poligonos] <!-- {ul^0:.no-padding} -->
+  - [orientacao-poligonos][exemplo-orientacao-poligonos] <!-- {ul^0:.no-padding} -->
     
 1. É possível ativar o **descarte de faces de trás**
    <!-- {ol:.no-margin.no-padding.no-bullet} -->

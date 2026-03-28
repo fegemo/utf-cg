@@ -6,9 +6,9 @@
 <!-- {"layout": "centered"} -->
 # Roteiro
 
-1. [Organizando o código][#organizando-o-codigo]
-1. [Animação][#animacao]
-1. [Redesenhando a tela][#redesenhando-a-tela]
+1. [Organizando o código](#organizando-o-codigo)
+1. [Animação](#animacao)
+1. [Redesenhando a tela](#redesenhando-a-tela)
 
 ---
 <!-- {"layout": "section-header", "slideClass": "organizando-o-codigo", "hash": "organizando-o-codigo"} -->
@@ -328,9 +328,9 @@
 
 ![](../../images/animacao-segue-mouse.png) <!-- {.medium-width.centered.bordered.subtly-round} -->
 
-Exemplo: [animacao-segue-mouse](codeblocks:animacao-segue-mouse/CodeBlocks/animacao-segue-mouse.cbp)
+Exemplo: [animacao-segue-mouse][exemplo-animando-segue-mouse]
 
-
+[exemplo-animando-segue-mouse]: https://fegemo.github.io/utf-cg-exemplos-webgl/animando-segue-mouse
 
 ---
 # Referências
