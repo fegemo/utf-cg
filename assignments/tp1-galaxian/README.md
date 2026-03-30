@@ -50,7 +50,7 @@ Para conseguir mais pontos, você pode
 implementar algumas das funcionalidades adicionais. Essas funcionalidades
 serão avaliadas de acordo com a **dificuldade de implementação**, o
 **efeito obtido** dentro do jogo e a **qualidade da implementação**.
-Implementando-as, você pode obter até **120%** da pontuação do trabalho! :3
+Implementando-as, você pode obter até **125%** da pontuação do trabalho! 
 
 Exemplos de funcionalidades com suas respectivas pontuações **máximas** são
 mostrados a seguir:
@@ -75,11 +75,11 @@ mostrados a seguir:
      ele deve reaparecer no canto superior e retornar a seu lugar na esquadra.
   1. **Inimigos diferentes (5%)**: em vez dos inimigos se comportarem
      da mesma maneira, faça alguns maiores/menores, mais/menos agressivos etc.
-  1. **Fases "curadas" (até 8%)**: crie (umas 4) fases diferentes com 
-     mudanças no cenário e nos tipos de inimigos (tamanho, quantidade, 
-     velocidade, "agressividade" etc).
-  1. **Fases infinitas (4%)**: gere uma nova fase toda vez que o jogador
-     morrer ou que ele tenha êxito em aterrisar
+     1. **Fases "curadas" (até 8%)**: crie (umas 4) fases diferentes com 
+        mudanças no cenário e nos tipos de inimigos (tamanho, quantidade, 
+        velocidade, "agressividade" etc).
+     1. **Fases infinitas (5%)**: gere uma nova fase toda vez que o jogador
+        morrer ou que ele tenha êxito em aterrisar
   1. **Itens (até 12%)**: Você pode criar diferentes itens que afetam o jogo,
      que podem ser "deixados" quando um inimigo é derrotado. Por exemplo, pode
      ter itens que deixam a nave atirar mais que um tiro ao mesmo tempo, ou que
@@ -88,6 +88,9 @@ mostrados a seguir:
      cada inimigo vale uma quantidade de pontos dependendo do seu tipo e
      da circunstância (eg, quanto mais próximo do chão, mais pontos).
      - O placar deve ser exibido em uma _head-up display_ (**HUD**)
+     1. **_Highscore_ salvo no `localStorage` (+6%)**: faça a pontuação dos `n`
+        melhores jogadores ser salva no `localStorage` e
+        coloque uma tela no jogo para mostrar isso
 - Relativas à **nave**:
   1. :star: **Vidas (5%)**: em vez de morrer na primeira colisão, 
      o jogador pode ter vidas
@@ -128,7 +131,7 @@ explicar seu raciocínio. Portanto, organize-o! Também não é necessário
 comentar o código inteiro, mas o faça quando sentir necessidade de uma
 explicação adicional à sua lógica.
 
-Seu trabalho pode ser feito individual ou em duplas e deve ser produzido
+Seu trabalho pode ser feito **individual ou em duplas** e deve ser produzido
 integralmente por você/dupla. Se recursos de terceiros forem usados
 (e.g., imagens, músicas, efeitos sonoros), coloque links para elas na
 documentação (`README.md`). A discussão e troca de ideias com os 
