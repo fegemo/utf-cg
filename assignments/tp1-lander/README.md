@@ -81,7 +81,7 @@ conseguir mais pontos, você pode implementar algumas das funcionalidades
 adicionais no seu jogo. Essas funcionalidades serão avaliadas de acordo
 com a **dificuldade de implementação**, o **efeito obtido** dentro do
 jogo e a **qualidade da implementação**. Implementando-as, você pode
-obter até **125%** da pontuação do trabalho!
+obter até **120%** da pontuação do trabalho!
 
 Exemplos de funcionalidades com suas respectivas pontuações **máximas** são
 mostrados a seguir:
