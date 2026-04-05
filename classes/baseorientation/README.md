@@ -50,23 +50,6 @@
   </div>
 
 ---
-<!-- {"layout": "regular"} -->
-# Produto vetorial
-
-- ![right](../../images/prod-vetorial-grafico.png)
-  Encontra um vetor perpendicular a outros dois
-  <div class="math push-right" style="font-size: 0.8em;">
-    \vec{u} \times \vec{v} = \begin{bmatrix}u_y v_z - u_z v_y \\ u_z v_x - u_x v_z \\ u_x v_y - u_y v_x\end{bmatrix}
-  </div>  
-- Propriedades (assume-se <span class="math">\vec{u}</span>, <span class="math">\vec{v}</span> linearmente independentes):
-  - Antissimetria: <span class="math">\vec{u} \times \vec{v} = -\vec{v} \times \vec{u}</span>
-  - Bilinearidade:
-    - <span class="math">\vec{u} \times (\alpha \vec{v}) = \alpha (\vec{u} \times \vec{v})</span>  e
-    - <span class="math">\vec{u} \times (\vec{v} + \vec{w}) = (\vec{u} \times \vec{v}) + (\vec{u} \times \vec{w})</span>
-  - <span class="math">\vec{u} \times \vec{v}</span> é perpendicular tanto a <span class="math">\vec{u}</span> quanto a <span class="math">\vec{v}</span>
-  - O comprimento de <span class="math">\vec{u} \times \vec{v}</span> é igual à área do paralelogramo definido por  <span class="math">\vec{u}</span> e <span class="math">\vec{v}</span>, isto é, <span class="math">\lVert \vec{u} \times \vec{v} \rVert = \lVert \vec{u} \rVert \lVert \vec{v} \rVert \sin \theta</span>
-
----
 <!-- {"layout": "section-header"} -->
 # Mudança de Sistema de Coordenadas
 

@@ -1,19 +1,19 @@
 <!-- {"layout": "title"} -->
-# Geometria
+# Operações Geométricas
 ## Uma breve revisão
 
 ---
 <!-- {"layout": "centered"} -->
 # Roteiro
 
-1. História da geometria
-1. Geometria afim
-1. Geometria euclidiana
-1. Sistemas de coordenadas
+1. [Geometria Afim](#geometria-afim)
+1. [Operações básicas](#operacoes-basicas)
+1. [Outras operações](#outras-operacoes)
+1. [Representação de objetos](#representacao-de-objetos)
 
 ---
 <!-- {"layout": "regular"} -->
-## Problemas Típicos (1/2)
+# Problemas Típicos <small>(1/2)</small>
 
 - **Interseção** (ou colisão)
   - Dado um cubo e um raio (uma semi-reta), o raio acerta
@@ -27,7 +27,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Problemas Típicos (2/2)
+# Problemas Típicos <small>(2/2)</small>
 
 - **Orientação**
   - 3 pontos não-colineares definem um plano. Dado um quarto ponto, ele está
@@ -39,7 +39,7 @@
 
 ---
 <!-- {"layout": "centered-horizontal"} -->
-## Exemplo de problema: **rotação**
+# Exemplo de problema: **rotação**
 
 Para gerar a segunda figura a partir da primeira, precisamos reescrever as
 coordenadas de cada vértice "na mão"?
@@ -51,47 +51,25 @@ coordenadas de cada vértice "na mão"?
 
 ---
 <!-- {"layout": "centered-horizontal"} -->
-## Exemplo de problema: **rotação** (cont.)
+# Exemplo de problema: **rotação** (cont.)
 
 E se quisermos fazer uma animação?
 
 <iframe src="../../samples/rotate/rotate-anim.htm" width="400" height="400" frameborder="0"></iframe>
 
 ---
-<!-- {"layout": "regular"} -->
-# Objetivos de hoje
+<!-- {"layout": "section-header", "slideClass": "geometria-afim", "hash": "geometria-afim"} -->
+# Geometria Afim
 
-- Vamos supor que estamos na década de 90 e **vamos inventar uma peça de
-  _hardware_ para fazer os cálculos necessários** (podemos batizá-la de
-  placa de vídeo :) para gerar imagens a partir de cenas bi/tridimensionais
-- Vamos precisar:
-  1. Definir que **tipos de operações com números** nosso _hardware_ deve fazer
-  1. Restringir as operações a um **conjunto mínimo viável** (porque _hardware_
-    é caro e complexo)
-  1. Encontrar uma forma de fazer **várias operações ao mesmo tempo** (para
-    que seja rápido)
-
----
-# Geometria
+1. História
+1. Definição
+1. Elementos fundamentais
 
 ---
 <!-- {"layout": "regular"} -->
-## Geometria
+# **Geometria Afim**
 
-- Um dos mais antigos ramos da matemática
-  - Usado para demarcação de terras (geo + metria)
-- Civilizações muito antigas devem ter tido uma compreensão bastante
-  sofisticada de geometria
-  - Aplicação em construções, como as pirâmides
-- Porém, somente na época de **Euclides**, a geometria foi axiomatizada e
-  formalizada
-  - **300 a.C.** na Grécia
-
----
-<!-- {"layout": "regular"} -->
-## Surgimento da **Geometria Afim**
-
-- Somente por volta de **1600 d.C.**, com Descartes, as coordenadas
+- Por volta de **1600 d.C.**, com Descartes, as coordenadas
   cartesianas foram desenvolvidas
   - Possibilitando conceitos geométricos serem representados algebricamente
 - A partir dos anos **1800 d.C.** começou-se a questionar se a geometria
@@ -101,33 +79,28 @@ E se quisermos fazer uma animação?
 - Vamos discutir 3 geometrias ao longo da matéria:
   - Geometria euclidiana (300 a.C.)
   - Geometria afim (1800+ d.C.)
-  - Geometria projetiva (1900 d.C., _en passant_)
-
----
-<!-- {"layout": "section-header"} -->
-# Geometria Afim
-
-1. Definição
-1. Elementos
-1. Operações
+  - Geometria projetiva (1900 d.C.)
 
 ---
 <!-- {"layout": "regular"} -->
-## **Definição** de Geometria Afim
+# **Definição** de Geometria Afim
 
 - Estudo de propriedades geométricas preservadas por
   transformações afim
   - Informalmente chamada de "estudo das linhas paralelas"
 - Conceitos:
-  - **Transformação linear**: função entre dois espaços de vetores
-    que preserva soma de vetores e multiplicação por escalares
-    - Exemplo: rotação de um objeto
-  - **Transformação afim**: transformações lineares - transformação de
-    translação
+  - **Transformação linear**: <span class="math">f(\vec{v})=A\vec{v}</span>
+    - Mapeia vetor em vetor
+    - Mantém a origem fixa
+    - **Exemplos**: <!-- {.alternate-color} --> rotação, escala, reflexão, _shear_
+  - **Transformação afim**: <span class="math">f(\vec{v})=A\vec{v}+\vec{b}</span>
+    - Permite movimentar origem
+    - Daí é possível representar uma translação também
+    - **Exemplos**: <!-- {.alternate-color} --> lineares + translação
 
 ---
 <!-- {"layout": "regular"} -->
-## Elementos da Geometria Afim
+# Elementos da Geometria Afim
 
 - Elementos fundamentais:
   - **Escalares**: números reais
@@ -135,15 +108,15 @@ E se quisermos fazer uma animação?
   - **Vetores**:
     - Representam apenas um <u>deslocamento em uma direção/sentido</u>
     - Não são posicionados (são **livres** no espaço)
-  - ~~Distâncias~~, ~~Ângulos~~ Fim! :)
-- Não há o conceito de origem do mundo
+  - ~~Distâncias~~, ~~Ângulos~~
+- Não há uma origem fixa do mundo
 - Premissa da geometria afim: preservar **paralelismo** e **colinearidade**
 
 ---
 <!-- {"layout": "regular"} -->
-## **Escalar**, **Ponto** e **Vetor**
+# **Escalar**, **Ponto** e **Vetor**
 
-- **Escalar** <!-- {ul:.layout-split-3.card-list} -->
+- **Escalar** <!-- {ul:.layout-split-3 style="height: auto;"} -->
   - Um número real
   - Representa uma **grandeza não geométrica**
   - Notação típica:
@@ -158,31 +131,42 @@ E se quisermos fazer uma animação?
     - <span class="math">\vec{u}, \vec{v}, \vec{w}</span>
 
 Pontos e vetores podem ser representados por um conjunto de coordenadas
-(escalares) no espaço (<span class="math">R^2, R^3, R^n</span>) <!-- {p:.note} -->
+(escalares) no espaço (<span class="math">R^2, R^3, R^n</span>). <!-- {p:.note.info style="max-width: 80%; margin-inline: auto;"} -->
 
 ---
-<!-- {"layout": "regular"} -->
-## Operações básicas
+<!-- {"layout": "section-header", "hash": "operacoes-basicas", "slideClass": "operacoes-basicas-afim"} -->
+# Operações Básicas
 
-- Multiplicação escalar-vetor <!-- {ul:.card-list.polaroid.bulleted} -->
+- Soma e subtração de vetor
+- Multiplicação vetor x escalar
+- Soma de ponto com vetor
+- Subtração de pontos (distância)
+- Combinação linear e afim
+
+---
+<!-- {"layout": "regular", "slideClass": "operacoes-basicas", "embeddedStyles": ".operacoes-basicas ul.card-list > li > h2 {background-color: #fff5; padding: 0.5em; color: #980598; border-radius: 5px; border: 1px solid currentColor; width: fit-content; align-self: center; margin-bottom: 2rem !important; order: 0;}"} -->
+# Operações básicas
+
+- ## Escalar x vetor <!-- {ul:.card-list} --> <!-- {li:.bullet} -->
   ![](../../images/afim-multiplicacao-escalar.png) <!-- {style="width: 220px"} -->
-  - <span class="math">\vec{v} = \alpha \times \vec{u}</span>
-- Adição vetor-vetor
+  - <span class="math">\vec{v} = \alpha \times \vec{u}\text{, ou}</span>
+  - <span class="math">\vec{v} = \alpha\vec{u}</span>
+- ## Vetor + vetor <!-- {li:.bullet} -->
   ![](../../images/afim-soma-vetores.png)  <!-- {style="width: 220px"} -->
   - <span class="math">\vec{w} = \vec{u} + \vec{v}</span>
   - <span class="math">\vec{w} = \vec{u} - \vec{v}</span>
     - <span class="math">\vec{w} = \vec{u} + (-1 \times \vec{v})</span>
-- Diferença ponto-ponto
+- ## Ponto - ponto <!-- {li:.bullet} -->
   ![](../../images/afim-subtracao-pontos.png)  <!-- {style="width: 170px"} -->
   - <span class="math">\vec{v} = P - Q</span>
-- Adição ponto-vetor
+- ## Ponto + vetor <!-- {li:.bullet} -->
   ![](../../images/afim-soma-vetor-ponto.png)  <!-- {style="width: 220px"} -->
   - <span class="math">Q = P + \vec{u}</span>
   - <span class="math">Q = P - \vec{u}</span>
 
 ---
 <!-- {"layout": "regular"} -->
-## Operação: combinação afim
+# Operação: Combinação Afim <small>(1/3)</small>
 
 - ![](../../images/combinacao-afim.png) <!-- {.push-right style="width: 220px"} -->
   Dados dois pontos <span class="math">P</span> e <span class="math">Q</span>,
@@ -200,7 +184,7 @@ Pontos e vetores podem ser representados por um conjunto de coordenadas
 
 ---
 <!-- {"layout": "regular"} -->
-## Combinação afim (cont.)
+# Operação: Combinação Afim <small>(2/3)</small>
 
 - Observe que na medida em que <span class="math">\alpha</span> varia entre
   <span class="math">0</span> e <span class="math">1</span>,
@@ -214,11 +198,11 @@ Pontos e vetores podem ser representados por um conjunto de coordenadas
 - Vimos uma combinação afim entre dois pontos, mas pode haver mais pontos... <!-- {ul:.bullet} -->
 
 Como podemos definir uma combinação afim para <span class="math">n</span>
-pontos? <!-- {.center-aligned.note.info.bullet} -->
+pontos? <!-- {.note.info.bullet style="margin-inline: auto;"} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## **Definição geral** da combinação afim
+# **Definição geral** da combinação afim <small>(3/3)</small>
 
 Dada uma sequência de pontos <span class="math">P_1, P_2, ..., P_n</span>,
 uma combinação afim seria uma soma:
@@ -241,30 +225,31 @@ uma combinação afim seria uma soma:
 - Combinação convexa:
   - O triângulo
 
-Nota: o OpenGL usa uma combinação convexa para determinar a cor dos polígonos
+Nota: o WebGL usa uma combinação convexa para determinar a cor dos polígonos
 quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
 
 ---
-<!-- {"layout": "section-header", "slideClass": "euclidean-geometry"} -->
-# Geometria Euclidiana
+<!-- {"layout": "section-header", "slideClass": "euclidean-geometry", "hash": "outras-operacoes"} -->
+# Outras Operações
 
->  Um ponto é aquele que não tem partes.<br>
->  Uma linha é um comprimento sem espessura.<br>
->  As extremidades de uma linha são pontos.<br>
->  Uma linha reta é a linha que percorre uniformemente os pontos nela mesma. <!-- {blockquote:style="width: 42%; margin: 0.5em 2em;"} -->
-
--- As primeiras quatro definições do livro _Elementos_ do poeta Euclides
+- Geometria Euclidiana
+  - Produto interno (ou escalar)
+  - Normalização de vetor
+  - Projeção de vetores
+  - Produto vetorial
+- Colisão
+  - Entre círculos
+  - Entre retângulos
 
 ---
 <!-- {"layout": "regular"} -->
-## Geometria Euclidiana
+# Geometria Euclidiana
 
 - Não existem elementos para expressar ângulos e distâncias em geometria afim
-- Acrescenta-se uma operação: **produto interno**
-  - Definição
-    - Transforma dois vetores em um escalar
-    - Expressa como <span class="math">(\vec{u}, \vec{v})</span> ou
-      <span class="math">\vec{u} \cdot \vec{v}</span>
+- Acrescenta-se uma operação: **produto interno**:
+  - Transforma dois vetores em um escalar
+  - Expressa como <span class="math">(\vec{u}, \vec{v})</span> ou
+    <span class="math">\vec{u} \cdot \vec{v}</span>
   - Várias propriedades
     - Positividade: <span class="math">(\vec{u}, \vec{u}) \ge 0</span> e
       <span class="math">(\vec{u}, \vec{u}) = 0 \Leftrightarrow \vec{u} = \vec{0}</span>
@@ -276,7 +261,7 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## Produto Interno
+# Produto Interno
 
 - Há duas definições:
   - **Algébrica** (usa as coordenadas cartesianas):
@@ -284,11 +269,11 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
     <div class="math">\vec{u} \cdot \vec{v} = \sum_{i=0}^{n-1} u_i v_i</div>
   - **Geométrica** (geometria euclidiana):
 
-    <div class="math">\vec{u} \cdot \vec{v} = \lVert \vec{u} \rVert \lVert \vec{v} \rVert cos \theta</div >
+    <div class="math">\vec{u} \cdot \vec{v} = \lVert \vec{u} \rVert \lVert \vec{v} \rVert \cos \theta</div >
 
 ---
 <!-- {"layout": "regular"} -->
-## Conceitos derivados
+# Comprimento e Normalização
 
 - **Comprimento (norma)**:
   - Dado pela raiz quadrada da do produto interno do vetor consigo mesmo
@@ -301,7 +286,7 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## Conceitos derivados (cont.)
+# Distância, Ângulo e Ortogonalidade
 
 - <span class="math" style="float: right;">dist(P,Q) = \lVert P-Q \rVert</span>
   **Distância entre dois pontos**:
@@ -317,7 +302,7 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## Conceitos derivados (cont.)
+# Decomposição e Projeção
 
 - **Decomposição ortogonal**:
   - Dados <span class="math">\vec{u}</span> e <span class="math">\vec{v}</span>,
@@ -332,6 +317,52 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
   - <span class="math">\vec{u}_1</span> é chamado a projeção ortogonal de
     <span class="math">\vec{u}</span> em <span class="math">\vec{v}</span>
     <div class="math" style="">proj_{\vec{v}} \vec{u} = \vec{u_1} = \frac{\vec{u} \cdot \vec{v}}{\vec{v} \cdot \vec{v}} \vec{v}</div>
+
+---
+<!-- {"layout": "regular"} -->
+# Produto vetorial
+
+- ![right](../../images/prod-vetorial-grafico.png)
+  Encontra um vetor perpendicular a outros dois
+  <div class="math push-right" style="font-size: 0.8em;">
+    \vec{u} \times \vec{v} = \begin{bmatrix}u_y v_z - u_z v_y \\ u_z v_x - u_x v_z \\ u_x v_y - u_y v_x\end{bmatrix}
+  </div>  
+- Propriedades (assume-se <span class="math">\vec{u}</span>, <span class="math">\vec{v}</span> linearmente independentes):
+  - Antissimetria: <span class="math">\vec{u} \times \vec{v} = -\vec{v} \times \vec{u}</span>
+  - Bilinearidade:
+    - <span class="math">\vec{u} \times (\alpha \vec{v}) = \alpha (\vec{u} \times \vec{v})</span>  e
+    - <span class="math">\vec{u} \times (\vec{v} + \vec{w}) = (\vec{u} \times \vec{v}) + (\vec{u} \times \vec{w})</span>
+  - <span class="math">\vec{u} \times \vec{v}</span> é perpendicular tanto a <span class="math">\vec{u}</span> quanto a <span class="math">\vec{v}</span>
+  - O comprimento de <span class="math">\vec{u} \times \vec{v}</span> é igual à área do paralelogramo definido por  <span class="math">\vec{u}</span> e <span class="math">\vec{v}</span>, isto é, <span class="math">\lVert \vec{u} \times \vec{v} \rVert = \lVert \vec{u} \rVert \lVert \vec{v} \rVert \sin \theta</span>
+
+---
+<!-- {"layout": "centered-horizontal", "embeddedStyles": ".slide-thumbs img {width: 90%; border: 2px solid silver; box-shadow: 4px 4px #999; transition: all 200ms; will-change: translate; &:hover {translate: 0 -4px; box-shadow: 6px 6px 4px #ccc} }"} -->
+# **Extra**: Detecção de Colisão
+
+- <!-- {ul:.slide-thumbs.card-list.no-margin.no-padding.full-width.center-aligned style="margin-top: 5rem;"} -->
+  **Entidades colidíveis**
+  [![Tela de um slide que fala sobre entidades colidíveis em jogos](../../images/screenshot-slide-entidades-colidiveis.webp)][slide-entidades-colidiveis] <!-- {a:target="_blank"} -->
+  [Slide de Jogos][slide-entidades-colidiveis]  <!-- {target="_blank"} -->
+- **Entre círculos**
+  [![Tela de um slide que fala sobre colisão entre círculos (2d) ou esferas (3d)](../../images/screenshot-slide-circulo-e-esfera.webp)][slide-circulo-e-esfera] <!-- {a:target="_blank"} -->
+  [Slide de Jogos][slide-circulo-e-esfera] <!-- {target="_blank"} -->
+- **Entre retângulos**
+  [![Tela de um slide que fala sobre colisão entre retângulos (2d) ou caixas (3d)](../../images/screenshot-slide-retangulo-e-caixa.webp)][slide-retangulo-e-caixa] <!-- {a:target="_blank"} -->
+  [Slide de Jogos][slide-retangulo-e-caixa] <!-- {target="_blank"} -->
+
+
+[slide-entidades-colidiveis]: https://fegemo.github.io/cefet-games/classes/collision/#5
+[slide-circulo-e-esfera]: https://fegemo.github.io/cefet-games/classes/collision/#7
+[slide-retangulo-e-caixa]: https://fegemo.github.io/cefet-games/classes/collision/#8
+
+---
+<!-- {"layout": "section-header", "hash": "representacao-de-objetos"} -->
+# Representação de Objetos
+
+- Vetores
+- Pontos
+- Sistemas de coordenadas
+- Coordenadas homogêneas
 
 ---
 <!-- {"layout": "regular"} -->
@@ -351,13 +382,13 @@ quando os vértices possuem cores diferentes <!-- {p:.note.info.large-width} -->
 <!-- {"layout": "regular"} -->
 ## Representação de objetos: **vetores**
 
-![](../../images/ortho-basis.png)
+![](../../images/ortho-basis.png) <!-- {p:.full-width.center-aligned} -->
 ![](../../images/ortho-vectors.png)
 
 - Dada uma base ortonormal (ortogonal, unitária) e o espaço R³
   - Qualquer vetor pode ser expresso como a combinação linear:
     <div class="math">\vec{v} = \alpha_x \vec{e}_x + \alpha_y \vec{e}_y + \alpha_z \vec{e}_z</div>
-  - O vetor <span class="math">(\alpha_x, \alpha_y, \alpha_z)</span>
+  - A tupla <span class="math">(\alpha_x, \alpha_y, \alpha_z)</span>
     contém as **coordenadas cartesianas** do vetor <span class="math">\vec{v}</span>
 
 ---
@@ -404,6 +435,27 @@ dimensional consiste de um **ponto origem** e um conjunto de
   - última coordenada = 1 &hArr; ponto
   - última coordenada = 0 &hArr; vetor
   - outros valores, operação ilegal
+
+---
+<!-- {"layout": "regular", "backdrop": "white-noise", "slideClass": "operacoes-basicas", "embeddedStyles": ".operacoes-basicas ul.card-list > li > h2 {background-color: #fff5; padding: 0.5em; color: #980598; border-radius: 5px; border: 1px solid currentColor; width: fit-content; align-self: center; margin-bottom: 2rem !important; order: 0;}"} -->
+# Operações básicas
+
+- ## Escalar x vetor <!-- {ul:.card-list} --> <!-- {li:.bullet} -->
+  ![](../../images/afim-multiplicacao-escalar.png) <!-- {style="width: 220px"} -->
+  - <span class="math">\vec{v} = \alpha \times \vec{u}\text{, ou}</span>
+  - <span class="math">\vec{v} = \alpha\vec{u}</span>
+- ## Vetor + vetor <!-- {li:.bullet} -->
+  ![](../../images/afim-soma-vetores.png)  <!-- {style="width: 220px"} -->
+  - <span class="math">\vec{w} = \vec{u} + \vec{v}</span>
+  - <span class="math">\vec{w} = \vec{u} - \vec{v}</span>
+    - <span class="math">\vec{w} = \vec{u} + (-1 \times \vec{v})</span>
+- ## Ponto - ponto <!-- {li:.bullet} -->
+  ![](../../images/afim-subtracao-pontos.png)  <!-- {style="width: 170px"} -->
+  - <span class="math">\vec{v} = P - Q</span>
+- ## Ponto + vetor <!-- {li:.bullet} -->
+  ![](../../images/afim-soma-vetor-ponto.png)  <!-- {style="width: 220px"} -->
+  - <span class="math">Q = P + \vec{u}</span>
+  - <span class="math">Q = P - \vec{u}</span>
 
 ---
 <!-- {"layout": "regular"} -->

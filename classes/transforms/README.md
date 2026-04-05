@@ -10,8 +10,6 @@
 1. Rotação
 1. Escala
 1. Inclinação
-1. Composição
-1. Push, Pop
 
 ---
 <!-- {"layout": "section-header", "slideClass": "intro-transformacoes"} -->
@@ -19,38 +17,41 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Teoria geométrica das transformações
+# Teoria geométrica das transformações
 
-- Transformação é uma função que **mapeia pontos de um espaço Euclidiano em
-  outros pontos** do mesmo espaço.
+- Transformação é uma função que 
+  **mapeia pontos de um espaço em outros pontos** do mesmo espaço
 - Se uma transformação é linear, então:
   - Se um conjunto de pontos está contido em uma reta, depois de
-    transformados eles também estarão contidos sobre uma reta.
+    transformados eles também estarão contidos sobre uma reta
   - Se um ponto <span class="math">P</span> guarda uma relação de distância
     com dois outros pontos <span class="math">Q</span> e
-    <span class="math">R</span>, então essa relação de distância é mantida.
+    <span class="math">R</span>, então essa relação de distância é mantida
 
 ---
 <!-- {"layout": "regular"} -->
-## Transformações na prática (em OpenGL)
+# Transformações na prática (em OpenGL)
 
-- Desenhamos quaisquer objetos em OpenGL **descrevendo seus vértices**:
+- Desenhamos quaisquer objetos em WebGL **descrevendo seus vértices**:
   ```c
-  glVertex3f(x, y, z);
+  const vertices = new Float32Array([
+    x1, y1, z1,
+    x2, y2, z2,
+  ])
   ```
-- Podemos alterar as coordenadas dos vértices sem alterar o valor de
-  <span class="math">x, y</span> e <span class="math">z</span> de forma a:
+- Podemos modificar as coordenadas dos vértices **sem alterar seu VBO** 
+  de forma a:
   - ![](../../images/translacao-triangulo.svg) <!-- {.push-right style="width: 320px"} -->
-    Rotacioná-los (`glRotate`)
-  - **Movimentá-los** (`glTranslate`)
-  - Alterarmos seu tamanho (`glScale`)
+    Rotacioná-los
+  - **Movimentá-los**
+  - Alterarmos seu tamanho
   - Outras transformações
     - Espelhamento ou reflexão
     - Inclinação (_shearing_)
 
 ---
 <!-- {"layout": "regular"} -->
-## **Forma geral** de ponto ou vetor
+# **Forma geral** de ponto ou vetor
 
 - Na geometria afim, vimos que podemos representar um ponto ou um vetor na
   forma:
@@ -58,8 +59,8 @@
 
   - Em que <u><span class="math">R</span> é um ponto ou um vetor</u>
     representado em termos do sistema de coordenadas <span class="math">F</span>, **<span class="math">\alpha_3</span>** é <span class="math">0</span>
-      para vetores ou <span class="math">1</span> para pontos (é a **coordenada
-      homogênea**)
+      para vetores ou <span class="math">1</span> para pontos 
+      (é a **coordenada homogênea**)
   - No sistema de coordenadas cartesiano, escrevemos
     <span class="math">R</span> como:
     <div class="math">R = \alpha_x \vec{x} + \alpha_y \vec{y} + \alpha_z \vec{z} + \alpha_w</div>
@@ -68,7 +69,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Forma matricial de ponto ou vetor
+# Forma matricial de ponto ou vetor
 
 - Podemos representar um ponto ou vetor <span class="math">R</span> na
   forma matricial:
@@ -92,11 +93,11 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Uma função de <span class="math">T</span>ransformação
+# Uma função de <span class="math">T</span>ransformação
 
-- Das propriedades da geometria afim, podemos propor **uma função
-  <span class="math">T</span>** que, se aplicada a cada componente da
-  equação anterior, **se mantém uma equação afim**:
+- Das propriedades da geometria afim, podemos propor 
+  **uma função <span class="math">T</span>** que, se aplicada 
+  a cada componente da equação anterior, **se mantém uma equação afim**:
 
   <div class="math">R = \alpha_0 F.\vec{e_0} + \alpha_1 F.\vec{e_1} + \alpha_2 F.\vec{e_2} + \alpha_3 F.O</div>
   <div class="math">\color{blue}{T(}R\color{blue}{)} = \alpha_0 \color{blue}{T(}F.\vec{e_0}\color{blue}{)} + \alpha_1 \color{blue}{T(}F.\vec{e_1}\color{blue}{)} + \alpha_2 \color{blue}{T(}F.\vec{e_2}\color{blue}{)} + \alpha_3 \color{blue}{T(}F.O\color{blue}{)}</div>
@@ -104,7 +105,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Forma matricial da transformação
+# Forma matricial da transformação
 
 - Podemos representar a equação anterior na forma matricial:
   <figure class="picture-steps clean" style="margin-left: 0;">
@@ -121,7 +122,7 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Exemplo: transformação nula
+# Exemplo: transformação nula
 
 - <div class="math" style="float: right;">T=\begin{bmatrix} 1&0&0&0 \\ 0&1&0&0 \\ 0&0&1&0 \\ 0&0&0&1 \end{bmatrix}</div>
   <strong>A transformação nula</strong> é aquela que mantém as coordenadas dos pontos e vetores inalterada - ou seja, dada pela <strong>matriz identidade</strong>:
@@ -160,39 +161,67 @@
      - <div class="math">x' = x + t_x \\ y' = y + t_y</div>
      - <div class="math">\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix}1 & 0 & t_x \\ 0 & 1 & t_y \\ 0 & 0 & 1 \end{bmatrix} \times \begin{bmatrix} x \\ y \\ 1\end{bmatrix}</div>
 - Mantém os ângulos e comprimentos
+
 ---
 <!-- {"layout": "regular"} -->
-## Translação em 3D
+# Translação em 3D
 
-- Pode ser representada por uma matriz <span class="math">T(\vec{t})</span>, em que <span class="math">\vec{t}</span> é o vetor de deslocamento:
+- Pode ser representada por uma matriz <span class="math">T(\vec{t})</span>, 
+  em que <span class="math">\vec{t}</span> é o vetor de deslocamento:
 
   <div class="math">\begin{bmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1\end{bmatrix} \begin{bmatrix}p_x \\ p_y \\ p_z \\ 1 \end{bmatrix} = \begin{bmatrix}p_x + t_x \\ p_y+t_y \\ p_z+t_z \\ 1 \end{bmatrix}</div>
 
 ---
-<!-- {"layout": "regular"} -->
-## Translação em OpenGL
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Translação em WebGL <small>(1/2)</small>
 
-- Em OpenGL, usamos o método `glTranslate` para multiplicar a matriz atual pela
-  matriz de translação gerada pelo `glTranslate`
-- Assinatura da função ([referência](https://www.opengl.org/sdk/docs/man2/xhtml/glTranslate.xml)).
-  ```c
-  void glTranslated(double x, double y, double z);
-  void glTranslatef(float x, float y, float z);
+- Antigamente em OpenGL havia uma função `glTranslate(tx, ty, tz)`
+- Em WebGL, podemos criar a matriz nós mesmos para transformar as coordenadas
+  no _vertex shader_:
+  ::: div .info.note.push-right.bullet.clear-both width: 210px; font-size: 0.8em; padding-bottom: 0;
+  ### **¹column-major** <!-- {h3:style="font-size: 1em;"} -->
+  WebGL lê vetores 1D para matriz nesta ordem: <!-- {p:style="font-size: .8em"} -->
+  ![](../../images/column-vs-row-major.webp) <!-- {.block.centered.rounded style="width: 120px; margin-top: 0.5em;"} -->
+  :::
+  ```javascript
+  function translate(tx, ty, tz) {
+    return new Float32Array([
+      1,  0,  0,  0,    // 1ª coluna
+      0,  1,  0,  0,    // 2ª coluna
+      0,  0,  1,  0,    // etc...
+      tx, ty, tz, 1
+    ])
+  }
   ```
+  - Ou então: <!-- {ul^0:.bullet} -->
+    - [m4][m4] de TWGL.js: [`m4.translation(t)`][m4-translation]
+    - [Mat4][Mat4] de gl-matrix: [`Mat4.fromTranslation(out, t)`][Mat4-fromTranslation]
+
+[m4]: https://twgljs.org/docs/module-twgl_m4.html
+[m4-translation]: https://twgljs.org/docs/module-twgl_m4.html#.translation
+[Mat4]: https://glmatrix.net/docs/v4/classes/Mat4.html
+[Mat4-fromTranslation]: https://glmatrix.net/docs/v4/classes/Mat4.html#fromTranslation
 
 ---
-<!-- {"layout": "regular"} -->
-## Translação em OpenGL (cont.)
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Translação em WebGL <small>(2/2)</small>
 
-- Dentro de uma função de desenho:
-  ```c
-  glTranslatef(player.x, player.y, 0);
-  glBegin(GL_TRIANGLE_FAN);   // define o objeto na origem
-      glVertex3f(-10, -10, 0);    glVertex3f( 10, -10, 0);
-      glVertex3f( 10,  10, 0);    glVertex3f(-10,  10, 0);
-  glEnd();
-  glTranslatef(-player.x, -player.y, 0); // desfaz translação... ou a descarta
-  ```
+1. <!-- {ol:.layout-split-2.no-bullet.no-margin.no-padding.full-width style="gap: 1rem; height: auto;"} -->
+   Ao desenhar um objeto:
+   ```javascript
+   // ...
+   const c = cena
+   const modelLoc = c.programa.modelLoc
+   const model = c.casinha.model
+   gl.uniformMatrix4fv(modelLoc, false, model)
+   gl.drawArrays(gl.TRIANGLES, 0, 9)
+   ```
+1. E definimos a posição do objeto:
+   ```javascript
+   const c = cena
+   const posicao = cena.casinha.posicao
+   cena.casinha.model = translate(...posicao)
+   ```
 - Benefícios
   - Podemos definir objetos (vértices) em um **sistemas de coordenadas local**
     a ele
@@ -433,143 +462,6 @@ Sugestão: sempre definir objetos em um sistema de coordenadas local a ela (ou s
   de uma matriz
   - `glRotate`, `glTranslate` e `glScale` chamam essa função
   - Referência do [glMultMatrix](https://www.opengl.org/sdk/docs/man2/xhtml/glMultMatrix.xml)
-
----
-<!-- {"layout": "section-header", "slideClass": "push-pop"} -->
-# Push, Pop
-
----
-<!-- {"layout": "regular"} -->
-## Push, Pop
-
-- Quando chamamos uma **função de multiplicação de matriz**, estamos **alterando o
-  estado** do OpenGL (máquina de estados)
-- Assim, consecutivas chamadas a `glTranslatef(10, 0, 0)` irão mover os objetos
-  da cena a `10u` em cada chamada
-
-1. Em vez de usar assim: <!-- {ol:.no-bullet.layout-split-2.compact-code-more} -->
-   ```c
-   glTranslatef(nave.x, nave.y, 0);
-   desenhaPlayer();
-   glTranslatef(-nave.x, -nave.y, 0);
-
-
-   glTranslatef(inimigo.x, inimigo.y, 0);
-   desenhaInimigo();
-   glTranslatef(-inimigo.x, -inimigo.y, 0);
-   ```
-1. Faça assim: <!-- {li:style="margin-left: 1em;"} -->
-   ```c
-   glPushMatrix();  // salva o estado atual
-      glTranslatef(nave.x, nave.y, 0);
-      desenhaPlayer();
-   glPopMatrix();   // retorna estado
-
-   glPushMatrix();
-      glTranslatef(inimgo.x, inimigo.y, 0);
-      desenhaInimigo();
-   glPopMatrix();
-   ```
-
----
-<!-- {"layout": "centered-horizontal"} -->
-# O [Tutorial de Matrizes OpenGL](https://fegemo.github.io/push-pop/) 🌟
-
-<iframe src="https://fegemo.github.io/push-pop/" width="100%" height="537"></iframe>
-
----
-<!-- {"layout": "regular"} -->
-# As 4 pilhas de matrizes
-
-- Em particular, existem 4 variáveis de estado que são pilhas de matrizes
-
-  `GL_MODELVIEW`
-    ~ transformação de **modelo** e de **visualização**
-
-  `GL_PROJECTION`
-    ~ transformação de **projeção**
-
-  `GL_TEXTURE`
-    ~ transformação de **coordenada de textura**
-
-  ~~`GL_COLOR`~~
-    ~ ~~transformação no **espaço RGB**~~
-
-Usamos **`glMatrixMode(GL_...)`** para escolher em qual pilha de matrizes
-  queremos aplicar transformações <!-- {style="clear:both"} -->
-
----
-<!-- {"layout": "regular", "slideClass": "two-column-code compact-code"} -->
-### Uso típico das pilhas `GL_MODELVIEW` e `GL_PROJECTION`
-
-```c
-void redimensiona(int w, int h) {
-    glViewport(0, 0, w, h);
-
-    // configura a projeção
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-50, 50, -50, 50, -1, 1);
-
-    // "limpa" a matriz de modelo e
-    // visualização
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-}
-void desenhaMinhaCena() {
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // todas as funções de transformação
-    // aqui vão operar sobre a pilha
-    // GL_MODELVIEW
-    // ...
-
-    glFlush();
-}
-
-
-
-```
-
-A função `glOrtho` é também uma transformação e opera sobre
-a pilha de matrizes atual.
-<!-- {p:.note.info.large-width} -->
-
----
-<!-- {"layout": "regular"} -->
-## Operações sobre a matriz atual
-
-`glPushMatrix`
-  ~ empilha a matriz corrente e a duplica no topo da pilha.
-  ~ ou seja, assim que `glPushMatrix` é chamada, as duas primeiras matrizes da
-    pilha são idênticas
-
-`glPopMatrix`
-  ~ desempilha a matriz corrente
-
-`glLoadIdentity`
-  ~ define a matriz do topo como uma identidade
-
-`glLoadMatrix`
-  ~ define a matriz do topo como a matriz (16 floats) passada com argumento
-
-`glRotate, glTranslate, glScale`
-  ~ multiplica a matriz do topo pela matriz de transformação correspondente
-
-`glMultMatrix`
-  ~ multiplica a matriz do topo pela matriz (16 floats) passada com argumento
-
----
-<!-- {"layout": "regular"} -->
-# Exemplo de Rotação com Animação
-
-Veja este exemplo de [quadrado girando](codeblocks:transformacao-rotacao/CodeBlocks/transformacao-rotacao.cbp)
-ao longo do tempo - ou seja, uma rotação no eixo Z de pequenos ângulos a cada
-quadro.
-
-- Usar `glPushMatrix()`/`glPopMatrix()` é preferível porque eles tornam
-  desnecessários desfazer as transformações - que, tipicamente, se faz
-  aplicando a transformação inversa
 
 ---
 # Referências
