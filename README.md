@@ -33,12 +33,11 @@
 1. [WebGL Hands-on - Parte 2](classes/webgl-handson2/)
 1. [WebGL Hands-on - Parte 3](classes/webgl-handson3/)
 1. [WebGL Hands-on - Parte 4](classes/webgl-handson4/)
-<!-- 
-1. [Cê](classes/c)
-1. [_Feedback_ do TP1 - turma anterior](classes/breakout-feedback)
-1. [Geometria](classes/geometry)
-1. [Transformações Geométricas](classes/transforms)
+1. [Aprofundando em JavaScript](https://fegemo.github.io/cefet-web/classes/js-for-cg/)
+1. [Operações Geométricas](classes/geometry/)
+1. [Transformações Geométricas](classes/transforms/)
 1. [Orientação e Mudança de Coordenadas](classes/baseorientation)
+<!-- 
 1. [O Pipeline Gráfico](classes/pipeline)
 1. [Projeção](classes/projection)
 1. [Modelagem Hierárquica](classes/hierarchical)
