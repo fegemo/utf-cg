@@ -15,6 +15,7 @@ import search from 'bespoke-search';
 import markdown from 'bespoke-markdownit/lazy-hljs';
 import overview from 'bespoke-simple-overview';
 import samples from './bespoke-sample-loader.js';
+import spoiler from './bespoke-spoiler.js';
 
 // utilities
 import tutorial from './tutorial.js';
@@ -55,6 +56,7 @@ bespoke.from('article', [
       previousResult: 'Resultado anterior'
     }
   }),
+  spoiler('.spoiler'),
   tutorial(document.querySelector('.tutorial')),
   samples('.sample'),
   deck => {
