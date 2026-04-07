@@ -29,11 +29,11 @@
     <span class="math">R</span>, então essa relação de distância é mantida
 
 ---
-<!-- {"layout": "regular"} -->
-# Transformações na prática (em OpenGL)
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Transformações na prática (em WebGL)
 
 - Desenhamos quaisquer objetos em WebGL **descrevendo seus vértices**:
-  ```c
+  ```javascript
   const vertices = new Float32Array([
     x1, y1, z1,
     x2, y2, z2,
@@ -77,7 +77,7 @@
   <figure class="picture-steps clean">
     <div class="bullet full-width">
     <div class="math" style="padding-top: 1px;">R = \begin{bmatrix} F.\vec{e_0} & F.\vec{e_1} & F.\vec{e_2} & F.O \end{bmatrix} \times \begin{bmatrix} \alpha_0 \\ \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{bmatrix}</div>
-    Cada linha da matriz é um vetor (as 3 primeiras) ou a origem de uma base (a última)
+    Cada coluna da matriz é um vetor (as 3 primeiras) ou a origem de uma base (a última)
     </div>
     <div class="bullet full-width">
     <div class="math">R = \begin{bmatrix} F.\vec{e_0}[0] & F.\vec{e_1}[0] & F.\vec{e_2}[0] & F.O[0] \\ F.\vec{e_0}[1] & F.\vec{e_1}[1] & F.\vec{e_2}[1] & F.O[1] \\ F.\vec{e_0}[2] & F.\vec{e_1}[2] & F.\vec{e_2}[2] & F.O[2] \\ 0 & 0 & 0 & 1 \end{bmatrix} \times
@@ -114,7 +114,7 @@
     <div class="bullet math">T(R) = \begin{bmatrix} T(F.\vec{e_0}[0]) & T(F.\vec{e_1}[0]) & T(F.\vec{e_2}[0]) & T(F.O[0]) \\ T(F.\vec{e_0}[1]) & T(F.\vec{e_1}[1]) & T(F.\vec{e_2}[1]) & T(F.O[1]) \\ T(F.\vec{e_0}[2]) & T(F.\vec{e_1}[2]) & T(F.\vec{e_2}[2]) & T(F.O[2]) \\ 0 & 0 & 0 & 1 \end{bmatrix} \times
     \begin{bmatrix} \alpha_0 \\ \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{bmatrix}</div>
   </figure>
-- As linhas representam as imagens dos elementos do sistema <span class="math">F</span> transformado
+- As colunas representam as imagens dos elementos do sistema <span class="math">F</span> transformado
   por <span class="math">T</span>
 - Disso temos que **aplicar uma <u>transformação afim é equivalente a
   multiplicar as coordenadas</u> (de um ponto ou vetor) <u>por uma matriz</u>**
@@ -142,12 +142,34 @@
 <iframe src="http://ncase.me/matrix/" width="100%" height="537" frameborder="0"></iframe>
 
 ---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Matriz **MODEL** <!-- {.alternate-color} --> no _vertex shader_
+
+- **Model Matrix**: <!-- {strong:.alternate-color} --> contém a transformação aplicada ao objeto
+- Antes de multiplicar as coordenadas do vértice pela da **matriz de projeção**,
+  vamos multiplicar pela **matriz de modelo**: <!-- {.alternate-color} -->
+  - `vertex.glsl`
+    ```glsl
+    #version 300 es
+
+    in vec3 coords;
+    uniform mat4 model; // ℹ️
+    uniform mat4 projection;
+
+    void main() { //              ⬇️
+      gl_Position = projection * model * vec4(coords, 1.0);
+    }
+    ```
+  - Dessa forma, representamos rotações, escalas, translações (etc.) com
+    uma única `uniform`
+
+---
 <!-- {"layout": "section-header", "slideClass": "tipos-comuns"} -->
 # Tipos comuns de transformações
 
-- Translação
-- Rotação
 - Escala
+- Rotação
+- Translação
 - Inclinação
 
 ---
@@ -185,12 +207,12 @@
   :::
   ```javascript
   function translate(tx, ty, tz) {
-    return new Float32Array([
-      1,  0,  0,  0,    // 1ª coluna
-      0,  1,  0,  0,    // 2ª coluna
-      0,  0,  1,  0,    // etc...
-      tx, ty, tz, 1
-    ])
+      return new Float32Array([
+          1,  0,  0,  0,    // 1ª coluna
+          0,  1,  0,  0,    // 2ª coluna
+          0,  0,  1,  0,    // 3ª coluna
+          tx, ty, tz, 1     // 4ª coluna
+      ])
   }
   ```
   - Ou então: <!-- {ul^0:.bullet} -->
@@ -221,22 +243,30 @@
    const c = cena
    const posicao = cena.casinha.posicao
    cena.casinha.model = translate(...posicao)
+   //
+   // fazer ...vetor "espalha" ele, equivalente a:
+   // translate(posicao[0], posicao[1], posicao[2])
    ```
-- Benefícios
-  - Podemos definir objetos (vértices) em um **sistemas de coordenadas local**
-    a ele
-  - Podemos guardar objetos em _display lists_ já que
-    estão definidos em um sistema local e transladá-los em qualquer posição
+- Benefício:
+  - Definir objetos (vértices) em um **sistemas de coordenadas local**
+    a ele e reaproveitar: <!-- {li:.bullet} -->
+    ::: div .note.info.bullet font-size: 0.7em; margin-top: 1rem;
+    Uma vez que você criar uma `function quadrado() { ... }` para retornar
+    os 04 vértices desenhados com o (0,0,0) no centro, você nunca mais vai
+    precisar escrever isso de novo ;)
+    :::
 
 ---
 <!-- {"layout": "regular"} -->
-## Matriz inversa da translação
+# Matriz inversa da translação
 
-- Pode-se usar a matriz inversa de uma transformação para **se desfazer a
-  operação** efetuada por ela
-- A matriz inversa de uma translação <span class="math">T(\vec{t})</span> é dada por <span class="math">T^{-1}(\vec{t})</span> tal que:
+- Pode-se usar a matriz inversa de uma transformação para 
+  **se desfazer a operação** efetuada por ela
+- A matriz inversa de uma translação <span class="math">T(\vec{t})</span> 
+  é dada por <span class="math">T^{-1}(\vec{t})</span> tal que:
   - <span class="math">T^{-1}(\vec{t})=T(-\vec{t})</span>
-  - Ou seja, basta multiplicar o vetor <span class="math">\vec{t}</span> de deslocamento por <span class="math">-1</span> para se obter a
+  - Ou seja, basta multiplicar o vetor <span class="math">\vec{t}</span> 
+    de deslocamento por <span class="math">-1</span> para se obter a
     matriz inversa
 
 
@@ -251,30 +281,34 @@
 da rotação dos pontos em um ângulo especificado com **relação à origem**:
   1. ![](../../images/rotacao-exemplo.svg) <!-- {ol:.layout-split-2.no-bullet} -->
   1.
-     - <div class="math">x' = x\cos{\alpha} - y\sin{\alpha} \\ y' = x\sin{\alpha} + y\cos{\alpha}</div>
-     - <div class="math">\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix}\cos{\alpha} & -\sin{\alpha} & 0 \\ \sin{\alpha} & \cos{\alpha} & 0 \\ 0 & 0 & 1 \end{bmatrix} \times \begin{bmatrix} x \\ y \\ 1\end{bmatrix}</div>
+     - <div class="math spoiler">x' = x\cos{\alpha} - y\sin{\alpha} \\ y' = x\sin{\alpha} + y\cos{\alpha}</div>
+     - <div class="math spoiler">\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix}\cos{\alpha} & -\sin{\alpha} & 0 \\ \sin{\alpha} & \cos{\alpha} & 0 \\ 0 & 0 & 1 \end{bmatrix} \times \begin{bmatrix} x \\ y \\ 1\end{bmatrix}</div>
 
 ---
 <!-- {"layout": "regular"} -->
-## Rotação: eixo
+# Eixo de Rotação
 
 - Podemos rotacionar objetos **ao longo dos três eixos** da base do
   nosso sistema de coordenadas: <span class="math">(x,y,z)</span>
-  - Exemplo: nossa cabeça olha para cima ou baixo, esquerda ou direita e
+  - **Exemplo**: nossa cabeça olha para cima ou baixo, esquerda ou direita e
     deita-se para a direita ou esquerda
   - Se rotacionarmos vértices em <span class="math">x</span>, suas coordenadas
     <span class="math">y</span> e <span class="math">z</span> alteram, mas
     <span class="math">x</span> se mantêm
-    ![](../../images/rotacao-eixos.png)
+    ![](../../images/rotacao-eixos.png) <!-- {.block.centered.medium-width} -->
     - Portanto, em 2D, para rotacionar um objeto provavelmente queremos usar o
       eixo Z
+      ::: div .note.info font-size: 0.7em; width: 300px; margin-top: 1rem;
+      **Analogia**: espeto do churrasco. <!-- {p:.no-margin} -->
+      :::
 
 ---
 <!-- {"layout": "regular"} -->
-## Rotação em **cada eixo** em 3D
+# Rotação em **cada eixo** em 3D
 
-- Pode ser representada por uma matriz <span class="math">R_{z}(\alpha)</span>, em que <span class="math">\alpha</span> é o ângulo de
-  rotação.
+- Pode ser representada por uma matriz <span class="math">R_{d}(\alpha)</span>, 
+  em que <span class="math">\alpha</span> é o ângulo de rotação e 
+  <span class="math">d</span> o eixo.
 
   <div class="math">R_{z}(\alpha)=\begin{bmatrix} \cos\alpha&- \sin\alpha&0&0 \\ \sin\alpha&\cos\alpha&0&0 \\ 0&0&1&0 \\ 0&0&0&1 \end{bmatrix}</div>
 
@@ -283,104 +317,101 @@ da rotação dos pontos em um ângulo especificado com **relação à origem**:
   <div class="math" style="float:right;">R_y(\alpha)=\begin{bmatrix} \cos\alpha&0&\sin\alpha&0 \\ 0&1&0&0 \\ -\sin\alpha&0&\cos\alpha&0 \\ 0&0&0&1\end{bmatrix}</div>
 
 ---
-<!-- {"layout": "regular"} -->
-## Rotação em OpenGL
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Rotação em WebGL
 
-- Em OpenGL, usamos o método `glRotate` para multiplicar a matriz atual pela
-  matriz de rotação gerada pelo `glRotate`
-- Assinatura da função ([referência](https://www.opengl.org/sdk/docs/man2/xhtml/glRotate.xml)):
-  ```c
-  void glRotated(double angle, double x, double y, double z);
-  void glRotatef(float angle, float x, float y, float z);
+- Em OpenGL, usávamos `glRotate` para multiplicar a matriz atual pela
+  matriz de rotação
+- Em WebGL, criamos a própria matriz:
+  ::: div .info.note.push-right.bullet.clear-both width: 210px; font-size: 0.8em; padding-bottom: 0;
+  ### **¹column-major** <!-- {h3:style="font-size: 1em;"} -->
+  WebGL lê vetores 1D para matriz nesta ordem: <!-- {p:style="font-size: .8em"} -->
+  ![](../../images/column-vs-row-major.webp) <!-- {.block.centered.rounded style="width: 120px; margin-top: 0.5em;"} -->
+  :::
+  ```javascript
+  function rotateZ(alpha) {     // alpha: ângulo em graus
+    alpha = alpha/180*Math.PI
+    const c = Math.cos(alpha)
+    const s = Math.sin(alpha)
+    return new Float32Array([   // column-major¹
+       c, s, 0, 0,              // 1ª coluna
+      -s, c, 0, 0,              // ...
+       0, 0, 1, 0,
+       0, 0, 0, 1
+    ])
+  }
   ```
-- Exemplos de rotação em cada eixo:
-  ```c
-  glRotatef(30, 0, 0, 1); // 30º no eixo z
-  glRotatef(30, 0, 1, 0); // 30º no eixo y
-  glRotatef(30, 1, 0, 0); // 30º no eixo x
-  ```
-
----
-<!-- {"layout": "regular"} -->
-## Rotação em OpenGL: exemplo
-
-- Dentro de uma função de desenho:
-  ```c
-  glRotatef(player.angle, 0, 0, 1);   // eixo z
-  glBegin(GL_TRIANGLE_FAN);
-      glVertex3f(-10, -10, 0);    glVertex3f( 10, -10, 0);
-      glVertex3f( 10,  10, 0);    glVertex3f(-10,  10, 0);
-  glEnd();
-  glRotatef(-player.angle, 0, 0, 1);  // desfaz rotação ou descarta
+- Exemplo de rotação:
+  ```javascript
+  nave.angulo = rotateZ(90) // 90º, vira Math.PI/2 rad
   ```
 
 ---
-<!-- {"layout": "2-column-content-zigzag"} -->
-## Rotação: desenho na origem ou não
+<!-- {"layout": "2-column-content-zigzag", "slideClass": "compact-code-more"} -->
+# Rotação: desenho na origem ou não
 
-- ```c
-  glRotatef(45, 0, 0, 1);
-  glBegin(GL_POLYGON);
-    glVertex2f(4, 1);  // não está
-    glVertex2f(6, 1);  // na origem
-    // ...
-  glEnd();
+- ```javascript
+  gl.uniformMatrix4fv(mLoc, false, rotateZ(45))
+  
+  // desenha casinha definida FORA da origem
+  gl.drawArrays(gl.TRIANGLES, 0, 9)
   ```
   <!-- {ul:.no-bullet.compact-code} -->
 ![](../../images/rotacao-exemplo.svg) <!-- {.centered style="max-height: 180px;"} -->
 
-- ```c
-  glRotatef(45, 0, 0, 1);
-  glBegin(GL_POLYGON);
-    glVertex2f(0, 0);  // está na
-    glVertex2f(2, 0);  // origem 👍
-    // ...
-  glEnd();
+- ```javascript
+  gl.uniformMatrix4fv(mLoc, false, rotateZ(45))
+
+  // desenha casinha definida NA ORIGEM 👍
+  gl.drawArrays(gl.TRIANGLES, 0, 9)
   ```
   <!-- {ul:.no-bullet.compact-code} -->
 
 ![](../../images/rotacao-exemplo-origem.svg) <!-- {.centered style="max-height: 180px;"} -->
 
-
 ---
 <!-- {"layout": "regular"} -->
-## Matriz inversa da rotação
+# Matriz inversa da rotação
 
-- A matriz de rotação é ortogonal, ou seja, **sua inversa é sua
-  transposta**
-- Dada uma matriz de rotação <span class="math">R(\alpha)</span>, sua matriz inversa <span class="math">R^{-1}(\alpha)</span>
+- A matriz de rotação é ortogonal, ou seja, **sua inversa é sua transposta**
+- Dada uma matriz de rotação <span class="math">R(\alpha)</span>, 
+  sua matriz inversa <span class="math">R^{-1}(\alpha)</span>
   é dada por:
   - <span class="math">R^{-1}(\alpha)</span> = <span class="math">R^T(\alpha)</span>
 - Também é possível obter a inversa da matriz de rotação usando **a negação do
   ângulo de rotação**:
   - <span class="math">R^{-1}(\alpha)=R(-\alpha)</span>
 
-Sugestão: sempre definir objetos em um sistema de coordenadas local a ela (ou seja, usar transformações para posicioná-lo). Exemplo: [rotacao-ao-redor-de-um-ponto](codeblocks:rotacao-ao-redor-de-um-ponto/CodeBlocks/rotacao-ao-redor-de-um-ponto.cbp) <!-- {p:.note.info} -->
+Sugestão: sempre definir objetos em um sistema de coordenadas 
+local a ela (ou seja, usar transformações para posicioná-lo). 
+Exemplo: [rotacao-ao-redor-de-um-ponto](codeblocks:rotacao-ao-redor-de-um-ponto/CodeBlocks/rotacao-ao-redor-de-um-ponto.cbp) <!-- {p:.note.info style="font-size: 0.7em; margin-inline: 100px;"} -->
 
 ---
 <!-- {"layout": "regular"} -->
-## Rotação em torno de um ponto: **fora da** origem
+# Rotação em torno de si mas **fora da** origem
 
-- Para rotacionar **um objeto que não está na origem em torno de si mesmo**,
+- Para rotacionar **um objeto que não está na origem** **em torno de si mesmo**, <!-- {.alternate-color} -->
   precisamos, primeiro  (1) movê-lo até a origem, (2) rotacionar e (3) movê-lo
   de volta
-
-  ![](../../images/rotacao-ponto.png) <!-- {.centered} -->
-- Assim, fazemos uma **transformação composta** dada pela matriz obtida pela multiplicação:
+  ![](../../images/rotacao-ponto.png) <!-- {.block.centered} -->
+- Assim, fazemos uma **transformação composta** dada pela matriz obtida 
+  pela multiplicação: <!-- {li:.bulleted} -->
   - <span class="math">M = T(\vec{p})R_z(45)T(-\vec{p})</span>
-
-
+  - <span class="math">M</span> 
+    **(matriz model)** <!-- {strong:.alternate-color} --> 
+    conterá o resultado da mutiplicação 
+    ::: div .note.warning.bullet font-size: 0.7em; width: 500px; margin-inline: auto;
+    **Atenção** à ordem da multiplicação (não é comutativo). <!-- {p:.no-margin} -->
+    :::
 
 ---
 <!-- {"layout": "regular"} -->
-## Rotações em geral (quaisquer eixos)
+# Rotações em geral (quaisquer eixos)
 
 - Uma rotação em **eixos arbitrários** pode ser definida pela multiplicação das
   matrizes de rotação em cada eixo
-
   <div class="math">E(h, p, r) = R_z(r)R_x(p)R_y(h)</div>
 - Chamada de transformação de Euler
-- É a matriz gerada pelo `glRotate`
 
 ---
 <!-- {"layout": "regular"} -->
@@ -388,15 +419,14 @@ Sugestão: sempre definir objetos em um sistema de coordenadas local a ela (ou s
 
 - A transformação de escala altera o tamanho do objeto
   - Além de alterar o tamanho do objeto, a operação também os move
-
     1. ![](../../images/escala-exemplo.svg) <!-- {ol:.layout-split-2.no-bullet} -->
     1.
        - <div class="math">x' = s_xx \\ y' = s_yy</div>
-       - <div class="math">\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1 \end{bmatrix} \times \begin{bmatrix} x \\ y \\ 1\end{bmatrix}</div>
+       - <div class="math spoiler">\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} s_x & 0 & 0 \\ 0 & s_y & 0 \\ 0 & 0 & 1 \end{bmatrix} \times \begin{bmatrix} x \\ y \\ 1\end{bmatrix}</div>
 
 ---
 <!-- {"layout": "regular"} -->
-## Escala (cont.)
+# Escala em 3D
 
 - Uma transformação de escala simples é realizada pela multiplicação das
   posições <span class="math">(x,y,z)</span> de um objeto por fatores escalares <span class="math">s_x, s_y, s_z</span>
@@ -405,38 +435,26 @@ Sugestão: sempre definir objetos em um sistema de coordenadas local a ela (ou s
   <div class="math" style="float: right;">S(\vec{s})=\begin{bmatrix} s_x&0&0&0 \\ 0&s_y&0&0 \\ 0&0&s_z&0 \\ 0&0&0&1 \end{bmatrix}</div>
 
 ---
-<!-- {"layout": "regular"} -->
-## Escala em OpenGL
-
-- Em OpenGL, usamos o método `glScale` para multiplicar a matriz atual pela
-  matriz de escala gerada por ele
-- Assinatura da função ([referência](https://www.opengl.org/sdk/docs/man2/xhtml/glScale.xml)):
-  ```c
-  void glScaled(double x, double y, double z);
-  void glScalef(float x, float y, float z);
-  ```
-
----
-<!-- {"layout": "regular"} -->
-## Escala em OpenGL (cont.)
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Escala em WebGL
 
 - Dentro de uma função de desenho:
-  ```c
-  if (player.isSmall) {
-    glScalef(0.5, 0.5, 0.5);      // uniforme, 50%
+  ```javascript
+  const p = player
+  p.model = translate(...p.position)
+  if (p.isSmall) {
+    // ℹ️ pós-multiplica pela escala
+    p.model = multi(p.model, scale(0.5))
   }
-  glBegin(GL_TRIANGLE_FAN);
-    glVertex3f(-10, -10, 0);      glVertex3f( 10, -10, 0);
-    glVertex3f( 10,  10, 0);      glVertex3f(-10,  10, 0);
-  glEnd();
-  if (player.isSmall) {
-    glScalef(1/.5, 1/.5, 1/.5);   // desfaz ou descarta
-  }
+
+  // define matriz model e desenha na origem
+  gl.uniformMatrix4fv(mLoc, false, p.model)
+  gl.drawArrays(gl.TRIANGLE_FAN, 4)
   ```
 
 ---
 <!-- {"layout": "regular"} -->
-# Inclinação
+# Inclinação <small>(1/2)</small>
 
 - Equivale a "entortar" um objeto (seus vértices) em um plano
 
@@ -447,15 +465,15 @@ Sugestão: sempre definir objetos em um sistema de coordenadas local a ela (ou s
 
 ---
 <!-- {"layout": "regular"} -->
-## Inclinação (cont.)
+# Inclinação <small>(2/2)</small>
 
 - Em 3D, pode ocorrer em 1 de 6 combinações de planos de coordenadas
 - <div class="math" style="float: right;">H_{xy}(\vec{sh})=\begin{bmatrix} 1 & 0 & sh_x & 0 \\ 0 & 1 & sh_y & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}</div>
   Matriz da transformação no plano <span class="math">xy</span>
 
 ---
-<!-- {"layout": "regular"} -->
-## Inclinação em OpenGL
+<!-- {"layout": "regular", "backdrop": "white-noise"} -->
+# Inclinação em OpenGL
 
 - **<u>Não existe um `glShear`</u>**, portanto precisamos implementar a matriz nós mesmos
 - O OpenGL possui o **`glMultMatrix`** que nos permite definir todas as coordenadas
