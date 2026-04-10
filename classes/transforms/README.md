@@ -164,6 +164,20 @@
     uma única `uniform`
 
 ---
+<!-- {"layout": "centered-horizontal"} -->
+# Exemplo: Rotação/Transformações Simples
+
+- <!-- {ul:.no-bullet.layout-split-2.center-aligned style="align-items: flex-start; align-items: center; gap: 3rem;"} -->
+  ![](../../images/exemplo-rotacao-simples.webp) <!-- {.block.bordered.centered style="border-radius: 8px; width: 240px;"} --> <!-- {p:.full-width.center-aligned} -->
+  [rotacao-simples][exemplo-rotacao-simples] <!-- {target="_blank"} -->
+- ![](../../images/exemplo-transformacoes-simples.webp) <!-- {.block.bordered.centered style="border-radius: 8px; width: 240px;"} --> <!-- {p:.full-width.center-aligned} -->
+  [transformacoes-simples][exemplo-transformacoes-simples] <!-- {target="_blank"} -->
+
+
+[exemplo-rotacao-simples]: https://fegemo.github.io/utf-cg-exemplos-webgl/rotacao-simples/
+[exemplo-transformacoes-simples]: https://fegemo.github.io/utf-cg-exemplos-webgl/transformacoes-simples/
+
+---
 <!-- {"layout": "section-header", "slideClass": "tipos-comuns"} -->
 # Tipos comuns de transformações
 

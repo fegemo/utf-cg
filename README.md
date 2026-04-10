@@ -36,7 +36,7 @@
 1. [Aprofundando em JavaScript](https://fegemo.github.io/cefet-web/classes/js-for-cg/)
 1. [Operações Geométricas](classes/geometry/)
 1. [Transformações Geométricas](classes/transforms/)
-1. [Orientação e Mudança de Coordenadas](classes/baseorientation)
+1. [Sistemas de Coordenadas](classes/coordinate-systems/)
 <!-- 
 1. [O Pipeline Gráfico](classes/pipeline)
 1. [Projeção](classes/projection)

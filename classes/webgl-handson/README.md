@@ -823,7 +823,6 @@ Exemplo: [hello-diferentes-objetos][hello-diferentes-objetos]
 
 [hello-diferentes-objetos]: https://fegemo.github.io/utf-cg-exemplos-webgl/hello-diferentes-objetos/
 
-
 ---
 <!-- {"layout": "regular", "fullPageElement": "#state-diagram", "hash": "diagrama-de-estados-webgl"} -->
 
