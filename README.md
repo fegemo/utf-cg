@@ -26,7 +26,7 @@
 <!-- {"layout": "regular", "hash": "slides"} -->
 # Aulas
 
-1. [Introdução à Computação Gráfica](classes/intro/) <!-- {fora-ate-que-fique-grande:.multi-column-list-2} -->
+1. [Introdução à Computação Gráfica](classes/intro/) <!-- {ol:.multi-column-list-2 style="column-gap: 4rem;"} -->
 1. [Introdução à Web](https://fegemo.github.io/cefet-web/classes/web-intro/)
 1. [Sistemas de Janelas, WebGL e gatos 😸](classes/webgl/)
 1. [WebGL Hands-on - Parte 1](classes/webgl-handson/)
@@ -37,8 +37,8 @@
 1. [Operações Geométricas](classes/geometry/)
 1. [Transformações Geométricas](classes/transforms/)
 1. [Sistemas de Coordenadas](classes/coordinate-systems/)
-<!-- 
 1. [O Pipeline Gráfico](classes/pipeline)
+<!-- 
 1. [Projeção](classes/projection)
 1. [Modelagem Hierárquica](classes/hierarchical)
 1. [Especificação de vértices e dragões 🐉](classes/vertex-spec)
