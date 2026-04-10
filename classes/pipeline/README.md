@@ -5,9 +5,8 @@
 <!-- {"layout": "regular"} -->
 # Objetivos
 
-1. Entender o que acontece desde um `glVertex3f(x,y,z)` até a imagem renderizada
-   na tela
-1. Conhecer o que o OpenGL (e o DirectX, e outras APIs gráficas) fazem
+1. Entender o que acontece ao chamar `gl.drawArrays(...)`
+1. Conhecer o que o WebGL (e o DirectX, e outras APIs gráficas) fazem
    com a geometria criada até que uma imagem seja gerada
 
 ---
@@ -25,24 +24,25 @@
 
 ---
 <!-- {"layout": "regular"} -->
-## Um _pipeline_
+# Um _pipeline_
 
-1. **Divisão** de trabalho **em etapas**
+1. <!-- {ol:.full-width} -->
+   **Divisão** de trabalho **em etapas**
 1. As etapas são executadas **em paralelo**
 1. Exemplo: pipeline de pacientes em um hospital
-  ![](../../images/pipeline-hospital.png)
+  ![](../../images/pipeline-hospital.png) <!-- {.block.centered style="width: 300px"} -->
   - A velocidade com que se atende pacientes é dada pela **velocidade da etapa
     mais lenta**
 
 ---
 <!-- {"layout": "regular"} -->
-## O _pipeline_ **gráfico**
+# O _pipeline_ **gráfico**
 
 ![](../../images/pipeline-grafico-fases.svg) <!-- {p:.centered} -->
 
 - É o **processo de transformação de um modelo de descrição de objetos** (vértices)
   **em uma imagem digital** (imagem renderizada na tela)
-  - Pense como o processo que acontece assim que `glFlush()` é executado
+  - Pense como o processo que acontece assim algo precisa ser desenhado
 - Dividido em três etapas conceituais:
   1. Aplicação
   1. Geometria
@@ -57,8 +57,8 @@
   - Depende da cena e de como foi implementada
 - Na analogia do hospital:
   1. Os **vértices** são os **pacientes** que precisam ser renderizados
-  1. Para isso eles precisam passar por algumas etapas, em que **são
-    transformados**
+  1. Para isso eles precisam passar por algumas etapas, em que 
+     **são transformados**
   1. Os **atendentes/enfermeiros/médicos** são componentes de **_software_
     ou _hardware_**
 
@@ -182,7 +182,7 @@
   - Dizemos que temos **coordenadas de dispositivo normalizadas** (NDC)
   - A coordenada Z dos vértices é removida (3D -> 2D), porém armazenada em um
     espaço chamado _Z-buffer_
-    - É por isso precisamos usar `glEnable(GL_DEPTH_TEST)` para usar a
+    - É por isso precisamos usar `gl.enable(gl.DEPTH_TEST)` para usar a
       coordenada Z para determinar quem está na frente :O
 
 *[NDC]: normalized device coordinates*
@@ -205,12 +205,11 @@
 
 ![](../../images/pipeline-geometria-fases.svg) <!-- {.centered.geo-etapa4 style="display: block;"} --> <!-- {p:.full-width} -->
 
-![](../../images/pipeline-recorte.png) <!-- {p:.centered} -->
+![](../../images/pipeline-recorte.png) <!-- {p:.centered} --> <!-- {style="width: 480px;"} -->
 
 - Como toda nossa cena está representada no cubo de visualização (da etapa de
   projeção), para fazer o recorte calculamos a intersecção das primitivas com
   o cubo unitário
-
 - Na etapa de recorte, novos vértices podem ser criados
 
 ---
@@ -245,21 +244,22 @@
 
 ![](../../images/pipeline-rasterizacao-fases.svg) <!-- {.centered.ras-etapa1 style="display: block;"} --> <!-- {p:.full-width} -->
 
-- ![right](../../images/triangle-assembly.png)
+- ![](../../images/triangle-assembly.png) <!-- {.push-right} -->
   Neste estágio, informações sobre os triângulos definidos pelos vértices são
-  determinadas
-  - Basicamente, determina-se a conectividade das primitivas
+  determinadas como preparação
+  - Basicamente, determina-se a conectividade das primitivas para:
+    1. Calcular funções aresta
+    1. Calcular _bounding box_ no espaço da janela
+    1. Descartar triângulos de costas (_backface culling_)
 
 ---
 <!-- {"layout": "regular", "embeddedStyles": ".ras-etapa2 .etapa1, .ras-etapa2 .etapa3, .ras-etapa2 .etapa4 { fill: #eee !important; stroke: #333 !important;}", "embedSVG": "img[src$='.svg']"} -->
 
 ![](../../images/pipeline-rasterizacao-fases.svg) <!-- {.centered.ras-etapa2 style="display: block;"} --> <!-- {p:.full-width} -->
 
-- ![right](../../images/scan-conversion-triangle.png)
+- ![](../../images/scan-conversion-triangle.png) <!-- {.push-right} -->
   Cada pixel que tem seu centro "coberto" por um triângulo é verificado e um
   fragmento é criado
-- Determinar que pixels estão dentro de um triângulo é denominado _scan
-  conversion_
 - Cada fragmento tem associada informação (cor, textura, profundidade) que
   advém da interpolação dos três vértices do triângulo
 
@@ -268,28 +268,48 @@
 
 ![](../../images/pipeline-rasterizacao-fases.svg) <!-- {.centered.ras-etapa3 style="display: block;"} --> <!-- {p:.full-width} -->
 
-- ![right](../../images/shading-triangle.png)
+- <!-- {ul:.full-width} -->
+  ![](../../images/shading-triangle.png) <!-- {.push-right} -->
   Para cada fragmento, devemos obter sua cor
+- **Etapa programável**
 - Várias técnicas podem ser usadas aqui
   - Sombreamento de _Phong_
-  - Sombreamento de _Gouraud_
-  - Sombreamento _flat_
-  - <img src="../../images/texturizacao.png" style="float:right;">
-    Texturização etc
+  - ![](../../images/texturizacao.png) <!-- {.push-right} -->
+    Sombreamento _flat_
+  - Texturização ↘️
+  - Outras BRDFs
+
+*[BRDFs]: Bidirectional Reflectance Distribution Functions
 
 ---
 <!-- {"layout": "regular", "embeddedStyles": ".ras-etapa4 .etapa1, .ras-etapa4 .etapa2, .ras-etapa4 .etapa3 { fill: #eee !important; stroke: #333 !important;}", "embedSVG": "img[src$='.svg']"} -->
 
 ![](../../images/pipeline-rasterizacao-fases.svg) <!-- {.centered.ras-etapa4 style="display: block;"} --> <!-- {p:.full-width} -->
 
-- Do estágio anterior, podemos ter vários fragmentos por pixel (e.g.,
+- <!-- {ul:style="margin-bottom: 0.5rem;"} -->
+  Do estágio anterior, podemos ter vários fragmentos por pixel (e.g.,
   triângulos sobrepostos)
-- Neste estágio, todos os fragmentos de um pixel são combinados para se
-  determinar a cor final do pixel (`COLOR_BUFFER`)
-- Além disso, usa-se o valor do Z-buffer para determinar a visibilidade (ou a
-  ordem) dos fragmentos (`DEPTH_BUFFER`)
-- Ao final do estágio, os pixels foram coloridos e temos a imagem renderizada
-  na janela
+  - Os fragmentos de um pixel são combinados (_blended_) para se
+    determinar a cor final do pixel (no `COLOR_BUFFER`)
+- Alguns testes podem ser ativados: 
+
+**_Depth test_** <!-- {dl:.no-margin} -->
+~ usar o `DEPTH_BUFFER` para determinar visibilidade <!-- {p:.no-margin} -->
+
+_Scissor test_
+~ descartar fragmentos fora de certo retângulo <!-- {p:.no-margin} -->
+
+
+_Alpha test_
+~ descartar fragmentos com certos valores _alpha_ <!-- {p:.no-margin} -->
+
+
+_Stencil test_
+~ idem comparando o valor de uma _varying_ com o `STENCIL_BUFFER` <!-- {p:.no-margin} -->
+
+
+Ao final do estágio, os pixels foram coloridos e temos a imagem renderizada
+na janela <!-- {p:.note.info style="font-size: 0.7em; margin-inline: auto;"} -->
 
 ---
 <!-- {"layout": "centered"} -->
