@@ -348,7 +348,7 @@ as coordenadas de P dadas em um sistema no outro? <!-- {style="margin-bottom: 0;
 </ul>
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "hash": "mudanca-de-sistema-2-2"} -->
 # Mudança de sistema <small>(2/2)</small>
 
 - <!-- {ul:.bulleted} -->
@@ -374,13 +374,13 @@ em um sistema <span class="math">O/\vec{x}/\vec{y}</span>
 <u>multiplicando-as por uma matriz</u>** <!-- {p:.note.info.bullet} -->
 
 ---
-<!-- {"layout": "regular"} -->
+<!-- {"layout": "regular", "hash": "matriz-inversa"} -->
 # E no sentido contrário?
 
 - Se quiser passar uma coordenada do sistema
 <span class="math">O/\vec{x}/\vec{y}</span> para
-<span class="math">Q/\vec{t}/\vec{u}</span>, basta **resolver o
-problema inverso**:
+<span class="math">Q/\vec{t}/\vec{u}</span>, basta 
+**resolver o problema inverso**:
 
   <div class="math">
     \begin{bmatrix}t_P \\ u_P \\ 1\end{bmatrix}=
