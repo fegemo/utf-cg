@@ -1,6 +1,14 @@
 # Lista de Exercícios
 ## Geometria Afim e Euclidiana
 
+Esta lista de exercícios vale 4 pontos + 2 extras (referente à questão prática).
+Os exercícios de geometria devem ser feitos em papel e você deve tirar foto
+para entregá-los. Crie um repositório no Github e coloque as fotinhas lá.
+Envie a URL do repositório no SIGAA.
+
+Se fizer a Questão 4 (prática), valendo pontos extras, coloque lá no 
+repositório também.
+
 ### **Questão 1** - 1 ponto:
 
 Considerando as matrizes de transformação que vimos em aula (translação,
@@ -13,7 +21,57 @@ escrever as matrizes com as coordenadas homogêneas.
    - Considere `sin(π/4) = cos(π/4) = 0,71`
 1. Escala não uniforme de 200% no eixo x, 75% no eixo y em 2D
 1. Reflexão pelos eixos X e Y em 2D
-1. Rotação em 2D em relação ao ponto P(5,2)
+1. [Composta\] Rotação 2D em torno de si (&theta;=π/4) combinado com 
+   translação (t=(4,9)) para um objeto que será desenhado na origem
+   - Não precisa efetuar a multiplicação
+     <details>
+       <summary>Diquentinha</summary>
+       <p>Serão 2 transformações</p>
+     </details>
+1. [Composta\] Rotação 2D em torno de si (&theta;=π/4) combinado com 
+   translação (t=(4,9)) para um objeto que será desenhado com seu centro no
+   ponto (2,3)
+   - Não precisa efetuar a multiplicação
+     <details>
+       <summary>Diquentinha</summary>
+       <p>Serão 3 transformações</p>
+     </details>
+1. [Composta\] matriz modelo para posicionar a Terra no sistema solar, com sua
+rotação em torno de si (&theta;) e "translação"¹ em torno do sol. Considere: 
+   - trabalhe em 3D, portanto, matriz com 4 dimensões;
+   - a Terra é uma esfera que será desenhada com (0,0,0) em seu centro;
+   - o sistema de coordenadas global ("ortho") tem (0,0,0) no
+     centro do sistema solar;
+   - o centro da Terra está a uma distância `d` do centro do sistema solar;
+   - a Terra gira em torno de si (&theta;) exatamente ao redor do eixo Y
+     <details>
+       <summary>Na vida real...</summary>
+       <p>
+         A Terra gira em torno de um eixo que fica inclinado ~23.5° 
+         em relação ao plano orbital. Mas você pode supor que a rotação é
+         em torno do eixo Y.
+       </p>
+     </details>
+   - a órbita é circular e
+     está totalmente contida no plano orbital XZ (ie, Sol tem mesmo y que a Terra);
+     <details>
+       <summary>Na vida real...</summary>
+       <p>
+         A órbita da Terra é elíptica. Mas pode considerá-la circular.
+       </p> 
+     </details>
+   - como eu não especifiquei o dia do ano, nem a hora do dia, a matriz conterá
+     variáveis;
+   - não precisa multiplicar as matrizes.
+
+<details>
+  <summary>¹"translação" em torno do Sol</summary>
+  <p>
+    Coloquei entre aspas porque o que convencionamos
+    chamar de translação da Terra envolve duas operações da Geometria Afim: 
+    uma translação e uma rotação (mas qual ordem?).
+  </p>
+</details>
 
 ---
 ### **Questão 2** - 1 ponto:
@@ -52,22 +110,22 @@ frente do triângulo ou o de trás (veja Figura b).
     -->
 
 ---
-### **Questão 3: mudança de sistema de coordenadas** - 1 ponto
+### **Questão 3: mudança de sistema de coordenadas** - 2 pontos
 
-Nos itens a seguir - (a) e (b) - você deve efetuar a mudança de sistema de coordenadas.
+Nos itens a seguir - (a) e (b) - você vai exercitar a mudança 
+de sistema de coordenadas.
 
 (a) Considere um cenário em que temos dois sistemas de coordenadas: da janela
-(`J`) e do mundo (`M`), definidos em OpenGL da seguinte forma:
+(`J`) e do mundo (`M`), definidos em WebGL da seguinte forma:
 
-```c
-void reshape(int w, int h) {
-  glViewport(0, 0, 800, 600);     // Define sistema J
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  // left, right, bottom, top, near, far
-  glOrtho(0, 800, 0, 600, -1, 1);  // Define sistema M
-  glMatrixMode(GL_MODELVIEW);
-}
+```javascript
+// Define sistema J
+gl.viewport(0, 0, 800, 600)
+
+// Define sistema M
+const projecao = ortho(0, 800, 0, 600, -1, 1)
+                    // l,   r, b,   t,  n, f
+gl.uniformMatrix4fv(projecaoLoc, false, projecao)
 ```
 
 ![Sistemas de coordenadas da janela e do mundo, com pontos P[J] = (200,100) e Q[J] = (400,300)](images/sistema-coordenadas-1.png)
@@ -77,6 +135,15 @@ capturadas no sistema da janela (`J`). Pede-se:
 
 1. Represente a base e a origem do sistema `J` (_i.e._, `O`<sub>J</sub>,
    `x`<sub>J</sub>, `y`<sub>J</sub>) no sistema M.
+   <details>
+     <summary>Dikentinha</summary>
+     <p>Olhando para a imagem e os dados dos sistemas, responda em seu coração:</p>
+     <blockquote>-- Quantos x<sub>M</sub> vale 1 x<sub>J</sub>?</blockquote>
+     <p>
+       ...Faça o mesmo para y: quantos y<sub>M</sub> vale 1 y<sub>J</sub>. 
+       Depois, faça o mesmo para ponto de origem e construa a resposta.
+     </p>
+   </details>
    <!--
      Pergunta-se: quantos Xm vale 1 Xj?
      Raciocínio: 800Xm equivalem a 800Xj. Logo, Xj = Xm. Sendo assim,
@@ -92,7 +159,8 @@ capturadas no sistema da janela (`J`). Pede-se:
 
    -->
 1. Encontre a matriz de mudança de sistema de coordenadas que leva um ponto
-   ou vetor do sistema `J` para o sistema `M`.
+   ou vetor do sistema `J` para o sistema `M`. Lembre-se da 
+   [aula sobre mudança de sistema de coordenadas][slide-matriz-mudanca].
    <!--
      Portanto, a matriz de transformação é:
      |  1   0    0  |
@@ -112,19 +180,21 @@ capturadas no sistema da janela (`J`). Pede-se:
      |  0   0    1 |   |   1 |   |   1 |
 
    -->
+   - Aqui, execute a multiplicação. Se quiser conferir o resultado, você pode
+     usar o [octave-online][octave-online]
 
 
-(b) Agora, considere que o sistema da janela é o mesmo, mas o sistema de coordenadas do mundo (`M`) está definido assim:
+(b) Agora, considere que o sistema da janela é o mesmo, mas o 
+sistema de coordenadas do mundo (`M`) está definido assim:
 
-```c
-void reshape(int w, int h) {
- glViewport(0, 0, 800, 600);     // Define sistema J
- glMatrixMode(GL_PROJECTION);
- glLoadIdentity();
- // left, right, bottom, top, near, far
- glOrtho(0, 100, 0, 75, -1, 1);  // Define sistema M
- glMatrixMode(GL_MODELVIEW);
-}
+```javascript
+// Define sistema J (igual)
+gl.viewport(0, 0, 800, 600)
+
+// Define sistema M (mudou)
+const projecao = ortho(0, 100, 0, 75, -1, 1)
+                    // l,   r, b,  t,  n, f
+gl.uniformMatrix4fv(projecaoLoc, false, projecao)
 ```
 
 ![Sistemas de coordenadas da janela e do mundo, com pontos P[J] = (200,100) e Q[J] = (400,300)](images/sistema-coordenadas-2.png)
@@ -134,6 +204,17 @@ capturadas no sistema da janela (`J`). Pede-se:
 
 1. Represente a base e a origem do sistema `J` (_i.e._, `O`<sub>J</sub>,
    `x`<sub>J</sub>, `y`<sub>J</sub>) no sistema M.
+   <details>
+     <summary>Dikentinha</summary>
+     <p>
+       Faça o mesmo que antes. Mas agora, quantos x<sub>M</sub> vale 
+       1 x<sub>J</sub>? E para Y?
+     </p>
+     <p>
+       Já para o ponto de origem, quantas "setinhas" x e y precisamos somar
+       para irmos de O<sub>M</sub> até O<sub>J</sub>?
+     </p>
+   </details>
    <!--
      Pergunta-se: quantos Xm vale 1 Xj?
      Raciocínio: 100Xm equivalem a 800Xj. Logo, Xj = 1/8 Xm. Sendo assim,
@@ -190,12 +271,14 @@ capturadas no sistema da janela (`J`). Pede-se:
    -->
 
 ---
-### **Questão 4** (prática) - 2 pontos:
+### **Questão 4** (prática) - 2 pontos extras:
 
-Crie um <abbr title="Tipo Abstrato de Dados">TAD</abbr> (Tipo Abstrato de Dados) **Coordenadas** que represente um ponto ou um vetor da geometria afim em
-3 dimensões + coordenada homogênea. Seu TAD deve representar as coordenadas
-usando um tipo de ponto flutuante (_e.g._, **float**, **double**) e deve
-implementar as seguintes operações:
+Crie dois utilitários para operar com (a) pontos (ou vetores) em 3D + 
+coordenada homogênea para representar esses conceitos da geometria afim e
+também matrizes para 3D + coordenada homogênea. 
+
+Para a (a) estrutura de dados/classe de ponto ou vetor 
+(sugestão de nome: `vec4`), as seguintes operações devem ser implementadas:
 
 - Multiplicação por um escalar
 - Soma de dois vetores
@@ -207,12 +290,27 @@ implementar as seguintes operações:
 - Menor ângulo entre dois vetores
 - Combinação afim de dois pontos
 
-Você deve fazer seu TAD em um módulo `coordenadas.c` e `coordenadas.h` usando
+Para a (b) matriz, implemente:
+
+- identity()
+- translate(tx, ty, tz)
+- rotateZ(alpha)
+- rotateY(alpha)
+- rotateX(alpha)
+- scale(sx, sy, sz)
+- mult(A, B)
+- ortho(l,r,b,t,n,f)
+- perspective(fovY, aspect, n, f)
+- asFloat32Array()
+  - Retorna um vetor 1D para o programador poder 
+    passar para `gl.uniformMatrix4fv(...)`
+
+<!-- Você deve fazer seu TAD em um módulo `coordenadas.c` e `coordenadas.h` usando
 a linguagem C. Você deve pegar [o código fonte seminal][codigo-seminal], já
 contendo uma estrutura de dados `struct coordenada` e dois tipos `vetor` e
-`ponto` e implementar o corpo das funções.
+`ponto` e implementar o corpo das funções. -->
 
-#### Notas sobre o **código seminal**
+<!-- #### Notas sobre o **código seminal**
 
 Repare que o código é composto por 3 arquivos:
 
@@ -244,6 +342,9 @@ Para desenvolver e executar o código, você pode usar uma das duas alternativas
     ```
     $ make clean
     ```
-- O projeto do CodeBlocks
+- O projeto do CodeBlocks -->
 
 [codigo-seminal]: https://github.com/fegemo/tad-coordenadas/archive/master.zip
+[slide-matriz-mudanca]: https://fegemo.github.io/utf-cg/classes/coordinate-systems/#mudanca-de-sistema-2-2
+[slide-matriz-inversa]: https://fegemo.github.io/utf-cg/classes/coordinate-systems/#matriz-inversa
+[octave-online]: https://octave-online.net/
