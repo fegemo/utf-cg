@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisão Perspectiva</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        #main-canvas {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+        }
+
+        .canvas-container {
+            position: relative;
+        }
+
+        #text-overlay {
+            position: absolute;
+            inset: 0;
+        }
+
+        .info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            & > header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                h1 {
+                    font-size: 1em;
+                    margin-block: 0;
+                }
+            }
+        }
+
+        .presets {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 1px;
+        }
+
+        .projection-preset {
+            font-size: 0.5em;
+        }
+
+        .input-matrix-4d {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.1rem;
+
+            & > input {
+                width: 3em;
+                text-align: center;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                color: #555;
+            }
+        }
+
+        .point, .coords {
+            position: absolute;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .coords {
+            z-index: -1;
+        }
+
+        .point {
+            --size: 6px;
+            width: var(--size);
+            height: var(--size);
+            background-color: red;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="canvas-container">
+            <canvas id="main-canvas" width="200" height="200"></canvas>
+            <div id="text-overlay" width="200" height="200">
+                <span class="point pz1"></span>
+                <span class="point qz1"></span>
+                <span class="point pz2"></span>
+                <span class="point qz2"></span>
+                <span class="point pz3"></span>
+                <span class="point qz3"></span>
+                <span class="coords pz1"></span>
+                <span class="coords qz1"></span>
+                <span class="coords pz2"></span>
+                <span class="coords qz2"></span>
+                <span class="coords pz3"></span>
+                <span class="coords qz3"></span>
+            </div>
+        </div>
+        <section class="info-container">
+            <header>
+                <h1>Projeção</h1>
+                <div class="presets">
+                    <button class="projection-preset" data-m="identity">Idty</button>
+                    <button class="projection-preset" data-m="fov90">Fov90</button>
+                    <button class="projection-preset" data-m="fov60">Fov60</button>
+                </div>
+            </header>
+            <div class="input-matrix-4d">
+                <input id="m00" type="number" step="0.1" value="1">
+                <input id="m01" type="number" step="0.1" value="0">
+                <input id="m02" type="number" step="0.1" value="0">
+                <input id="m03" type="number" step="0.1" value="0">
+                <input id="m10" type="number" step="0.1" value="0">
+                <input id="m11" type="number" step="0.1" value="1">
+                <input id="m12" type="number" step="0.1" value="0">
+                <input id="m13" type="number" step="0.1" value="0">
+                <input id="m20" type="number" step="0.1" value="0">
+                <input id="m21" type="number" step="0.1" value="0">
+                <input id="m22" type="number" step="0.1" value="1">
+                <input id="m23" type="number" step="0.1" value="0">
+                <input id="m30" type="number" step="0.1" value="0">
+                <input id="m31" type="number" step="0.1" value="0">
+                <input id="m32" type="number" step="0.1" value="0">
+                <input id="m33" type="number" step="0.1" value="1">
+            </div>
+        </section>
+    </main>
+
+    <script type="module">
+        import { initialize } from './main.js'
+        initialize('#main-canvas')
+    </script>
+</body>
+</html>

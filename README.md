@@ -38,8 +38,8 @@
 1. [Transformações Geométricas](classes/transforms/)
 1. [Sistemas de Coordenadas](classes/coordinate-systems/)
 1. [O Pipeline Gráfico](classes/pipeline)
-<!-- 
 1. [Projeção](classes/projection)
+<!-- 
 1. [Modelagem Hierárquica](classes/hierarchical)
 1. [Especificação de vértices e dragões 🐉](classes/vertex-spec)
 1. [Iluminação e Sombreamento](classes/lighting)

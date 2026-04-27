@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="62.220905mm"
+   height="12.608367mm"
+   viewBox="0 0 62.220905 12.608367"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (fcd0343856, 2026-01-01)"
+   sodipodi:docname="line-segment-for-perspective-illustration.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0458614"
+     inkscape:cx="153.94009"
+     inkscape:cy="3.3465238"
+     inkscape:window-width="1470"
+     inkscape:window-height="795"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-46.28397,-84.551166)">
+    <path
+       style="fill:none;stroke:#bebebe;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 46.548553,90.693781 H 108.24029"
+       id="path2" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path3"
+       cx="52.240627"
+       cy="90.630531"
+       r="0.66030043" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path3-3"
+       cx="96.146301"
+       cy="90.64183"
+       r="0.66030043" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       x="49.837311"
+       y="96.259369"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:0.529167"
+         x="49.837311"
+         y="96.259369">P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans';writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       x="94.491318"
+       y="96.111786"
+       id="text3-8"><tspan
+         sodipodi:role="line"
+         id="tspan3-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:0.529167"
+         x="94.491318"
+         y="96.111786">Q</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       x="46.801529"
+       y="87.025551"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:2.82222px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Thin';stroke:#979797;stroke-width:0.529167;stroke-opacity:1"
+         x="46.801529"
+         y="87.025551">( 10, 1, z )</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.529167;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+       x="91.27285"
+       y="87.69342"
+       id="text4-7"><tspan
+         sodipodi:role="line"
+         id="tspan4-1"
+         style="font-style:normal;font-variant:normal;font-weight:100;font-stretch:normal;font-size:2.82222px;font-family:Ubuntu;-inkscape-font-specification:'Ubuntu Thin';stroke:#979797;stroke-width:0.529167;stroke-opacity:1"
+         x="91.27285"
+         y="87.69342">( 20, 1, z )</tspan></text>
+  </g>
+</svg>
