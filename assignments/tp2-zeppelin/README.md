@@ -221,11 +221,11 @@ Qualquer dúvida, entre em contato comigo. Ou acrescente a sua interpretação n
 arquivo README e mãos à obra.
 
 
-[lighting-directional]: http://fegemo.github.io/cefet-cg/classes/lighting/#37
+[lighting-directional]: http://fegemo.github.io/utf-cg/classes/lighting/#37
 [obj-tut-1]: http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
 [obj-tut-2]: http://netization.blogspot.in/2014/10/loading-obj-files-in-opengl.html
 [obj-tut-3]: https://tutorialsplay.com/opengl/2014/09/17/lesson-9-loading-wavefront-obj-3d-models/
-[visual-fx]: http://fegemo.github.io/cefet-cg/classes/visual-effects/#4
-[height-map]: http://fegemo.github.io/cefet-cg/classes/textures/#43
+[visual-fx]: http://fegemo.github.io/utf-cg/classes/visual-effects/#4
+[height-map]: http://fegemo.github.io/utf-cg/classes/textures/#43
 [skybox]: https://www.google.com.br/search?q=skybox&safe=off&hl=pt-BR&source=lnms&tbm=isch&sa=X&ei=jMM_VenRNKuasQSCwYDABw&ved=0CAgQ_AUoAg&biw=1366&bih=599
-[lighting]: http://fegemo.github.io/cefet-cg/classes/lighting/#26
+[lighting]: http://fegemo.github.io/utf-cg/classes/lighting/#26
