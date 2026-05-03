@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instanced Drawing</title>
+    <style>
+        main {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        #main-canvas {
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <canvas id="main-canvas" width="800" height="200"></canvas>
+    </main>
+
+    <script type="module">
+        import { initialize } from './main.js'
+        initialize('#main-canvas')
+    </script>
+</body>
+</html>
