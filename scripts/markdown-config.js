@@ -61,6 +61,8 @@ const config = {
 
   slideClass: (slideEl, value) => value.split(' ').forEach(v => slideEl.classList.add(v)),
 
+  style: (slideEl, value) => slideEl.setAttribute('style', value),
+
   state: (slide, value) => slide.setAttribute('data-bespoke-state', value),
 
   preventSelection: (slide, unselectableElementsSelector) => {

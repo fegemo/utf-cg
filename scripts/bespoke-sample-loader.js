@@ -6,6 +6,7 @@ export default function(selector = '.sample') {
       const sampleName = el.dataset.sample;
       if (sampleName) {
         import(`../samples/${sampleName}/main.js`).then(sampleModule => {
+          console.log(`Loaded sample module for ${sampleName}:`, sampleModule)
           if (sampleModule && sampleModule.initialize) {
             // creates a canvas element inside the sample element and passes it to the sample module's initialize function
             const canvas = document.createElement('canvas');
