@@ -17,9 +17,9 @@
 1. Mapeando cores
 1. Texturas procedurais
 1. Outras proprieadades mapeáveis
-  - Alturas (_height mapping_)
-  - Perturbações na normal (_bump mapping_)
-  - Normais (_normal mapping_)
+   - Alturas (_height mapping_)
+   - Perturbações na normal (_bump mapping_)
+   - Normais (_normal mapping_)
 
 ---
 # O que temos até agora
@@ -79,62 +79,92 @@
 ![](../../images/textura-triangulo-textura1d.png)
 
 ---
-## Textura 1D no OpenGL
+<!-- {"layout": "regular"} -->
+# Textura **2D**
 
-- Primeiramente, você deve ativar o processamento de texturas de 1D:
-  ```c
-  glEnable(GL_TEXTURE_1D);
-  ```
-- Em segundo lugar, você deve ter disponibilizado um _array_ que contém valores de cor.
-- Você pode:
-  - Abrir um arquivo de imagem e recuperar esse _array_ ("na mão", ou
-    usando uma biblioteca _e.g._ [SOIL](http://www.lonesock.net/soil.html)) ou
-  - Criar uma função que gere esse array (textura procedural)
-
----
-## Textura 1D no OpenGL (cont.)
-
-- Depois, você deve especificar a textura para o OpenGL:
-  ```c
-  glTexImage1D(GL_TEXTURE_1D, // sempre este valor
-    0,                // índice do MipMap (veremos adiante)
-    GL_RGBA,          // especificando nosso array como RGBA
-    largura,          // "largura" da imagem (potência de 2)
-    0,                // sem borda
-    GL_RGBA,          // ordem dos bytes no array
-    GL_UNSIGNED_BYTE, // tipo de dado do array
-    arrayCores);      // array com as cores
-  ```
-- [Referência](https://www.opengl.org/sdk/docs/man2/xhtml/glTexImage1D.xml)
-- A [SOIL](http://www.lonesock.net/soil.html) chama este método internamente,
-  quando você invoca `SOIL_load_OGL_texture(...)`
-
----
-## Textura 1D no OpenGL (cont.)
-
-- Por fim, você deve atribuir, para cada vértice do seu objeto, um valor
-  <span class="math">s</span> que representa qual o ponto da textura
-  será mapeado a ele:
-  ```c
-  glBegin(GL_TRIANGLES);
-    glTexCoord1f(0.2); // s = 0.2
-    glVertex3fv(p1);
-    glTexCoord1f(0.8); // s = 0.8
-    glVertex3fv(p2);
-    // ...
-  glEnd();
-  ```
-
----
-## Textura **2D**
-
-![](../../images/texture-space.png)
+![](../../images/texture-space.png) <!-- {p:.center-aligned.full-width} -->
 
 - Tipicamente, representamos qualquer textura 2D no espaço bidimensional com
   <span class="math">0 \le s,t \le 1</span>
 - Matematicamente análogo a 1D, porém o espaço da textura é
 <span class="math">T(s,t)</span> em vez de <span class="math">T(s)</span>
 
+
+---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Textura 2D no WebGL <small>(1/3)</small>
+
+- Primeiramente, você deve especificar a textura para o OpenGL:
+  ```javascript
+  // cria e faz upload da textura
+  gl.texImage2D(gl.TEXTURE_2D,
+    0,                            // índice do MipMap (veremos adiante)
+    gl.RGBA,                      // especificando nosso array como RGBA
+    largura,
+    altura,
+    0,                            // sem borda
+    gl.RGBA,                      // ordem dos bytes no array
+    gl.UNSIGNED_BYTE,             // tipo de dado do array
+    arrayCores);                  // array com as cores
+
+
+  // configura a textura: gera mipmaps e define filtro
+  gl.generateMipmap(gl.TEXTURE_2D)
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST)
+  ```
+
+---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Textura 2D no WebGL <small>(2/3)</small>
+
+- Em seguida, cada vértice deve ter coordenadas de textura
+  <span class="math">s,t</span> que representam qual o ponto da textura
+  será mapeado a ele:
+  ```javascript
+  const vertices = [
+    0, 0, 0, //... (x,y,z) do v0
+  ]
+  const texCoords = [
+    0.2, 0.8, //... (s,t) do v0
+  ]
+  ```
+
+---
+<!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
+# Textura 2D no WebGL <small>(3/3)</small>
+
+- Por fim, o _vertex shader_ passa a coordenada de textura adiante e o 
+  _fragment shader_ deve consultar (amostrar) o valor da textura
+  para definir a cor do fragmento
+  - <!-- {ul:.layout-split-2.no-bullet.no-padding style="gap: 1rem;"} -->
+    `vertex.glsl`
+    ```glsl
+    #version 300 es
+
+    in vec3 a_coord;
+    in vec2 a_texCoord;
+    out vec2 v_texCoord;
+
+    void main() {
+      gl_Position = a_coord;
+      v_texCoord = a_texCoord;
+    }
+
+    ```
+  - `fragment.glsl`
+    ```glsl
+    #version 300 es
+
+    precision mediump float;
+
+    uniform sampler2D u_textura;
+    in vec2 v_texCoord; 
+    out vec4 o_cor;
+
+    void main() {
+      o_cor = texture(u_textura, v_texCoord);
+    }
+    ```
 
 ---
 ## Textura 2D para objetos 3D

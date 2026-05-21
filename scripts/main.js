@@ -16,6 +16,7 @@ import markdown from 'bespoke-markdownit/lazy-hljs';
 import overview from 'bespoke-simple-overview';
 import samples from './bespoke-sample-loader.js';
 import spoiler from './bespoke-spoiler.js';
+import comparative from './bespoke-comparative.js';
 
 // utilities
 import tutorial from './tutorial.js';
@@ -59,6 +60,7 @@ bespoke.from('article', [
   spoiler('.spoiler'),
   tutorial(document.querySelector('.tutorial')),
   samples('.sample'),
+  comparative('.comparative'),
   deck => {
     // waits 200ms to avoid FoUC
     setTimeout(() => deck.parent.closest('#presentation-container').style.visibility = 'visible', 200);

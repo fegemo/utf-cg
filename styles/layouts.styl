@@ -397,11 +397,13 @@
   .layout-title
     h1
       font-family Aladin, cursive
-      color black
+      color white
       font-size 8em
       &::before
         background-image url(../images/tf2-woodwall-texture.jpg)
         background-size cover
+        inset 0 15px
+        box-shadow 0 0 10px #000
 
 .visual-effects
   .layout-title
@@ -420,6 +422,53 @@
     background-image url(../images/environment-mapping-knot.png)
   .efeitos-de-camera.layout-section-header::after
     background-image url(../images/depth-of-field-unreal.png)
+
+.multipass-rendering
+  .layout-title
+    background-image url(../images/trine-4-many-lights.webp)
+    background-size cover
+    justify-content flex-end
+    h1
+      align-self flex-end
+      color white
+      font-weight bold
+      text-shadow 0.05em 0.025em #b772cb
+      background-color #0003
+      width fit-content
+      flex-grow 0
+      border-radius 1rem
+      padding 2.5rem
+      backdrop-filter blur(16px)
+      margin 0 2rem 3rem 0
+      border-radius 1rem
+      box-shadow 4px 4px 0px #b772cb
+      &::before
+        content none
+  .pos-processamento.layout-section-header::after
+    background-image url(../images/g-toon.png)
+    background-size contain
+    background-position center
+    background-repeat no-repeat
+  .efeitos-complexos.layout-section-header::after
+    background-image url(../images/zelda-links-awakening.jpg)
+    background-size cover
+    background-position center
+    background-repeat no-repeat
+  .sombreamento-tardio.layout-section-header::after
+    background-image url(../images/deferred-lighting.jpg)
+    background-size cover
+
+.optimization-2
+  .grafo-de-cena.layout-section-header::after
+    background-image url(../images/scene-graph-sample.png)
+    background-size contain
+    background-position center
+    background-repeat no-repeat
+  .level-of-detail.layout-section-header::after
+    background-image url(../images/lod-tank.png)
+    background-size contain
+    background-position center
+    background-repeat no-repeat
 
 
 .raytracing
