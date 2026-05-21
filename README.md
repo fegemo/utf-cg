@@ -41,12 +41,14 @@
 1. [Projeção](classes/projection)
 1. Modelagem Hierárquica
 1. [Otimização de Primitivas](classes/optimization-1/)
+1. [Iluminação e Sombreamento](classes/lighting/)
+1. [Modelagem de Objetos](classes/modeling/)
+1. [Texturas](classes/textures/)
+1. [Efeitos Visuais](classes/visual-effects/)
+1. [Renderização Multipasso](classes/multipass-rendering/)
+1. [Otimização de Cenas](classes/optimization-2/)
 <!-- 
 1. [Modelagem Hierárquica](classes/hierarchical)
-1. [Iluminação e Sombreamento](classes/lighting)
-1. [Modelagem de Objetos](classes/modeling)
-1. [Texturas](classes/textures)
-1. [Efeitos Visuais](classes/visual-effects)
 1. [Ray tracing 1](classes/raytracing)
 1. [Ray tracing 2](classes/raytracing2)
 1. [Animações](http://fegemo.github.io/cefet-games/classes/animation)

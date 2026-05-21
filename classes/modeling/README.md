@@ -25,14 +25,16 @@
      ~ Obj Model Viewer ([download][omv])
 
    Linux/OSX
-     ~ ctmviewer (`sudo apt install openctm-tools`)
-     ~ view3dscene (loja do Ubuntu), blender etc.
+     ~ [blender][blender] etc.
+     ~ [f3d][f3d] etc.
 
 1. **Abrir um modelo** descrito em um arquivo .obj
 1. Após visualizar o modelo, vamos **abrir** o arquivo `.obj` **usando um
    editor de texto** e entender o que está acontencendo ali
 
 [omv]: https://sourceforge.net/projects/objmodelviewer/
+[blender]: https://www.blender.org/download/
+[f3d]: https://f3d.app/
 
 ---
 <!-- {"layout": "2-column-highlight-and-list"} -->
