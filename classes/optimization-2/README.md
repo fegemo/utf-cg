@@ -178,13 +178,13 @@
   - Melhor granularidade
 - Cons:
   - Mais caro
-
----
-<!-- { "layout": "regular" } -->
+<!--
+--
+-- { "layout": "regular" } --
 # LOD Contínuo: Exemplo
 
 <iframe width="480" height="360" src="https://www.youtube.com/embed/2IMyQUTv9Vk?rel=0" frameborder="0" allowfullscreen class="centered"></iframe>
-
+-->
 ---
 <!-- { "layout": "regular" } -->
 # LOD **Dependente da Visualização**
