@@ -47,12 +47,9 @@
 1. [Efeitos Visuais](classes/visual-effects/)
 1. [Renderização Multipasso](classes/multipass-rendering/)
 1. [Otimização de Cenas](classes/optimization-2/)
-<!-- 
-1. [Modelagem Hierárquica](classes/hierarchical)
-1. [Ray tracing 1](classes/raytracing)
-1. [Ray tracing 2](classes/raytracing2)
 1. [Animações](http://fegemo.github.io/cefet-games/classes/animation)
-1. [Pipeline Programável](classes/programmable-pipeline) -->
+1. [Ray tracing 1](classes/raytracing-1)
+1. [Ray tracing 2](classes/raytracing-2)
 
 ---
 <!-- {"layout": "stripe"} -->
