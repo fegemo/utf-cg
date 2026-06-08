@@ -453,7 +453,7 @@ Casa haja dois valores positivos diferentes, pegamos o menor (que será <span cl
 <!-- { "layout": "regular" } -->
 # Colisão com plano
 
-- ![](../../images/colisao-raio-plano.png) <!-- {.push-right style="max-width: 240px"} --> <!-- {ul:.bulleted style="max-width: 80%"} -->
+- ![](../../images/colisao-raio-plano.svg) <!-- {.push-right style="max-width: 240px"} --> <!-- {ul:.bulleted style="max-width: 80%"} -->
   Seja <span class="math">C</span> um ponto qualquer no plano e <span class="math">\vec{n}</span> a normal do plano
 - Um ponto <span class="math">Q</span> está no plano se o vetor <span class="math">Q-C</span> for perpendicular a <span class="math">\vec{n}</span>. Ou seja:
   <div class="math">(Q-C)\cdot\vec{n}=0</div>
@@ -489,12 +489,100 @@ Casa haja dois valores positivos diferentes, pegamos o menor (que será <span cl
 1. Acha se colide com plano do círculo
 1. Verifica se está dentro do raio
 
+---
+<!-- {"layout": "regular"} -->
+# Colisão com cilindro
+
+- ![](../../images/colisao-raio-cilindro.svg) <!-- {.push-right style="max-width: 240px"} --> <!-- {ul:.bulleted style="max-width: 80%"} -->
+  Sejam <span class="math">B</span> e <span class="math">T</span> o centro da base e topo do cilindro e <span class="math">r</span> o seu raio
+- Um ponto <span class="math">Q</span> está na lateral do cilindro se: <span class="math">\lVert Q-B\rVert^2=\lVert K-B\rVert^2+r^2</span>
+- Precisamos descobrir <span class="math">K</span> em termos do que temos. Considere:
+  - O vetor direção do cilindro: <span class="math">\hat{h}=\frac{T-B}{\lVert T-B\rVert}</span>
+  - Projetando <span class="math">\overline{QB}</span> em <span class="math">\hat{h}</span>, <span class="math">\lVert K-B\rVert=(Q-B) \cdot \hat{h}</span>
+- Vamos agora:
+  - (a) substituir <span class="math">\lVert K-B\rVert</span> na equação do cilindro
+  - (b) substituir <span class="math">Q</span> pela equação do raio...
+
+---
+<!-- {"layout": "centered"} -->
+
+- ![](../../images/colisao-raio-cilindro.svg) <!-- {ul:.layout-split-2.no-bullet style="gap: 1rem; margin-bottom: 0; flex: 0;"} -->
+- <div class="full-width bullet" style="display: grid; grid-auto-rows: auto; grid-template-columns: auto 1fr; grid-column-gap: 1em;">
+    <span class="math">\lVert Q-B\rVert^2=\lVert K-B\rVert^2+r^2</span>
+    <small style="color: gray; grid-row: 1/2; grid-column: 2/3">(0) Equação do cilindro</small>
+    <span class="math">\lVert K-B\rVert=(Q-B) \cdot \hat{h}</span>
+    <small style="color: gray; grid-row: 2/3; grid-column: 2/3">(a) Tamanho do segmento <span class="math">K-B</span></small>
+    <span class="math">P+\textcolor{blue}{t}\vec{u}</span>
+    <small style="color: gray; grid-row: 3/4; grid-column: 2/3">(b) Equação do raio, vai substituir <span class="math">Q</span></small>
+  </div>
+  <ul class="no-padding" style="margin-top: 1rem;">
+    <li class="bullet">Substituindo (a) em (0):<br>
+      <span class="math" style="margin-left: 1rem">\lVert Q-B\rVert^2=[(Q-B) \cdot \hat{h}]^2+r^2</span>
+    </li>
+    <li class="bullet">Substituindo (b) em <span class="math">Q</span>:<br>
+      <span class="math" style="margin-left: 1rem">\lVert P+\textcolor{blue}{t}\vec{u}-B\rVert^2=[(P+\textcolor{blue}{t}\vec{u}-B) \cdot \hat{h}]^2+r^2</span>
+    </li>
+  </ul>
+
+1. <!-- {ol:.no-bullet.no-padding.bullet.no-margin} -->
+   Resolvendo:
+   <div class="full-width" style="display: grid; grid-auto-rows: auto; grid-template-columns: auto 1fr; grid-column-gap: 1em;">
+     <span class="math bullet">\vec{w}=P-B</span>
+     <small class="bullet" style="color: gray; grid-row: 1/2; grid-column: 2/3">⬅️ fazendo um truque algébrico</small>
+     <span class="math bullet" style="grid-row: 2/3; grid-column: 1/2">
+       \lVert\textcolor{blue}{t}\vec{u}+\vec{w}\rVert^2-[(\textcolor{blue}{t}\vec{u}+\vec{w})\cdot\hat{h}]^2=r^2
+     </span>
+     <small class="bullet" style="color: gray; grid-row: 2/3; grid-column: 2/3">⬅️ norma² == p. escalar</small>
+     <span class="math bullet" style="grid-row: 3/4; grid-column: 1/2">
+       (\textcolor{blue}{t}\vec{u}+\vec{w})\cdot(\textcolor{blue}{t}\vec{u}+\vec{w})-[(\vec{u}\cdot\hat{h})\textcolor{blue}{t}+(\vec{w}\cdot\hat{h})]^2=r^2
+     </span>
+     <small class="bullet" style="color: gray; grid-row: 3/4; grid-column: 2/3">⬅️ expandindo p. escalar e ²</small>
+     <span class="math bullet no-margin left-aligned" style="grid-row: 4/5; grid-column: 1/3;">
+        (\vec{u}\cdot\vec{u})\textcolor{blue}{t}^2+2(\vec{u}\cdot\vec{w})\textcolor{blue}{t}+(\vec{w}\cdot\vec{w})-(\vec{u}\cdot\hat{h})^2\textcolor{blue}{t}^2-2(\vec{u}  \cdot\hat{h})(\vec{w}\cdot\hat{h})\textcolor{blue}{t}-(\vec{w}\cdot\hat{h})^2=r^2
+     </span>
+   </div>
+   <li class="bullet">
+    Agrupando por coeficientes de potência de <span class="math">\textcolor{blue}{t}</span>:<br>
+     <span class="math bullet no-margin left-aligned" style="grid-row: 4/5; grid-column: 1/3;">
+        [(\vec{u}\cdot\vec{u})-(\vec{u}\cdot\hat{h})^2]\textcolor{blue}{t}^2+2[(\vec{u}\cdot\vec{w})-(\vec{u}\cdot\hat{h})(\vec{w}\cdot\hat{h})]\textcolor{blue}{t}+(\vec{w}\cdot\vec{w})-(\vec{w}\cdot\hat{h})^2-r^2=0
+     </span>
+   </li>
+
+---
+<!-- {"layout": "center", "state": "show-active-slide-and-previous"} -->
+
+- <!-- {ul:.bullet.no-margin} -->
+  Se resolvermos a equação de 2º grau para <span class="math">\textcolor{blue}{t}</span>:
+  <div class="math">
+  \begin{cases}
+    a=(\vec{u}\cdot\vec{u}) - ( \vec{u} \cdot \hat{h})^2 \\
+    b=2[(\vec{u}\cdot\vec{w}) - (\vec{u}\cdot\hat{h}) (\vec{w}\cdot\hat{h})] \\
+    c=(\vec{w} \cdot \vec{w}) - (\vec{w}\cdot\hat{h})^2 - r^2
+  \end{cases}
+  </div>
+
+1. <!-- {ol:.bullet style="width: 40%; margin-left: 5rem"} -->
+   Se <span class="math">\Delta>0</span>, 2 interseções
+1. Se <span class="math">\Delta=0</span>, 1 interseção
+1. Se <span class="math">\Delta<0</span>, 0 interseção
+
+<div class="note info no-margin bullet" style="width: 54%; margin-left: 4rem;">
+Se houve interseções, interessa aquela com menor <span class="math">t</span> positivo.
+Além disso, precisamos considerar o ínicio e fim do cilindro:
+<ul style="padding-left: 0.75rem"><li>Se <span class="math">0\leq (Q-B)\cdot\vec{h}\leq\lVert h\rVert</span>, intersectou lateral</li>
+<li>Se <span class="math">(Q-B)\cdot\vec{h}\lt 0</span>, testar círculo base</li>
+<li>Se <span class="math">(Q-B)\cdot\vec{h}\gt \lVert h\rVert</span>, testar topo</li>
+</ul>
+</div>
+
+---
 # [Colisão com triângulo](https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/ray-triangle-intersection-geometric-solution)
-# [Colisão com cilindro](http://illusioncatalyst.com/notes_files/mathematics/line_cylinder_intersection.php)
+
+
 ---
 # Referências
 
 - Aulas 18 e 19 do prof. David Mount (link na página do curso)
 - Capítulo 10 do livro **Computer Graphics with OpenGL** de _Hearn and Baker_
-- [Disciplina _Ray Tracing for Graphics_](http://www.cemyuksel.com/courses/utah/cs6620/) da _University of Utah_
+- [Disciplina _Ray Tracing for Graphics_](https://graphics.cs.utah.edu/courses/cs6620/fall2025/) da _University of Utah_
   - Uma matéria inteira sobre a criação de _ray tracers_
