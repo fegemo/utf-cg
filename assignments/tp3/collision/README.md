@@ -4,19 +4,21 @@ Veja as instruções sobre a primeira parte do trabalho a seguir.
 
 ## Parte 1: Cálculo de **colisão entre raio e esfera**
 
-Faça _download_ do código seminal do _ray tracer_ no [Moodle](https://ava.cefetmg.br).
+Faça _download_ do código seminal do _ray tracer_ no sistema acadêmico.
 Nesta parte, você deve fazer três exercícios:
 
 1. Abrir e se familiarizar com o código fonte do "esqueleto" de um
   _ray tracer_ em C++ ou Java (20 min)
 1. Alterar a cor do fundo da tela para preto porque atualmente está azul (10 min)
    - Isso deve ser feito no código, no momento que se verifica que o raio não atingiu nada na cena
-1. Implementar a interseção de raio com esfera (40 min)
+1. (Vale 80%) Implementar a interseção de raio com esfera (40 min)
 1. (+5%) Implementar a intesreção de raio com plano ⭐️
 1. (+5%) Implementar a intesreção de raio com círculo ⭐️
 1. (+10%) Implementar a intesreção de raio com triângulo
 1. (+10%) Implementar a intesreção de raio com cilindro
 1. (+15%) Implementar a intesreção de raio com um modelo .obj 💣
+
+A pontuação do trabalho está limitada a 100% da nota.
 
 Sobre (2), saiba que a cor de fundo está descrita no código (e não nos arquivos txt de cena). O código em questão está localizado dentro do método que lança um raio e precisa verificar se esse raio atingiu algum objeto da cena (você precisa encontrar esse método). Sugestão: comece pela classe Main.java para entender o fluxo de execução.
 
