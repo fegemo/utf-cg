@@ -7,14 +7,18 @@
 <!-- {"layout": "regular"} -->
 # Atividades Avaliativas
 
-- Listas de **exercício** (22 pontos)
-- **Trabalhos**
-  - [TP0: Ambiente de Desenvolvimento][tp0] (3 pontos)
-  - TP1, grupos <span class="math">\leq</span> 2 (25 pontos)
-  - TP2, grupos <span class="math">\leq</span> 2 (25 pontos)
-  - TP3: Ray-tracer, duplas (25 pontos, em duas entregas)
-    - Primeira parte - colisão: no laboratório
-    - Segunda parte - iluminação: no laboratório
+- **Trabalhos** (50 pontos)
+  - [TP0: Ambiente de Desenvolvimento][tp0] (5 pontos)
+  - TP1 (15 pontos)
+  - TP2 (15 pontos)
+  - TP3: Ray-tracer (15 pontos, feitas no laboratório)
+- **Provas** (38 pontos)
+  - Prova 1, após TP1 (19 pontos)
+  - Prova 2, após TP2 (19 pontos)
+- **Participação** (12 pontos)
+  - Calculado a partir das faltas: 
+    - Tolerância de 3 dias
+    - Zera com 15 faltas
 
 [tp0]: https://github.com/fegemo/utf-cg/tree/master/assignments/tp0/README.md
 [tp1]: https://github.com/fegemo/cefet-cg/tree/master/assignments/tp1-ping-phong/README.md
