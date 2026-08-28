@@ -832,7 +832,7 @@ Exemplo: [hello-diferentes-objetos][hello-diferentes-objetos]
 <!-- {"layout": "centered"} -->
 # Lista de exercícios 1
 
-Link via **SIGAA** ou **Moodle**
+[Enunciado](https://github.com/fegemo/utf-cg/tree/main/exercises/webgl-prim/README.md) no sistema acadêmico.
 
 ---
 # Referências
