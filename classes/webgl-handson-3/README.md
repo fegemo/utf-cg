@@ -16,7 +16,6 @@
 
 - Usando vários arquivos JavaScript
 - Código _shader_ em arquivos `.glsl`
-- Utilitários
 
 ---
 <!-- {"layout": "regular", "slideClass": "compact-code-more"} -->
@@ -92,13 +91,6 @@
 [slide-promessas]: https://fegemo.github.io/cefet-web/classes/js7/#promessas
 [slide-async-await]: https://fegemo.github.io/cefet-web/classes/js7/#async-await
 
----
-<!-- {"layout": "regular"} -->
-# Utilitários
-
-...o que colocar aqui??
-...cedo demais para twgl...
-...talvez as questões sobre carregamento de shader com verificação de erros...
 
 ---
 <!-- {"layout": "section-header", "slideClass": "animation", "hash": "animacao"} -->

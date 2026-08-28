@@ -318,7 +318,7 @@ Que tipos de objetos podemos desenhar?
 
 
 ---
-<!-- { "layout": "section-header", "slideClass": "posicionamento", "hash": "posicionamento-de-objetos" } -->
+<!-- { "layout": "section-header", "slideClass": "posicionamento-de-objetos", "hash": "posicionamento-de-objetos" } -->
 # Posicionamento de objetos
 
 1. O jeito ruim

@@ -528,13 +528,15 @@ _A wild TP1 appears..._
 
 ---
 <!-- {"layout": "2-column-content"} -->
-# TP1: **Galaxian**
+# TP1: **Defesa de Torres**
 
 
-> Um dos primeiros jogos que surgiu se chamava Galaxian.
-> Nele, o jogador pilota uma nave que fica na parte de baixo
-> da tela e, com ela, se defende de um ataque alienígena.
+> No centro,
+há uma torre, que possui uma certa quantidade de pontos de vida e deve
+ser protegida.
+> De tempos em tempos, surgem inimigos de fora da tela e que vão andando
+em direção ao centro para atacar a torre.
 
 
-![](../../images/galaxian-original.png) <!-- {.push-right style="width: 210px; margin-left: 1em"} -->
+![](https://github.com/fegemo/utf-cg/blob/main/assignments/tp1-td/images/rampart-1990.gif?raw=true) <!-- {.push-right style="width: 210px; margin-left: 1em"} -->
 - Enunciado no SIGAA
